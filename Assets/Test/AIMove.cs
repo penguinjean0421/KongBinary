@@ -15,6 +15,4 @@ public class AIMove : MonoBehaviour
         nmAgent.SetDestination(target[Random.Range(0, target.Length)].position);
         Debug.Log($"{target[Random.Range(0, target.Length)].position}로 가는중");
     }
-
-
 }
