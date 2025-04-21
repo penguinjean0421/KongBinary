@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
     [SerializeField] public GameObject handPosition;
-   
+
 
     //private GameObject isHandObject = null;
     private Food_Item food_Item = null;
@@ -19,10 +19,10 @@ public class Player_Controller : MonoBehaviour
 
     private void Start()
     {
-        
+
     }
 
-  
+
     private void Update()
     {
         // 상호작용 중일 때는 새로운 상호작용을 막음
@@ -32,13 +32,13 @@ public class Player_Controller : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isInTrigger)
         {
             //Food_Ingredient_Tray food_Ingredient_Try = currentTrigger.gameObject.GetComponent<Food_Ingredient_Tray>();
-           
 
-            if(currentTrigger.gameObject.CompareTag("ingredientTable"))
+
+            if (currentTrigger.gameObject.CompareTag("ingredientTable"))
             {
                 IngredientTableInteraction();
             }
-            if(currentTrigger.gameObject.CompareTag("CuttingBoard"))
+            if (currentTrigger.gameObject.CompareTag("CuttingBoard"))
             {
                 CuttingBoardInteraction();
             }
@@ -58,13 +58,13 @@ public class Player_Controller : MonoBehaviour
             {
                 FinishedTable();
             }
-            
+
         }
 
         // Q 키를 눌렀을 때 손에 있는 아이템을 비우기
-     
+
     }
-    
+
 
     #region Triggers
 
@@ -96,22 +96,22 @@ public class Player_Controller : MonoBehaviour
     private void IngredientTableInteraction()
     {
         Food_Ingredient_Tray food_Ingredient_Try = currentTrigger.gameObject.GetComponent<Food_Ingredient_Tray>();
-        if(isHandObject!=null||food_Ingredient_Try.ingredientCount<1)
-                    return;
-                //Debug.Log("Test");
-                //food_Item = currentTrigger.gameObject.GetComponent<>
-                //GameObject ingredient = Instantiate(food_ingredient.ingredient, handPosition.position, handPosition.rotation);
+        if (isHandObject != null || food_Ingredient_Try.ingredientCount < 1)
+            return;
+        //Debug.Log("Test");
+        //food_Item = currentTrigger.gameObject.GetComponent<>
+        //GameObject ingredient = Instantiate(food_ingredient.ingredient, handPosition.position, handPosition.rotation);
         //if(isHandObject!=null)
-        isHandObject = Instantiate(food_Ingredient_Try.ingredient, 
-                    handPosition.transform.position, 
-                    handPosition.transform.rotation * Quaternion.Euler(0, 90, 0), 
+        isHandObject = Instantiate(food_Ingredient_Try.ingredient,
+                    handPosition.transform.position,
+                    handPosition.transform.rotation * Quaternion.Euler(0, 90, 0),
                     handPosition.transform);
         food_Ingredient_Try.ingredientCount--;
-        
+
 
         // if(isHandObject == null&&food_Ingredient_Try.ingredient!=null)
         // {
-            
+
         // }
 
     }
@@ -119,36 +119,36 @@ public class Player_Controller : MonoBehaviour
     private void CuttingBoardInteraction()
     {
         Cutting_Board cuttingBoard = currentTrigger.gameObject.GetComponent<Cutting_Board>();
-       
+
 
         if (isHandObject != null && cuttingBoard.ingredient == null)
         {
             Ingredient i = isHandObject.GetComponent<Ingredient>();
-            if(i.CurrentState==IngredientState.Raw)
+            if (i.CurrentState == IngredientState.Raw)
             {
-                 //Cutting_Board cuttingBoard = currentTrigger.gameObject.GetComponent<Cutting_Board>();
+                //Cutting_Board cuttingBoard = currentTrigger.gameObject.GetComponent<Cutting_Board>();
                 cuttingBoard.SetIngredient(isHandObject);
                 Destroy(isHandObject);
                 isHandObject = null;
             }
-          
+
         }
         //else if()
 
-        else if(isHandObject == null && cuttingBoard.ingredient != null)
+        else if (isHandObject == null && cuttingBoard.ingredient != null)
         {
             cuttingBoard.CleanIngredient();
             cuttingBoard.UsingCuttingBoard();
         }
-       
+
     }
 
     private void ClearHandObject()
     {
         //if (isHandObject == null)
-            //return;
-           
-        
+        //return;
+
+
         Destroy(isHandObject);
         isHandObject = null;
     }
@@ -169,7 +169,7 @@ public class Player_Controller : MonoBehaviour
                 }
             }
         }
-        else if(isHandObject == null)
+        else if (isHandObject == null)
         {
             FryPan fryPan = currentTrigger.gameObject.GetComponent<FryPan>();
             if (fryPan != null && fryPan.ingredient != null)
@@ -177,18 +177,18 @@ public class Player_Controller : MonoBehaviour
                 fryPan.CookingFryPan();
             }
         }
-        
+
     }
 
     private void UsingPot()
     {
-         if (isHandObject != null)
+        if (isHandObject != null)
         {
             Ingredient ingredient = isHandObject.GetComponent<Ingredient>();
             if (ingredient != null && ingredient.CurrentState == IngredientState.Prepared)
             {
                 Pot pot = currentTrigger.gameObject.GetComponent<Pot>();
-                if (pot != null && (pot.ingredient_1 == null||pot.ingredient_2==null))
+                if (pot != null && (pot.ingredient_1 == null || pot.ingredient_2 == null))
                 {
                     pot.SetIngredient(isHandObject);
                     isHandObject.transform.parent = null;
@@ -196,10 +196,10 @@ public class Player_Controller : MonoBehaviour
                 }
             }
         }
-        else if(isHandObject == null)
+        else if (isHandObject == null)
         {
             Pot pot = currentTrigger.gameObject.GetComponent<Pot>();
-            if (pot != null && pot.ingredient_1 != null &&pot.ingredient_2!=null )
+            if (pot != null && pot.ingredient_1 != null && pot.ingredient_2 != null)
             {
                 pot.CookingPot();
             }
@@ -209,19 +209,19 @@ public class Player_Controller : MonoBehaviour
     private void FinishedTable()
     {
         Ingredient i = isHandObject.GetComponent<Ingredient>();
-        if(isHandObject!=null&&i.menu!=Food_Menu.menu.none)
+        if (isHandObject != null && i.menu != Food_Menu.menu.none)
         {
             currentTrigger.gameObject.GetComponent<Finished_Table>().Finished(i.menu);
             Destroy(isHandObject);
             isHandObject = null;
         }
-         //   currentTrigger.gameObject.GetComponent<Finished_Table>().Finished(isHandObject);
+        //   currentTrigger.gameObject.GetComponent<Finished_Table>().Finished(isHandObject);
     }
 
     #endregion
 
-   
-    
-    
+
+
+
 
 }
