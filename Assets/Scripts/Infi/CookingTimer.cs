@@ -51,7 +51,7 @@ public class CookingTimer : MonoBehaviour
 
     #region 테스트 코드
     // 쿠킹타임 테스트 코드 (Q키 클릭)
-    public void TestCookingTime()
+    void TestCookingTime()
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
