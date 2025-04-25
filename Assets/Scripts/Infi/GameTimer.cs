@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
@@ -31,11 +32,13 @@ public class GameTimer : MonoBehaviour
             {
                 isPause = true;
                 Time.timeScale = 0f;
+                Debug.Log("환경설정 창 켜짐");
             }
             else
             {
                 Time.timeScale = 1f;
                 isPause = false;
+                Debug.Log("환경설정 창 꺼짐");
             }
         }
 
@@ -49,6 +52,7 @@ public class GameTimer : MonoBehaviour
                 isZero = true;
                 Debug.Log("타임오버");
                 colorObj.material.color = Color.blue;
+                Debug.Log("점수창 출력하세요");
             }
         }
     }
