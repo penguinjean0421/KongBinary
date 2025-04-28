@@ -11,7 +11,6 @@ public class CookingTimer : MonoBehaviour
     int menu; // 메뉴 인덱스 지정
 
     public float burned; // 음식이 탔는지 확인할때 쓰는 기준 값
-    float timeNormal;
     bool isBurned; // 음식이 탔는지 확인하는 bool 값
     bool isCooking; // 요리중인지 확인하는 Bool 값
 
@@ -36,9 +35,8 @@ public class CookingTimer : MonoBehaviour
             Debug.Log($"{menu} 조리중");
 
             time += spendTime;
-            timeNormal = time / menuTime;
-            timer.value = timeNormal;
-            if (timeNormal >= burned)
+            timer.value = time / menuTime;
+            if (time >= menuTime * burned)
             {
                 isBurned = true;
                 Debug.Log("음식이 망했습니다.");

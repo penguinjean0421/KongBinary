@@ -19,11 +19,12 @@ public class GameTimer : MonoBehaviour
 
     void Update()
     {
+        // GameTime(Time.deltaTime);
         TestGameTime();
     }
 
     #region  함수
-    void GameTime()
+    void GameTime(float spendTime)
     {
         // 환경설정 이동
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -44,7 +45,7 @@ public class GameTimer : MonoBehaviour
 
         if (!isZero)
         {
-            time -= Time.deltaTime;
+            time -= spendTime;
             timer.value = time / maxTime;
             if (time <= 0)
             {
@@ -66,8 +67,8 @@ public class GameTimer : MonoBehaviour
         {
             if (!isPause)
             {
-                isPause = true;
                 Time.timeScale = 0f;
+                isPause = true;
             }
             else
             {
@@ -75,7 +76,7 @@ public class GameTimer : MonoBehaviour
                 isPause = false;
             }
         }
-        GameTime();
+        GameTime(Time.deltaTime);
     }
     #endregion
 
