@@ -1,0 +1,12 @@
+{
+  "name": "com.opsive.shared",
+  "version": "2.0.5",
+  "displayName": "Opsive Shared",
+  "description": "Shared files between Opsive assets.",
+  "documentationUrl": "https://opsive.com/",
+  "author": {
+    "name": "Opsive",
+    "email": "support@opsive.com",
+    "url": "https://opsive.com"
+  }
+}
