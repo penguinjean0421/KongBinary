@@ -25,8 +25,8 @@ public class CookingTimer : MonoBehaviour
     }
     void Update()
     {
-        // CookingTime(menuName, Time.deltaTime, cookingTime);
-        // CuttingTime(menuName, Time.deltaTime, cookingTime);
+        // CookingTime(menuName, Time.unscaledDeltaTime, cookingTime);
+        // CuttingTime(menuName, Time.unscaledDeltaTime, cookingTime);
 
         TestCookingTime();
         TestCuttingTime();
@@ -44,7 +44,7 @@ public class CookingTimer : MonoBehaviour
             Debug.Log($"{menu} 조리중");
 
             time += spendTime;
-            Debug.Log(time);
+            Debug.Log($"조리 타임 : {Mathf.Floor(time * 100f) / 100f}");
             timer.value = time / menuTime;
             if (time >= menuTime * burned)
             {
@@ -63,7 +63,7 @@ public class CookingTimer : MonoBehaviour
             Debug.Log($"{menu} 손질중");
 
             time += spendTime;
-            Debug.Log(time);
+            Debug.Log($"손질 타임: {Mathf.Floor(time * 100f) / 100f}");
             timer.value = time / menuTime;
             if (time >= cuttingTime)
             {
@@ -83,19 +83,17 @@ public class CookingTimer : MonoBehaviour
         {
             if (isCooking)
             {
-                isCooking = false;
                 Time.timeScale = 0f;
                 Debug.Log($"요리 여부  {isCooking}");
             }
 
             else
             {
-                Time.timeScale = 1f;
                 isCooking = true;
                 Debug.Log($"요리 여부  {isCooking}");
             }
         }
-        CookingTime(menuName, Time.deltaTime, cookingTime);
+        CookingTime(menuName, Time.unscaledDeltaTime, cookingTime);
 
         if (isBurned) { colorObj.material.color = Color.red; }
     }
@@ -108,17 +106,15 @@ public class CookingTimer : MonoBehaviour
             if (isCutting)
             {
                 isCutting = false;
-                Time.timeScale = 0f;
                 Debug.Log($"손질 여부 : {isCutting}");
             }
             else
             {
-                Time.timeScale = 1f;
                 isCutting = true;
                 Debug.Log($"손질 여부: {isCutting}");
             }
         }
-        CuttingTime(menuName, Time.deltaTime, cookingTime);
+        CuttingTime(menuName, Time.unscaledDeltaTime, cookingTime);
 
         if (isCut) { colorObj.material.color = Color.green; }
     }

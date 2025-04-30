@@ -45,6 +45,7 @@ public class GameTimer : MonoBehaviour
         if (!isZero)
         {
             time -= spendTime;
+            Debug.Log($"게임 타임 : {Mathf.Floor(time * 100f) / 100f}");
             timer.value = time / maxTime;
             if (time <= 0)
             {
@@ -53,7 +54,6 @@ public class GameTimer : MonoBehaviour
                 Debug.Log("타임오버");
                 Debug.Log("점수창 출력");
             }
-            Debug.Log($"{time}");
         }
     }
     #endregion
