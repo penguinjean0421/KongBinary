@@ -30,6 +30,7 @@ public class CookingTimer : MonoBehaviour
 
         TestCookingTime();
         TestCuttingTime();
+        Reset();
     }
 
     #region 함수
@@ -80,8 +81,6 @@ public class CookingTimer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            TestReset();
-
             if (isCooking)
             {
                 isCooking = false;
@@ -98,7 +97,7 @@ public class CookingTimer : MonoBehaviour
         }
         CookingTime(menuName, Time.deltaTime, cookingTime);
 
-        if (isBurned) colorObj.material.color = Color.red;
+        if (isBurned) { colorObj.material.color = Color.red; }
     }
 
     // 손질 테스트 코드 (W키 클릭)
@@ -106,8 +105,6 @@ public class CookingTimer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            TestReset();
-
             if (isCutting)
             {
                 isCutting = false;
@@ -123,15 +120,19 @@ public class CookingTimer : MonoBehaviour
         }
         CuttingTime(menuName, Time.deltaTime, cookingTime);
 
-        if (isCut) colorObj.material.color = Color.green;
+        if (isCut) { colorObj.material.color = Color.green; }
     }
-
-    void TestReset()
+    // 타이머 초기화(A키 누르기)
+    void Reset()
     {
-        if (time != 0 && colorObj.material.color != Color.white)
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            time = 0f;
             timer.value = 0f;
-        time = 0f;
-        colorObj.material.color = Color.white;
+            isBurned = false;
+            isCut = false;
+            colorObj.material.color = Color.white;
+        }
     }
     #endregion
 }
