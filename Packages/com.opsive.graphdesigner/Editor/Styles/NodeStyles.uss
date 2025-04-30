@@ -1,0 +1,125 @@
+LogicNode
+{
+    min-width: 110px;
+    max-width: 250px;
+}
+
+EventNode
+{
+    min-width: 110px;
+    max-width: 250px;
+}
+
+#selection-container
+{
+    align-self: stretch;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 4px 4px 4px 4px;
+}
+
+.hover
+{
+    border-color: rgba(68, 192, 255, 0.5);
+}
+
+.selected
+{
+    border-color: rgba(68, 192, 255, 0.9);
+}
+
+#node-container
+{
+    align-self: stretch;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 3px 3px 3px 3px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+#title-container
+{
+    flex-grow: 1;
+	justify-content: center;
+    align-items: center;
+}
+
+#title-label
+{
+    font-size: 14px;
+    padding-left: 2px;
+    padding-right: 2px;
+    overflow: hidden;
+}
+
+#node-contents
+{
+    padding: 3px 3px 1px 3px;
+}
+
+#icon
+{
+    width: 42px;
+    height: 42px;
+}
+
+#small-icon
+{
+    width: 30px;
+    height: 30px;
+}
+
+#conditional-abort-icon
+{
+    top: 2px;
+    padding-left: 3px;
+    position: absolute;
+}
+
+#event-execution-status
+{
+    bottom: 1px;
+    right: -1px;
+    align-self: flex-end;
+    position: absolute;
+    height: 20px;
+}
+
+#execution-status
+{
+    top: 2px;
+    right: 2px;
+    align-self: flex-end;
+    position: absolute;
+    height: 24px;
+}
+
+CommentElement
+{
+    padding: 4px 4px 4px 4px;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 4px 4px 4px 4px;
+    border-color: rgba(0, 0, 0, 1);
+    max-width: 200px;
+    align-items: center;
+    overflow: hidden;
+    -unity-text-align: upper-center;
+}
+
+.comment-element-dark
+{
+    background-color: rgba(30, 30, 30, 0.7);
+}
+
+.comment-element-light
+{
+    background-color: rgba(196, 196, 196, 0.7);
+}
+
+#node-error-indicator
+{
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+}

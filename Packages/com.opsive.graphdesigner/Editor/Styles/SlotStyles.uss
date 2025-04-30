@@ -1,0 +1,64 @@
+Slot
+{
+    position: absolute;
+    width: 42px;
+    height: 14px;
+    align-items: center;
+    align-self: center;
+}
+
+#output-slot
+{
+    position: absolute;
+    bottom: 2px;
+    margin-bottom:-3px;
+    padding-top:4px
+}
+
+#input-slot
+{
+    padding-top: 2px;
+    margin-top: -1px;
+}
+
+#slot-container
+{
+    width: 34px;
+    height: 8px;
+    align-items: center;
+}
+
+.input-slot-container
+{
+    border-width: 0px 1px 1px 1px;
+    border-radius: 0px 0px 4px 4px;
+}
+
+.output-slot-container
+{
+    border-width: 1px 1px 0px 1px;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.valid-slot
+{
+    border-color: rgba(25, 25, 25, 1);
+    background-color: rgba(108, 108, 108, 0.8);
+} 
+
+.invalid-slot
+{
+    border-color: rgba(25, 25, 25, 1);
+    background-color: rgba(108, 108, 108, 0.3);
+}
+
+.slot-container-highlight
+{
+    background-color: rgba(138, 138, 138, 0.95);
+}
+
+#collapsed-icon
+{
+    position: absolute;
+    top: 6px;
+}
