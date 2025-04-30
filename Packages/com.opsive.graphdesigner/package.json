@@ -1,0 +1,15 @@
+{
+  "name": "com.opsive.graphdesigner",
+  "version": "2.0.7",
+  "displayName": "Opsive Graph Designer",
+  "description": "Underying graph system used by Opsive assets.",
+  "documentationUrl": "https://opsive.com/",
+  "author": {
+    "name": "Opsive",
+    "email": "support@opsive.com",
+    "url": "https://opsive.com"
+  },
+  "dependencies": {
+    "com.opsive.shared": "2.0.0"
+  }
+}

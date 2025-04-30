@@ -1,0 +1,57 @@
+
+NodeGroup {
+}
+
+#group
+{
+    position: absolute;
+    background-color: rgba(76, 76, 76, 0.8);
+    border-color: rgba(25, 25, 25, 1);
+}
+
+#title
+{
+    -unity-font-style: bold;
+    font-size: 15px;
+    min-height: 20px;
+}
+
+.title-label-light
+{
+    color: rgba(218, 218, 218, 1)
+}
+
+#description
+{
+    white-space: normal;
+    flex-grow: 1;
+}
+
+#selection-container
+{
+    align-self: stretch;
+    flex-grow: 1;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.hover
+{
+    border-color: rgba(68, 192, 255, 0.5);
+}
+
+.selected
+{
+    border-color: rgba(68, 192, 255, 0.9);
+}
+
+#selection-border
+{
+    border-radius: 8px;
+    margin: -2px;
+    position:absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}

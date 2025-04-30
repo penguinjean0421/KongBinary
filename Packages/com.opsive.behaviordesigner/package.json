@@ -1,0 +1,25 @@
+{
+  "name": "com.opsive.behaviordesigner",
+  "version": "2.0.8",
+  "displayName": "Opsive Behavior Designer",
+  "description": "A behavior tree implementation based on DOTS.",
+  "documentationUrl": "https://opsive.com/support/documentation/behavior-designer-pro/",
+  "author": {
+    "name": "Opsive",
+    "email": "support@opsive.com",
+    "url": "https://opsive.com"
+  },
+  "dependencies": {
+    "com.opsive.shared": "2.0.0",
+    "com.opsive.graphdesigner": "2.0.0",
+    "com.unity.burst": "1.8.17",
+    "com.unity.entities": "1.3.8"
+  },
+  "samples": [
+    {
+      "displayName": "Sample",
+      "description": "Sample scenes that show a variety of use cases.",
+      "path": "Samples~"
+    }
+  ]
+}
