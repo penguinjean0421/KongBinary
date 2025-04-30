@@ -1,0 +1,29 @@
+{
+    "name": "Opsive.BehaviorDesigner.Runtime",
+    "rootNamespace": "Opsive.BehaviorDesigner.Runtime",
+    "references": [
+        "GUID:e9319bc8ab9315745bdf80aeffa01d6d",
+        "GUID:d8e89a79cd8df884b8d5b3356783eb74",
+        "GUID:734d92eba21c94caba915361bd5ac177",
+        "GUID:2665a8d13d1b3f18800f46e256720795",
+        "GUID:e0cd26848372d4e5c891c569017e11f1",
+        "GUID:d8b63aba1907145bea998dd612889d6b",
+        "GUID:a5baed0c9693541a5bd947d336ec7659",
+        "GUID:8819f35a0fc84499b990e90a4ca1911f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.unity.entities",
+            "expression": "1.3.5",
+            "define": "UNITY_ENTITIES"
+        }
+    ],
+    "noEngineReferences": false
+}
