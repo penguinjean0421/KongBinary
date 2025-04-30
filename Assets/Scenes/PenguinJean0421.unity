@@ -243,16 +243,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorObj: {fileID: 44047809}
   timer: {fileID: 372963063}
-  cookingTime:
-  - 2
-  - 2
-  - 2
-  - 2
-  menuName:
-  - "\uC774\uC2DC\uD604"
-  - "\uAE40\uBBFC\uC601"
-  - "\uC774\uC2DC\uD604\uD0A4\uBCF4\uB4DC"
-  - "\uAE40\uBBFC\uC601\uD0A4\uBCF4\uB4DC"
+  menuName: "\uC74C\uC2DD"
+  cookingTime: 2
+  cuttingTime: 2
   burned: 1.5
 --- !u!114 &44047813
 MonoBehaviour:
