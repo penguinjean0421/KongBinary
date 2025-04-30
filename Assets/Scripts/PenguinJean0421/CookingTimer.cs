@@ -52,7 +52,6 @@ public class CookingTimer : MonoBehaviour
             }
         }
     }
-
     // 손질 타이머
     void CuttingTime(string menu, float spendTime, float menuTime)
     {
@@ -81,6 +80,8 @@ public class CookingTimer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            TestReset();
+
             if (isCooking)
             {
                 isCooking = false;
@@ -105,6 +106,8 @@ public class CookingTimer : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
+            TestReset();
+
             if (isCutting)
             {
                 isCutting = false;
@@ -121,6 +124,14 @@ public class CookingTimer : MonoBehaviour
         CuttingTime(menuName, Time.deltaTime, cookingTime);
 
         if (isCut) colorObj.material.color = Color.green;
+    }
+
+    void TestReset()
+    {
+        if (time != 0 && colorObj.material.color != Color.white)
+            timer.value = 0f;
+        time = 0f;
+        colorObj.material.color = Color.white;
     }
     #endregion
 }
