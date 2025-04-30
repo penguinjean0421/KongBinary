@@ -26,21 +26,21 @@ public class GameTimer : MonoBehaviour
     void GameTime(float spendTime)
     {
         // 환경설정 이동
-        // if (Input.GetKeyDown(KeyCode.Escape))
-        // {
-        //     if (!isPause)
-        //     {
-        //         isPause = true;
-        //         Time.timeScale = 0f;
-        //         Debug.Log("환경설정 창 켜짐");
-        //     }
-        //     else
-        //     {
-        //         Time.timeScale = 1f;
-        //         isPause = false;
-        //         Debug.Log("환경설정 창 꺼짐");
-        //     }
-        // }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!isPause)
+            {
+                isPause = true;
+                Time.timeScale = 0f;
+                Debug.Log("환경설정 창 켜짐");
+            }
+            else
+            {
+                Time.timeScale = 1f;
+                isPause = false;
+                Debug.Log("환경설정 창 꺼짐");
+            }
+        }
 
         if (!isZero)
         {
