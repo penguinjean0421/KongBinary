@@ -153,7 +153,7 @@ ModelImporter:
       takeName: CatChef_ItemIdle
       internalID: -4032208836461967637
       firstFrame: 0
-      lastFrame: 16
+      lastFrame: 60
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
