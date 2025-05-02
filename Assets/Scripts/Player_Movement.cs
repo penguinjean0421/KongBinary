@@ -144,13 +144,19 @@ public class Player_Movement : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
             // currentSpeed를 사용하여 이동
-            Vector3 targetVelocity = movement * currentSpeed;
-            rb.velocity = Vector3.Lerp(rb.velocity, targetVelocity, Time.deltaTime * 10f);
+            //Vector3 targetVelocity = movement * currentSpeed;
+            //rb.velocity = Vector3.Lerp(rb.velocity, targetVelocity, Time.deltaTime * 10f);
+
+            // currentSpeed를 사용하여 즉시 속도 설정 (Lerp 제거)
+            rb.velocity = movement * currentSpeed;
         }
         else
         {
             // 입력이 없을 때는 속도를 점진적으로 감소
-            rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * 10f);
+            //rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, Time.deltaTime * 10f);
+
+            // 입력이 없을 때 즉시 속도 0으로 설정
+            rb.velocity = Vector3.zero;
         }
     }
 }
