@@ -18,11 +18,13 @@ public class GameTimer : MonoBehaviour
     void Update()
     {
         // GameTime(Time.deltaTime);
+#if UNITY_EDITOR
         TestGameTime();
         Reset();
+#endif
     }
 
-    #region  함수
+    #region  타이머 함수
     void GameTime(float spendTime)
     {
         // 환경설정 이동

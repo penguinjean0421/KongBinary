@@ -16,7 +16,7 @@ public class CookingTimer : MonoBehaviour
     bool isBurned; // 음식이 탔는지 확인
 
     /* 손질 타이머 */
-    bool isCutting; // 손질중인지 혹인
+    bool isCutting; // 손질중인지 확인
     bool isCut; // 음식이 손질 됬는지 확인
 
     void Start()
@@ -28,12 +28,14 @@ public class CookingTimer : MonoBehaviour
         // CookingTime(menuName, Time.unscaledDeltaTime, cookingTime);
         // CuttingTime(menuName, Time.unscaledDeltaTime, cookingTime);
 
+#if UNITY_EDITOR
         TestCookingTime();
         TestCuttingTime();
         Reset();
+#endif
     }
 
-    #region 함수
+    #region 타이머 함수
     // 요리 타이머
     void CookingTime(string menu, float spendTime, float menuTime)
     {
@@ -83,7 +85,7 @@ public class CookingTimer : MonoBehaviour
         {
             if (isCooking)
             {
-                Time.timeScale = 0f;
+                isCooking = false;
                 Debug.Log($"요리 여부  {isCooking}");
             }
 
