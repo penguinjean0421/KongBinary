@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -3202527967537565879}
   m_Layer: 0
   m_Name: Meat
-  m_TagString: Meat
+  m_TagString: Ingredient
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,6 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e3250cc81c7ac9448a9c9999cc5e988, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredient: 1
   rawIngredientMesh: {fileID: 4300000, guid: 89a2e8923166f034da91e56691f5c567, type: 3}
-  preparedIngredientMesh: {fileID: 4300000, guid: d26a7c3dfe6495b42b5ba0cffe7b43b2, type: 3}
+  preparedIngredientMesh: {fileID: 4300000, guid: d26a7c3dfe6495b42b5ba0cffe7b43b2,
+    type: 3}
   fryPanFoodMesh: {fileID: 4300000, guid: fb6c80f801a33354d98e7f04e06ed34d, type: 3}
+  menu: 0
