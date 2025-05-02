@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 public class UIDirector : MonoBehaviour
 {
     public GameObject settingTest;
-    bool isSetting; // 설정창 실행여부
+    public bool isPause;
 
     void Start()
     {
@@ -12,6 +12,7 @@ public class UIDirector : MonoBehaviour
 
     void Update()
     {
+        // OnClickSetting(isPause);
 #if UNITY_EDITOR
         TestOnClickSetting();
         TestOnClickStage();
@@ -19,10 +20,9 @@ public class UIDirector : MonoBehaviour
 
     }
 
-    public void OnClickSetting(bool setting)
+    public void OnClickSetting()
     {
-        settingTest.SetActive(setting);
-        // 환경설정 창 작동
+        settingTest.SetActive(isPause);
     }
 
     public void OnClickStage()
@@ -40,9 +40,9 @@ public class UIDirector : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isSetting = !isSetting;
-            Debug.Log($"설정 창 : {isSetting}");
-            OnClickSetting(isSetting);
+            isPause = !isPause;
+            Debug.Log($"설정 창 : {isPause}");
+            OnClickSetting();
         }
     }
 

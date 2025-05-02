@@ -10,6 +10,7 @@ public class GameTimer : MonoBehaviour
 
     bool isPause;// 일시정지 여부 체크
     bool isZero = false; // 제한시간이 끝났는지 체크
+
     void Start()
     {
         time = maxTime;
@@ -28,21 +29,21 @@ public class GameTimer : MonoBehaviour
     void GameTime(float spendTime)
     {
         // 환경설정 이동
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (!isPause)
-            {
-                isPause = true;
-                Time.timeScale = 0f;
-                Debug.Log("환경설정 창 켜짐");
-            }
-            else
-            {
-                Time.timeScale = 1f;
-                isPause = false;
-                Debug.Log("환경설정 창 꺼짐");
-            }
-        }
+        // if (Input.GetKeyDown(KeyCode.Escape))
+        // {
+        //     if (!isPause)
+        //     {
+        //         isPause = true;
+        //         Time.timeScale = 0f;
+        //         Debug.Log("환경설정 창 켜짐");
+        //     }
+        //     else
+        //     {
+        //         Time.timeScale = 1f;
+        //         isPause = false;
+        //         Debug.Log("환경설정 창 꺼짐");
+        //     }
+        // }
 
         if (!isZero)
         {
@@ -76,9 +77,12 @@ public class GameTimer : MonoBehaviour
                 Time.timeScale = 1f;
                 isPause = false;
             }
+            Debug.Log($"퍼즈 여부 : {isPause}");
         }
         GameTime(Time.deltaTime);
 
+        if (!isPause && !isZero) { colorObj.material.color = Color.white; }
+        if (isPause) { colorObj.material.color = Color.black; }
         if (isZero) { colorObj.material.color = Color.blue; }
     }
 
