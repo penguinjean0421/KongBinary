@@ -36,6 +36,7 @@ public class Player_Controller : MonoBehaviour
 
         if (currentTrigger.gameObject.CompareTag("ingredientTable"))
         {
+            
             IngredientTableInteraction();
         }
         if (currentTrigger.gameObject.CompareTag("CuttingBoard"))
@@ -44,18 +45,22 @@ public class Player_Controller : MonoBehaviour
         }
         if (currentTrigger.gameObject.CompareTag("WasteBasket"))
         {
+         
             ClearHandObject();
         }
         if (currentTrigger.gameObject.CompareTag("FryPan"))
         {
+           
             UsingFryPan();
         }
         if (currentTrigger.gameObject.CompareTag("Pot"))
         {
+            
             UsingPot();
         }
         if (currentTrigger.gameObject.CompareTag("FinishedTable"))
         {
+            
             FinishedTable();
         }
     }
@@ -89,12 +94,15 @@ public class Player_Controller : MonoBehaviour
 
     private void IngredientTableInteraction()
     {
+      
+
         Food_Ingredient_Tray food_Ingredient_Try = currentTrigger.gameObject.GetComponent<Food_Ingredient_Tray>();
         if(isHandObject!=null||food_Ingredient_Try.ingredientCount<1)
                     return;
-                //Debug.Log("Test");
-                //food_Item = currentTrigger.gameObject.GetComponent<>
-                //GameObject ingredient = Instantiate(food_ingredient.ingredient, handPosition.position, handPosition.rotation);
+        
+        //Debug.Log("Test");
+        //food_Item = currentTrigger.gameObject.GetComponent<>
+        //GameObject ingredient = Instantiate(food_ingredient.ingredient, handPosition.position, handPosition.rotation);
         //if(isHandObject!=null)
         isHandObject = Instantiate(food_Ingredient_Try.ingredient, 
                     handPosition.transform.position, 
@@ -112,11 +120,15 @@ public class Player_Controller : MonoBehaviour
 
     private void CuttingBoardInteraction()
     {
+     
+
         Cutting_Board cuttingBoard = currentTrigger.gameObject.GetComponent<Cutting_Board>();
        
 
         if (isHandObject != null && cuttingBoard.ingredient == null)
         {
+            if (isHandObject.CompareTag("Food"))
+                return;
             Ingredient i = isHandObject.GetComponent<Ingredient>();
             if(i.CurrentState==IngredientState.Raw)
             {
@@ -149,8 +161,12 @@ public class Player_Controller : MonoBehaviour
 
     private void UsingFryPan()
     {
+      
+
         if (isHandObject != null)
         {
+            if (isHandObject.CompareTag("Food"))
+                return;
             Ingredient ingredient = isHandObject.GetComponent<Ingredient>();
             if (ingredient != null && ingredient.CurrentState == IngredientState.Prepared)
             {
@@ -176,8 +192,12 @@ public class Player_Controller : MonoBehaviour
 
     private void UsingPot()
     {
-         if (isHandObject != null)
+       
+
+        if (isHandObject != null)
         {
+            if (isHandObject.CompareTag("Food"))
+                return;
             Ingredient ingredient = isHandObject.GetComponent<Ingredient>();
             if (ingredient != null && ingredient.CurrentState == IngredientState.Prepared)
             {
@@ -193,16 +213,20 @@ public class Player_Controller : MonoBehaviour
         else if(isHandObject == null)
         {
             Pot pot = currentTrigger.gameObject.GetComponent<Pot>();
-            if (pot != null && pot.ingredient_1 != null &&pot.ingredient_2!=null )
+            if (pot != null)
             {
-                pot.CookingPot();
+                pot.CookingPot(this.gameObject);
             }
         }
     }
 
     private void FinishedTable()
     {
+        
+
+        /*
         Ingredient i = isHandObject.GetComponent<Ingredient>();
+
         if(isHandObject!=null&&i.menu!=Food_Menu.menu.none)
         {
             currentTrigger.gameObject.GetComponent<Finished_Table>().Finished(i.menu);
@@ -210,6 +234,7 @@ public class Player_Controller : MonoBehaviour
             isHandObject = null;
         }
          //   currentTrigger.gameObject.GetComponent<Finished_Table>().Finished(isHandObject);
+        */
     }
 
     #endregion

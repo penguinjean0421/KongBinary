@@ -4,6 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+
+
+
+
+
+
 public class FryPan : MonoBehaviour
 {
     public GameObject ingredient;
@@ -107,6 +113,7 @@ public class FryPan : MonoBehaviour
         {
             // Interact 호출 및 menu 설정
             _ingredient.Interact();
+            /*
             if (_ingredient.CompareTag("Fish"))
             {
                 _ingredient.menu = Food_Menu.menu.fishSteak;
@@ -115,6 +122,7 @@ public class FryPan : MonoBehaviour
             {
                 _ingredient.menu = Food_Menu.menu.meatSteak;
             }
+            */
 
             // 기존 ingredient 삭제
             //Destroy(_ingredient.gameObject);

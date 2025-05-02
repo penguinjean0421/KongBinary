@@ -15,7 +15,7 @@ public class Finished_Table : MonoBehaviour
     {
         
     }
-
+    /*
     public void Finished(Food_Menu.menu menu)
     {
         //Debug.Log("test finished");
@@ -32,4 +32,5 @@ public class Finished_Table : MonoBehaviour
            break;
         }
     }
+    */
 }

@@ -4,16 +4,16 @@ using UnityEngine;
 
 
 public enum IngredientState { Raw, Prepared, Cooking }
-public enum ingredient { None,Meat, Fish}
+public enum ingredient { None,Meat, Fish, Carrot }
 public class Ingredient : MonoBehaviour
 {
-    public IngredientState CurrentState { get; private set; } = IngredientState.Raw;
+    public IngredientState CurrentState { get;  set; } = IngredientState.Raw;
     public ingredient ingredient;
     [SerializeField] private Mesh rawIngredientMesh;
     [SerializeField] private Mesh preparedIngredientMesh;
     [SerializeField] private Mesh fryPanFoodMesh;
     
-    public Food_Menu.menu menu;
+    //public Food_Menu.menu menu;
     
 
     private MeshFilter meshFilter;
