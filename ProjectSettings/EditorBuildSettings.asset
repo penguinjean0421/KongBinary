@@ -5,10 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SceneLoadTest.unity
     guid: cd3ce5fd3d3f62347ae3db0cab512e0c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Timer.unity
     guid: e965aea73a8a12143bf97aab1fd71df8
+  - enabled: 1
+    path: Assets/Scenes/SceneLoade/Start.unity
+    guid: cab3fdccddee3d04485954345dc31b6e
+  - enabled: 1
+    path: Assets/Scenes/SceneLoade/Stage.unity
+    guid: 6a287aaacefe71c489807cf6092b502a
+  - enabled: 1
+    path: Assets/Scenes/SceneLoade/InGame.unity
+    guid: dd26b63983289df4c901b35620db75aa
+  - enabled: 1
+    path: Assets/Scenes/SceneLoade/Score.unity
+    guid: 19036326f9c412e478bb70d0786d3a21
   m_configObjects: {}

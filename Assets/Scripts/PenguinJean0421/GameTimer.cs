@@ -4,6 +4,7 @@ public class GameTimer : MonoBehaviour
 {
     public Renderer colorObj;
     public Slider timer;
+    public Text timerText;
 
     public float maxTime; // 제한시간
     float time; // 시간
@@ -14,6 +15,7 @@ public class GameTimer : MonoBehaviour
     void Start()
     {
         time = maxTime;
+        timerText.text = $"{(int)time / 60}:{(int)time % 60}";
     }
 
     void Update()
@@ -49,6 +51,7 @@ public class GameTimer : MonoBehaviour
         {
             time -= spendTime;
             Debug.Log($"게임 타임 : {Mathf.Floor(time * 100f) / 100f}");
+            timerText.text = $"{(int)time / 60}:{(int)time % 60}";
             timer.value = time / maxTime;
             if (time <= 0)
             {
