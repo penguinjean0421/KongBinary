@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("스테이지 선택창 진입");
     }
 
-    public void OnClickStage()
+    public void OnClickStage() // 스테이지 추가할때 복붙후 스테이지 넘버링 
     {
         SceneManager.LoadScene("InGame");
         Debug.Log("인게임 진입");
