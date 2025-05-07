@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
         if (Instance == null)
         {
             Instance = this as SceneLoader;
-            DontDestroyOnLoad(this.gameObject);
+            // DontDestroyOnLoad(this.gameObject);
             SceneManager.activeSceneChanged += OnSceneChanged;
         }
         else
