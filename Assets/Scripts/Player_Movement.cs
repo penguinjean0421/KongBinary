@@ -106,7 +106,7 @@ public class Player_Movement : MonoBehaviour
             if ((Input.GetKeyDown(KeyCode.RightControl) || Input.GetKeyDown(KeyCode.JoystickButton0)) && 
                 playerController != null && playerController.isInTrigger)
             {
-                playerController.OnTag();
+                playerController. OnTag();
             }
 
             // 디버깅: 입력값 로그 출력 (60프레임마다)

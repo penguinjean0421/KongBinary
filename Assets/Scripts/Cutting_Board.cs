@@ -40,6 +40,7 @@ public class Cutting_Board : MonoBehaviour
         }
      
     }
+    /*
     public void CleanIngredient()
     {
         if (ingredient.CompareTag("Fish"))
@@ -55,6 +56,7 @@ public class Cutting_Board : MonoBehaviour
             Debug.Log("Other ingredient placed on cutting board: " + ingredient.tag);
         }
     }
+    */
 
     public GameObject PickUpCleanIngredient()
     {

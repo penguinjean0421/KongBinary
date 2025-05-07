@@ -33,4 +33,16 @@ public class Finished_Table : MonoBehaviour
         }
     }
     */
+
+    // 음식 제출 시 호출되는 메서드
+    public void Finished(GameObject food)
+    {
+        Food_State foodState = food.GetComponent<Food_State>();
+        if (foodState != null)
+        {
+            GameManager.Instance.AddSales(foodState.price);
+            Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
+        }
+        Destroy(food); // 음식 오브젝트 제거
+    }
 }

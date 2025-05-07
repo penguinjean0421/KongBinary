@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     private bool isGameOver = false;
     private int currentStage = 1; // 현재 스테이지 번호 (예시)
 
+    private float sales;
+
     void Awake()
     {
         // 싱글톤 설정
@@ -99,5 +101,12 @@ public class GameManager : MonoBehaviour
         timeRemaining += additionalTime;
         if (timeRemaining > timeLimit) timeRemaining = timeLimit;
         UpdateTimerUI();
+    }
+
+    // 매출 증가 메서드
+    public void AddSales(float amount)
+    {
+        sales += amount;
+        Debug.Log($"매출 증가: {amount}, 총 매출: {sales}");
     }
 }
