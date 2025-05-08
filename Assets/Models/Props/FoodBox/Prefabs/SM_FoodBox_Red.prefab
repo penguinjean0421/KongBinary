@@ -79,10 +79,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7348569346389508145, guid: a2a09f86096d84e3baaee2f955fefbab, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c3a6512c620d7d4abce910c5623354a, type: 2}
     - target: {fileID: -425046567355171263, guid: a2a09f86096d84e3baaee2f955fefbab, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 359655667354001703, guid: a2a09f86096d84e3baaee2f955fefbab, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 4c3a6512c620d7d4abce910c5623354a, type: 2}
     - target: {fileID: 919132149155446097, guid: a2a09f86096d84e3baaee2f955fefbab, type: 3}
       propertyPath: m_Name
       value: SM_FoodBox_Red
