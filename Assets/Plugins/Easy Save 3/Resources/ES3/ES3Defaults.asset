@@ -37,6 +37,14 @@ MonoBehaviour:
     assemblyNames:
     - Assembly-CSharp
     - Assembly-CSharp-firstpass
+    - Febucci.Attributes.Runtime
+    - Febucci.TextAnimator.Demo.Runtime
+    - Febucci.TextAnimator.Runtime
+    - Febucci.TextAnimator.TMP.Runtime
+    - Opsive.BehaviorDesigner.Runtime
+    - Opsive.GraphDesigner.Runtime.Wrappers
+    - Opsive.Shared.Runtime
+    - VInspector
     showAdvancedSettings: 0
   addMgrToSceneAutomatically: 0
   autoUpdateReferences: 1
