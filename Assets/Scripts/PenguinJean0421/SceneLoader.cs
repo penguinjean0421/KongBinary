@@ -9,7 +9,6 @@ public class SceneLoader : MonoBehaviour
         if (Instance == null)
         {
             Instance = this as SceneLoader;
-            // DontDestroyOnLoad(this.gameObject);
             SceneManager.activeSceneChanged += OnSceneChanged;
         }
         else
@@ -20,7 +19,6 @@ public class SceneLoader : MonoBehaviour
 
     void OnSceneChanged(Scene previous, Scene current)
     {
-        // throw new NotImplementedException();
         Debug.Log($"씬 바뀜: {previous.name} > {current.name}");
     }
 
