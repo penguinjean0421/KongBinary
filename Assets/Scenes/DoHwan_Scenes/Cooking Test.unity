@@ -5178,7 +5178,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &490408259
 Transform:
   m_ObjectHideFlags: 0
@@ -17798,9 +17798,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19550dfc373573d4294e42e22c294dce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  billPrefab: {fileID: 8430326636918921684, guid: c298a0e50f7b3ea419845d3c28b7cf4a,
-    type: 3}
-  billParent: {fileID: 490408259}
+  billPrefabs:
+  - {fileID: 8430326636918921684, guid: c5af972bca234984f9a88c840f96d2f5, type: 3}
+  - {fileID: 8430326636918921684, guid: db7ab6d1e41afd347b7472befe5d174c, type: 3}
+  - {fileID: 8430326636918921684, guid: 679eacaa2a981f143840855e28c0a0db, type: 3}
+  - {fileID: 8430326636918921684, guid: c298a0e50f7b3ea419845d3c28b7cf4a, type: 3}
+  billParent: {fileID: 1699212173}
   spawnInterval: 1
 --- !u!4 &1730291475
 Transform:
@@ -22126,6 +22129,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7454143547113315226, guid: 9e0f01d133f465e4e886600a33ab3bfb,
+        type: 3}
+      propertyPath: billManager
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 9081712163837959200, guid: 9e0f01d133f465e4e886600a33ab3bfb,
         type: 3}
