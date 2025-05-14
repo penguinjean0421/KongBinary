@@ -822,7 +822,7 @@ PlayerSettings:
     QNX: UNITY_VISUAL_SCRIPTING;ES3_TMPRO;ES3_UGUI;DOTWEEN
     Server: UNITY_VISUAL_SCRIPTING;ES3_TMPRO;ES3_UGUI
     Stadia: DOTWEEN
-    Standalone: UNITY_VISUAL_SCRIPTING;ES3_TMPRO;ES3_UGUI;DOTWEEN
+    Standalone: UNITY_VISUAL_SCRIPTING;ES3_TMPRO;ES3_UGUI;DOTWEEN;GRAPH_DESIGNER
     VisionOS: UNITY_VISUAL_SCRIPTING;ES3_TMPRO;ES3_UGUI;DOTWEEN
     WebGL: UNITY_VISUAL_SCRIPTING;ES3_TMPRO;ES3_UGUI;DOTWEEN
     Windows Store Apps: UNITY_VISUAL_SCRIPTING;ES3_TMPRO;ES3_UGUI;DOTWEEN
@@ -879,8 +879,7 @@ PlayerSettings:
   metroDefaultTileSize: 1
   metroTileForegroundText: 2
   metroTileBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628, a: 0}
-  metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628,
-    a: 1}
+  metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   syncCapabilities: 0
   platformCapabilities: {}
