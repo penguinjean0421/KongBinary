@@ -1,0 +1,5 @@
+The sample scene uses the assets provided by:
+
+- Humanoid animations from by Omni Animation: https://omnianimation.com
+- 2D pixel art background from Kenny Game Assets: https://kenney-assets.itch.io/pixel-platformer
+- 2D pixel art characters from GrafxKid: https://grafxkid.itch.io/sprite-pack-8

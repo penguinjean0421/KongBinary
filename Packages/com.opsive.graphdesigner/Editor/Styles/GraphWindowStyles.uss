@@ -1,0 +1,155 @@
+#panel
+{
+	width: 250px;
+	min-width: 225px;
+	max-width: 400px;
+}
+
+.background-light
+{
+    background-color: rgb(194, 194, 194);
+}
+
+.background-dark
+{
+    background-color: rgb(56, 56, 56);
+}
+
+.panel-inspector
+{
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.horizontal-resize
+{
+    width: 5px;
+    flex-direction: column;
+    cursor: resize-horizontal;
+}
+
+.vertical-resize
+{
+    cursor: resize-vertical;
+}
+
+#status-label
+{
+    font-size: 22px;
+    margin-top: 5px;
+    margin-left: 6px;
+    -unity-font-style: bold; 
+}
+
+.status-label-light
+{
+    color: rgba(210, 210, 210, 0.90);
+}
+
+#status-toolbar
+{
+    border-top-width: 1px;
+    border-top-color: rgba(1, 1, 1, 0.2);
+    height: 18px;
+}
+
+.status-toolbar-light
+{
+    border-top-color: rgba(153, 153, 153, 255);
+}
+
+.status-toolbar-dark
+{
+    border-top-color: rgba(35, 35, 35, 255);
+}
+
+#find-overlay
+{
+    position: Absolute;
+    width: 300px;
+    margin-top: 2px;
+    border-width: 0px 1px 1px 1px;
+    border-radius: 0px 0px 4px 4px;
+}
+
+.find-overlay-light
+{
+    border-color: rgba(153, 153, 153, 255);
+}
+
+.find-overlay-dark
+{
+    border-color: rgba(35, 35, 35, 255);
+}
+
+#toolbar-button
+{
+    border-width: 0px 1px 0px 1px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 0px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#toolbar-dropdown
+{
+    border-width: 0px 1px 0px 1px;
+    margin-left: 3px;
+    margin-right: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+
+.toolbar-dropdown-dark
+{
+    border-color: rgba(48, 48, 48, 1);
+}
+
+.toolbar-dropdown-light
+{
+    border-color: rgba(173, 173, 173, 1);
+}
+
+#node-description
+{
+    position: Absolute;
+    overflow: hidden;
+    left: 10px;
+    bottom: 10px;
+    width: 450px;
+    min-height: 25px;
+    max-height: 200px;
+    padding: 2px 2px 2px 2px;
+    border-width: 1px 1px 1px 1px;
+    border-radius: 6px 6px 6px 6px;
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
+.node-description-dark
+{
+    background-color: rgba(15, 15, 15, 0.75);
+}
+
+.node-description-light
+{
+    background-color: rgba(230, 230, 230, 0.75);
+}
+
+#node-description-label
+{
+    font-size: 14px;
+    white-space: normal;
+    -unity-text-align: upper-center;
+}
+
+#lock-button
+{
+    position: Absolute;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    margin-top: 3px;
+    margin-bottom: 0px;
+    width: 14px;
+    height: 14px;
+}
