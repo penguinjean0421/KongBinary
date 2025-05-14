@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5cf1af6feafe84a12abeaa66269d357f
+guid: cd85764eb8ebe498b9f9d051ef0f14f2
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: M_Tableware01.002
-    second: {fileID: 2100000, guid: 3a1509167528240dda67ec8a1f20fff9, type: 2}
+      name: M_Flame
+    second: {fileID: 2100000, guid: 0f9482d5352ce4f73a948d6565735c04, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -72,7 +72,7 @@ ModelImporter:
     secondaryUVMinLightmapResolution: 40
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
-    useFileScale: 1
+    useFileScale: 0
     strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
