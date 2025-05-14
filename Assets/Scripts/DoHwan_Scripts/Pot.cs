@@ -132,9 +132,9 @@ public class Pot : MonoBehaviour
 
         GameObject playerController = GameObject.FindGameObjectWithTag("Player");
         Player_Controller controller = playerController?.GetComponent<Player_Controller>();
-        if (controller != null)
+        if (controller != null) //상호작용시 이동 재한하고 싶으면 isInteracting부분 주석해제
         {
-            controller.isInteracting = true;
+            //controller.isInteracting = true;
         }
 
         if (timerBar != null)
@@ -224,7 +224,7 @@ public class Pot : MonoBehaviour
 
         if (controller != null)
         {
-            controller.isInteracting = false;
+            //controller.isInteracting = false;
         }
         isCooking = false;
     }

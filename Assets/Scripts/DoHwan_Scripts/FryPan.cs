@@ -86,7 +86,7 @@ public class FryPan : MonoBehaviour
         Player_Controller playerController = playerMovement.GetComponent<Player_Controller>();
         if (playerController != null)
         {
-            playerController.isInteracting = true;
+            //playerController.isInteracting = true;
         }
          // 타이머바 활성화
         if (timerBar != null)
@@ -191,7 +191,7 @@ public class FryPan : MonoBehaviour
         // 플레이어 상호작용 잠금 해제
         if (playerController != null)
         {
-            playerController.isInteracting = false;
+            //playerController.isInteracting = false;
         }
         isCooking = false;
     }
