@@ -122,11 +122,11 @@ public class Player_Controller : MonoBehaviour
                     handPosition.transform.rotation * Quaternion.Euler(0, 90, 0), 
                     handPosition.transform);
         food_Ingredient_Try.ingredientCount--;
-        
+        food_Ingredient_Try.AnimationPlayer();
 
         // if(isHandObject == null&&food_Ingredient_Try.ingredient!=null)
         // {
-            
+
         // }
 
     }
