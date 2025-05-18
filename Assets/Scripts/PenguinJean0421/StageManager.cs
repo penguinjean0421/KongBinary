@@ -1,19 +1,20 @@
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
-    public static StageManager Instance; // 싱글톤
+    public int stageIndex; // 1부터 시작
+    public Button stageButton;
 
-    void Awake()
+    void Start()
     {
-        // 싱글톤 설정
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        bool unlocked = (stageIndex == 1) || StageData.Instance.IsStageCleared(stageIndex - 1);
+        stageButton.interactable = unlocked;
+    }
+
+    public void LoadStage()
+    {
+        StageData.Instance.currentStageIndex = stageIndex;
+        SceneManager.LoadScene($"Stage{stageIndex}");
     }
 }
