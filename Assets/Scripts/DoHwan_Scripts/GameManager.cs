@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
 
     private float sales;
 
-    private int winning; // 클리어 조건 체크 테스트용
-
     void Awake()
     {
         // 싱글톤 설정
@@ -34,8 +32,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ResetTimer(); // 게임 시작 시 타이머 초기화
-
-        winning = Random.Range(0, 100);
     }
 
     void Update()
@@ -71,10 +67,11 @@ public class GameManager : MonoBehaviour
         // SceneManager.LoadScene("GameOver");
 
         // 조건 맞춰서 스테이지 클리어 or 실패 판정하게 하면 될거 같습니다.
-        if (winning > 50)
-        { OnStageClear(); }
-        else
-        { OnStageFail(); }
+        Debug.Log("클리어");
+        OnStageClear();
+
+        // Debug.Log("실패");
+        // OnStageFail();
     }
 
     // 타이머 초기화 메서드
@@ -126,6 +123,7 @@ public class GameManager : MonoBehaviour
     public void OnStageClear()
     {
         int current = StageData.Instance.currentStageIndex;
+        StageData.Instance.SetStageCleared(current);
         StageData.Instance.IsStageCleared(current);
         SceneManager.LoadScene("Score");
     }
