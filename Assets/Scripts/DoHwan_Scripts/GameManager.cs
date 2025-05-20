@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // 싱글톤
-    StageData instance;
     [SerializeField] private float timeLimit = 240f; // 4분(240초)
     private float timeRemaining;
     [SerializeField] private Text timerText; // 타이머 UI 텍스트
@@ -14,6 +13,7 @@ public class GameManager : MonoBehaviour
     private int currentStage = 1; // 현재 스테이지 번호 (예시)
 
     private float sales;
+    [SerializeField] float clearSale;
 
     void Awake()
     {
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ResetTimer(); // 게임 시작 시 타이머 초기화
+        sales = 0; // 판매액 초기화
     }
 
     void Update()
@@ -66,12 +67,16 @@ public class GameManager : MonoBehaviour
         // 게임 오버 처리 (예: 씬 전환)
         // SceneManager.LoadScene("GameOver");
 
-        // 조건 맞춰서 스테이지 클리어 or 실패 판정하게 하면 될거 같습니다.
-        Debug.Log("클리어");
-        OnStageClear();
-
-        // Debug.Log("실패");
-        // OnStageFail();
+        if (sales != clearSale) // 테스트용으로 != 처리함, 실제로는 >=
+        {
+            Debug.Log("클리어");
+            OnStageClear();
+        }
+        else
+        {
+            Debug.Log("실패");
+            OnStageFail();
+        }
     }
 
     // 타이머 초기화 메서드
