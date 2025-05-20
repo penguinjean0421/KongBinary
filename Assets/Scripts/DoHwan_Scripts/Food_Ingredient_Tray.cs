@@ -32,7 +32,10 @@ public class Food_Ingredient_Tray : MonoBehaviour
 
     public void AnimationPlayer()
     {
-        StartCoroutine(PlayAnimationsSequentially());
+        if (animator != null)
+        {
+            StartCoroutine(PlayAnimationsSequentially());
+        }
     }
 
     IEnumerator PlayAnimationsSequentially()
