@@ -258,8 +258,12 @@ public class Player_Controller : MonoBehaviour
             Finished_Table finishedTable = currentTrigger.gameObject.GetComponent<Finished_Table>();
             if (finishedTable != null)
             {
-                finishedTable.Finished(isHandObject);
-                isHandObject = null;
+                if (isHandObject.CompareTag("Food"))
+                {
+                    finishedTable.Finished(isHandObject);
+                    isHandObject = null;
+                }
+              
             }
         }
     }
