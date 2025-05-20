@@ -15,7 +15,7 @@ public class StageManager : MonoBehaviour
     public void LoadStage()
     {
         StageData.Instance.currentStageIndex = stageIndex;
-        SceneManager.LoadScene($"Stage{stageIndex}");
+        SceneManager.LoadScene($"Level{stageIndex}");
 
     }
 }
