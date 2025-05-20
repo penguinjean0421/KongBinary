@@ -180,6 +180,21 @@ public class Pot : MonoBehaviour
                 }
             }
 
+            if ((i1.ingredient == global::ingredient.Fish && i2.ingredient == global::ingredient.Onion) ||
+               (i1.ingredient == global::ingredient.Onion && i2.ingredient == global::ingredient.Fish))
+            {
+                foreach (GameObject menuItem in menuObject)
+                {
+                    Food_State foodState = menuItem.GetComponent<Food_State>();
+                    if (foodState != null && foodState.foodMenu == FoodMenu.braisedRibs)
+                    {
+                        newFoodObject = Instantiate(menuItem);
+                        //foodState = foodState.foodMenu.braisedRibs;
+                        break;
+                    }
+                }
+            }
+
 
             // 그 외의 경우 기본 쓰레기 음식 생성
             else
