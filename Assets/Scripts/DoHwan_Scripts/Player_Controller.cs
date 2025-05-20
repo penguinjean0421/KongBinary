@@ -5,14 +5,13 @@ using UnityEngine;
 public class Player_Controller : MonoBehaviour
 {
     [SerializeField] public GameObject handPosition;
-   
 
-    //private GameObject isHandObject = null;
     private Food_Item food_Item = null;
     public GameObject isHandObject = null;
 
     public bool isInTrigger = false;
-    private Collider currentTrigger = null;
+    private List<Collider> currentTriggers = new List<Collider>(); // 여러 트리거 저장
+    private Collider currentTrigger = null; // 가장 가까운 트리거
     private Rigidbody rb;
 
     public bool isInteracting = false; // 플레이어가 요리 등의 행동 중인지 확인
@@ -22,21 +21,33 @@ public class Player_Controller : MonoBehaviour
     private void Start()
     {
         playerMovement = this.GetComponent<Player_Movement>();
+        rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            rb = gameObject.AddComponent<Rigidbody>();
+            rb.freezeRotation = true;
+        }
     }
 
-  
     void Update()
     {
         // 입력 처리는 Player_Movement로 이동됨
         // 여기서는 상호작용 관련 상태만 관리
+        // UpdateNearestTrigger 호출 제거
+    }
+
+    void FixedUpdate()
+    {
+        // FixedUpdate에서 가장 가까운 트리거 갱신
+        UpdateNearestTrigger();
     }
 
     public void OnTag()
     {
+        if (currentTrigger == null) return;
 
         if (currentTrigger.gameObject.CompareTag("ingredientTable"))
         {
-            
             IngredientTableInteraction();
         }
         else if (currentTrigger.gameObject.CompareTag("CuttingBoard"))
@@ -45,25 +56,21 @@ public class Player_Controller : MonoBehaviour
         }
         else if (currentTrigger.gameObject.CompareTag("WasteBasket"))
         {
-         
             ClearHandObject();
         }
-        else if(currentTrigger.gameObject.CompareTag("FryPan"))
+        else if (currentTrigger.gameObject.CompareTag("FryPan"))
         {
-           
             UsingFryPan();
         }
-        else if(currentTrigger.gameObject.CompareTag("Pot"))
+        else if (currentTrigger.gameObject.CompareTag("Pot"))
         {
-            
             UsingPot();
         }
-        else if(currentTrigger.gameObject.CompareTag("FinishedTable"))
+        else if (currentTrigger.gameObject.CompareTag("FinishedTable"))
         {
-            
             FinishedTable();
         }
-        if(isInteracting)
+        if (isInteracting)
         {
             if (currentTrigger != null)
             {
@@ -84,22 +91,63 @@ public class Player_Controller : MonoBehaviour
     {
         // 트리거에 들어갈 때 상태 설정
         isInTrigger = true;
-        currentTrigger = other;
+        if (!currentTriggers.Contains(other))
+        {
+            currentTriggers.Add(other);
+        }
+        UpdateNearestTrigger();
     }
-
 
     private void OnTriggerStay(Collider other)
     {
-        // 트리거 안에 있는 동안 상태 유지 (필요 시 디버깅용)
-        isInTrigger = true;
-        currentTrigger = other;
+        // 트리거 안에 있는 동안 상태 유지
+        if (!currentTriggers.Contains(other))
+        {
+            currentTriggers.Add(other);
+        }
+        UpdateNearestTrigger();
     }
 
     private void OnTriggerExit(Collider other)
     {
         // 트리거에서 나가면 상태 초기화
-        isInTrigger = false;
-        currentTrigger = null;
+        currentTriggers.Remove(other);
+        if (currentTriggers.Count == 0)
+        {
+            isInTrigger = false;
+            currentTrigger = null;
+        }
+        else
+        {
+            UpdateNearestTrigger();
+        }
+    }
+
+    private void UpdateNearestTrigger()
+    {
+        if (currentTriggers.Count == 0)
+        {
+            currentTrigger = null;
+            return;
+        }
+
+        float shortestDistance = float.MaxValue;
+        Collider nearestTrigger = null;
+
+        foreach (Collider trigger in currentTriggers)
+        {
+            if (trigger != null)
+            {
+                float distance = (trigger.transform.position - transform.position).sqrMagnitude; // 성능 최적화
+                if (distance < shortestDistance)
+                {
+                    shortestDistance = distance;
+                    nearestTrigger = trigger;
+                }
+            }
+        }
+
+        currentTrigger = nearestTrigger;
     }
     #endregion
 
@@ -107,75 +155,48 @@ public class Player_Controller : MonoBehaviour
 
     private void IngredientTableInteraction()
     {
-      
-
         Food_Ingredient_Tray food_Ingredient_Try = currentTrigger.gameObject.GetComponent<Food_Ingredient_Tray>();
-        if(isHandObject!=null||food_Ingredient_Try.ingredientCount<1)
-                    return;
-        
-        //Debug.Log("Test");
-        //food_Item = currentTrigger.gameObject.GetComponent<>
-        //GameObject ingredient = Instantiate(food_ingredient.ingredient, handPosition.position, handPosition.rotation);
-        //if(isHandObject!=null)
-        isHandObject = Instantiate(food_Ingredient_Try.ingredient, 
-                    handPosition.transform.position, 
-                    handPosition.transform.rotation * Quaternion.Euler(0, 90, 0), 
+        if (isHandObject != null || food_Ingredient_Try.ingredientCount < 1)
+            return;
+
+        isHandObject = Instantiate(food_Ingredient_Try.ingredient,
+                    handPosition.transform.position,
+                    handPosition.transform.rotation * Quaternion.Euler(0, 90, 0),
                     handPosition.transform);
         food_Ingredient_Try.ingredientCount--;
         food_Ingredient_Try.AnimationPlayer();
-
-        // if(isHandObject == null&&food_Ingredient_Try.ingredient!=null)
-        // {
-
-        // }
-
     }
 
     private void CuttingBoardInteraction()
     {
-     
-
         Cutting_Board cuttingBoard = currentTrigger.gameObject.GetComponent<Cutting_Board>();
-       
 
         if (isHandObject != null && cuttingBoard.ingredient == null)
         {
             if (isHandObject.CompareTag("Food"))
                 return;
             Ingredient i = isHandObject.GetComponent<Ingredient>();
-            if(i.CurrentState==IngredientState.Raw)
+            if (i.CurrentState == IngredientState.Raw)
             {
-                 //Cutting_Board cuttingBoard = currentTrigger.gameObject.GetComponent<Cutting_Board>();
                 cuttingBoard.SetIngredient(isHandObject);
                 Destroy(isHandObject);
                 isHandObject = null;
             }
-          
         }
-        //else if()
-
-        else if(isHandObject == null && cuttingBoard.ingredient != null)
+        else if (isHandObject == null && cuttingBoard.ingredient != null)
         {
-            //cuttingBoard.CleanIngredient();
             cuttingBoard.UsingCuttingBoard(this.gameObject);
         }
-       
     }
 
     private void ClearHandObject()
     {
-        //if (isHandObject == null)
-            //return;
-           
-        
         Destroy(isHandObject);
         isHandObject = null;
     }
 
     private void UsingFryPan()
     {
-      
-
         if (isHandObject != null)
         {
             if (isHandObject.CompareTag("Food"))
@@ -192,7 +213,7 @@ public class Player_Controller : MonoBehaviour
                 }
             }
         }
-        else if(isHandObject == null)
+        else if (isHandObject == null)
         {
             FryPan fryPan = currentTrigger.gameObject.GetComponent<FryPan>();
             if (fryPan != null && fryPan.ingredient != null)
@@ -200,13 +221,10 @@ public class Player_Controller : MonoBehaviour
                 fryPan.CookingFryPan(this.gameObject);
             }
         }
-        
     }
 
     private void UsingPot()
     {
-       
-
         if (isHandObject != null)
         {
             if (isHandObject.CompareTag("Food"))
@@ -215,7 +233,7 @@ public class Player_Controller : MonoBehaviour
             if (ingredient != null && ingredient.CurrentState == IngredientState.Prepared)
             {
                 Pot pot = currentTrigger.gameObject.GetComponent<Pot>();
-                if (pot != null && (pot.ingredient_1 == null||pot.ingredient_2==null))
+                if (pot != null && (pot.ingredient_1 == null || pot.ingredient_2 == null))
                 {
                     pot.SetIngredient(isHandObject);
                     isHandObject.transform.parent = null;
@@ -223,7 +241,7 @@ public class Player_Controller : MonoBehaviour
                 }
             }
         }
-        else if(isHandObject == null)
+        else if (isHandObject == null)
         {
             Pot pot = currentTrigger.gameObject.GetComponent<Pot>();
             if (pot != null)
@@ -247,9 +265,4 @@ public class Player_Controller : MonoBehaviour
     }
 
     #endregion
-
-   
-    
-    
-
 }

@@ -62,6 +62,8 @@ public class Pot : MonoBehaviour
 
     public void CookingPot(GameObject playerController)
     {
+        if (ingredient_1 == null || isCooking || ingredient_2 == null)
+            return;
         //Debug.Log("test1111");
         if (ingredient_1.CompareTag("Food"))
         {
