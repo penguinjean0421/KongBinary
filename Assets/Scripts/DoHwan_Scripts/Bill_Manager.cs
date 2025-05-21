@@ -116,6 +116,9 @@ public class Bill_Manager : MonoBehaviour
             Food_State foodState = bills[i].GetComponent<Food_State>();
             if (foodState != null && foodState.foodMenu == menuType)
             {
+                GameManager.Instance.AddSales(foodState.price);
+                Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
+
                 Destroy(bills[i]);
                 bills.RemoveAt(i);
                 UpdateBillPositions();

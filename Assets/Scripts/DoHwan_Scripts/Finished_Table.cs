@@ -67,8 +67,8 @@ public class Finished_Table : MonoBehaviour
             return;
         }
 
-        GameManager.Instance.AddSales(foodState.price);
-        Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
+        //GameManager.Instance.AddSales(foodState.price);
+       //Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
         billManager.CompleteBill(foodState.foodMenu);
         Destroy(food);
     }

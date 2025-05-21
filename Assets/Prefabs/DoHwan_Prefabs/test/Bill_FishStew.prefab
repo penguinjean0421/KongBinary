@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 3609283537803474700}
   - component: {fileID: 6699456520687340978}
   m_Layer: 5
-  m_Name: Canvas (2)
+  m_Name: Bill_FishStew
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -315,5 +315,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8335076a4284c64cb80a7b675c6f225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  foodMenu: 4
-  price: 0
+  foodMenu: 5
+  price: 35

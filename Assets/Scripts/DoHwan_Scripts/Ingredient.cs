@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 public enum IngredientState { Raw, Prepared, Cooking }
-public enum ingredient { None,Meat, Fish, Carrot }
+public enum ingredient { None,Meat, Fish, Carrot,Onion }
 public class Ingredient : MonoBehaviour
 {
     public IngredientState CurrentState { get;  set; } = IngredientState.Raw;
