@@ -3,6 +3,7 @@ using UnityEngine.UI;
 public class SettingManager : MonoBehaviour
 {
     public static SettingManager Instance { get; private set; } // 싱글톤
+    [SerializeField] GameObject settingScene;
     SceneLoader sceneLoader; // 씬로더
 
     bool isPause;
@@ -25,7 +26,7 @@ public class SettingManager : MonoBehaviour
 
     void Start()
     {
-        gameObject.SetActive(false);
+        settingScene.SetActive(false);
     }
 
     // Update is called once per frame
@@ -45,13 +46,13 @@ public class SettingManager : MonoBehaviour
         {
             Time.timeScale = 0f;
             // isPause = true;
-            gameObject.SetActive(isPause);
+            settingScene.SetActive(isPause);
         }
         else // 창 꺼짐
         {
             Time.timeScale = 1f;
             // isPause = false;
-            gameObject.SetActive(isPause);
+            settingScene.SetActive(isPause);
         }
         Debug.Log($"환경설정 창 : {isPause}");
     }
