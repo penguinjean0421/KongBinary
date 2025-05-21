@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 3609283537803474700}
   - component: {fileID: 6699456520687340978}
   m_Layer: 5
-  m_Name: Canvas (2) 1
+  m_Name: Bill_MeatSteak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -316,4 +316,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodMenu: 1
-  price: 0
+  price: 20
