@@ -29,6 +29,14 @@ public class Pot : MonoBehaviour
 
     public void SetIngredient(GameObject newIngredient)
     {
+
+
+        if(ingredient_1 != null)
+        {
+            if (ingredient_1.CompareTag("Food"))
+                return;
+        }
+
         if (newIngredient == null)
         {
             Debug.LogWarning("SetIngredient: newIngredient is null!");
@@ -62,7 +70,7 @@ public class Pot : MonoBehaviour
 
     public void CookingPot(GameObject playerController)
     {
-        if (ingredient_1 == null || isCooking || ingredient_2 == null)
+        if (ingredient_1 == null || isCooking)
             return;
         //Debug.Log("test1111");
         if (ingredient_1.CompareTag("Food"))
@@ -186,7 +194,7 @@ public class Pot : MonoBehaviour
                 foreach (GameObject menuItem in menuObject)
                 {
                     Food_State foodState = menuItem.GetComponent<Food_State>();
-                    if (foodState != null && foodState.foodMenu == FoodMenu.braisedRibs)
+                    if (foodState != null && foodState.foodMenu == FoodMenu.fishStew)
                     {
                         newFoodObject = Instantiate(menuItem);
                         //foodState = foodState.foodMenu.braisedRibs;

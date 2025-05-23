@@ -10,15 +10,20 @@ public class Food_Ingredient_Tray : MonoBehaviour
 
     void Awake()
     {
-        if (animator == null)
+        if(animator == null)
         {
-            animator = GetComponent<Animator>();
-            if (animator == null)
-            {
-                Debug.LogError("Food_Ingredient_Tray: Animator component not found!");
-                return;
-            }
+            return;
         }
+
+        //if (animator == null)
+        //{
+        //    animator = GetComponent<Animator>();
+        //    if (animator == null)
+        //    {
+        //        Debug.LogError("Food_Ingredient_Tray: Animator component not found!");
+        //        return;
+        //    }
+        //}
 
         // 게임 시작 시 애니메이션 정지 보장
         animator.enabled = false; // 애니메이터 비활성화

@@ -241,7 +241,7 @@ public class Player_Controller : MonoBehaviour
                 }
             }
         }
-        else if (isHandObject == null)
+        else if (isHandObject == null )
         {
             Pot pot = currentTrigger.gameObject.GetComponent<Pot>();
             if (pot != null)
