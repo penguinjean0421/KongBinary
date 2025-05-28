@@ -29,6 +29,14 @@ public class Pot : MonoBehaviour
 
     public void SetIngredient(GameObject newIngredient)
     {
+
+
+        if(ingredient_1 != null)
+        {
+            if (ingredient_1.CompareTag("Food"))
+                return;
+        }
+
         if (newIngredient == null)
         {
             Debug.LogWarning("SetIngredient: newIngredient is null!");
@@ -62,6 +70,8 @@ public class Pot : MonoBehaviour
 
     public void CookingPot(GameObject playerController)
     {
+        if (ingredient_1 == null || isCooking)
+            return;
         //Debug.Log("test1111");
         if (ingredient_1.CompareTag("Food"))
         {
@@ -70,8 +80,11 @@ public class Pot : MonoBehaviour
             if (playerController != null)
             {
                 Player_Controller controller = playerController.GetComponent<Player_Controller>();
-                if (controller != null && controller.handPosition != null)
+                if (controller != null && controller.handPosition != null&& controller.isHandObject != null && controller.isHandObject.CompareTag("Dish"))
                 {
+                    Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
+                    controller.isHandObject = null; // 초기화
+
                     ingredient_1.transform.SetParent(controller.handPosition.transform);
                     ingredient_1.transform.position = controller.handPosition.transform.position;
                     ingredient_1.transform.rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
@@ -89,20 +102,20 @@ public class Pot : MonoBehaviour
             Debug.LogWarning($"CookingPot: Cannot cook. ingredient_1: {(ingredient_1 == null ? "null" : "not null")}, ingredient_2: {(ingredient_2 == null ? "null" : "not null")}, isCooking: {isCooking}");
             return;
         }
-
-        Ingredient i1 = ingredient_1.GetComponent<Ingredient>();
-        Ingredient i2 = ingredient_2.GetComponent<Ingredient>();
-
-        if (i1 == null || i2 == null)
+        if (ingredient_1 != null && ingredient_2 != null)
         {
-            Debug.LogError($"CookingPot: Ingredient component missing. i1: {i1}, i2: {i2}");
-            return;
+            Ingredient i1 = ingredient_1.GetComponent<Ingredient>();
+            Ingredient i2 = ingredient_2.GetComponent<Ingredient>();
+
+            
+
+            if (i1.CurrentState == IngredientState.Prepared && i2.CurrentState == IngredientState.Prepared)
+            {
+                StartCoroutine(CookingCoroutine(i1, i2));
+            }
         }
 
-        if (i1.CurrentState == IngredientState.Prepared && i2.CurrentState == IngredientState.Prepared)
-        {
-            StartCoroutine(CookingCoroutine(i1, i2));
-        }
+      
         /*
         else if (ingredient_1.CompareTag("Food"))
         {
@@ -132,9 +145,9 @@ public class Pot : MonoBehaviour
 
         GameObject playerController = GameObject.FindGameObjectWithTag("Player");
         Player_Controller controller = playerController?.GetComponent<Player_Controller>();
-        if (controller != null)
+        if (controller != null) //상호작용시 이동 재한하고 싶으면 isInteracting부분 주석해제
         {
-            controller.isInteracting = true;
+            //controller.isInteracting = true;
         }
 
         if (timerBar != null)
@@ -170,6 +183,21 @@ public class Pot : MonoBehaviour
                 {
                     Food_State foodState = menuItem.GetComponent<Food_State>();
                     if (foodState != null && foodState.foodMenu == FoodMenu.braisedRibs)
+                    {
+                        newFoodObject = Instantiate(menuItem);
+                        //foodState = foodState.foodMenu.braisedRibs;
+                        break;
+                    }
+                }
+            }
+
+            if ((i1.ingredient == global::ingredient.Fish && i2.ingredient == global::ingredient.Onion) ||
+               (i1.ingredient == global::ingredient.Onion && i2.ingredient == global::ingredient.Fish))
+            {
+                foreach (GameObject menuItem in menuObject)
+                {
+                    Food_State foodState = menuItem.GetComponent<Food_State>();
+                    if (foodState != null && foodState.foodMenu == FoodMenu.fishStew)
                     {
                         newFoodObject = Instantiate(menuItem);
                         //foodState = foodState.foodMenu.braisedRibs;
@@ -224,7 +252,7 @@ public class Pot : MonoBehaviour
 
         if (controller != null)
         {
-            controller.isInteracting = false;
+            //controller.isInteracting = false;
         }
         isCooking = false;
     }

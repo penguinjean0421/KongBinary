@@ -2,40 +2,22 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
-    public static SceneLoader Instance { get; private set; }
-
-    void Awake()
+    // 스테이지 선택창 이동
+    public void OnChooseStage()
     {
-        if (Instance == null)
-        {
-            Instance = this as SceneLoader;
-            // DontDestroyOnLoad(this.gameObject);
-            SceneManager.activeSceneChanged += OnSceneChanged;
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        SceneManager.LoadScene("ChooseStage");
     }
 
-    void OnSceneChanged(Scene previous, Scene current)
+    // 종료버튼 누르면
+    public void OnClickGameExit()
     {
-        // throw new NotImplementedException();
-        Debug.Log($"씬 바뀜: {previous.name} > {current.name}");
+        Debug.Log("게임 종료");
+        Application.Quit();
     }
 
-    public void OnClickGameStart()
+    // 돌아가기 버튼
+    public void OnClickBack()
     {
-        SceneManager.LoadScene("Stage");
-    }
-
-    public void OnClickStage() // 스테이지 추가할때 복붙후 스테이지 넘버링 
-    {
-        SceneManager.LoadScene("InGame");
-    }
-
-    public void EndGame()
-    {
-        SceneManager.LoadScene("Score");
+        SceneManager.LoadScene("Start");
     }
 }

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private int currentStage = 1; // 현재 스테이지 번호 (예시)
 
     private float sales;
+    [SerializeField] float clearSale;
 
     void Awake()
     {
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         ResetTimer(); // 게임 시작 시 타이머 초기화
+        sales = 0; // 판매액 초기화
     }
 
     void Update()
@@ -64,6 +66,17 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over! Time's up!");
         // 게임 오버 처리 (예: 씬 전환)
         // SceneManager.LoadScene("GameOver");
+
+        if (sales != clearSale) // 테스트용으로 != 처리함, 실제로는 >=
+        {
+            Debug.Log("클리어");
+            OnStageClear();
+        }
+        else
+        {
+            Debug.Log("실패");
+            OnStageFail();
+        }
     }
 
     // 타이머 초기화 메서드
@@ -109,4 +122,21 @@ public class GameManager : MonoBehaviour
         sales += amount;
         Debug.Log($"매출 증가: {amount}, 총 매출: {sales}");
     }
+
+    #region  스테이지 클리어 체크
+    // 스테이지 클리어
+    public void OnStageClear()
+    {
+        int current = StageData.Instance.currentStageIndex;
+        StageData.Instance.SetStageCleared(current);
+        StageData.Instance.IsStageCleared(current);
+        SceneManager.LoadScene("Score");
+    }
+
+    // 클리어 실패
+    public void OnStageFail()
+    {
+        SceneManager.LoadScene("Score");
+    }
+    #endregion
 }

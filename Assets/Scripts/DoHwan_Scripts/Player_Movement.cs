@@ -42,9 +42,9 @@ public class Player_Movement : MonoBehaviour
         {
 
             //Debug.LogWarning(currentSpeed > 0.1f);
-            animator.SetBool("IsSprinting", rb.velocity.magnitude > 0f);
-            animator.SetBool("HasItem", playerController.isHandObject != null);
-            animator.SetBool("IsInteracting", playerController.isInteracting);
+            animator.SetBool("IsRun?", rb.velocity.magnitude > 0f);
+            animator.SetBool("IsItem?", playerController.isHandObject != null);
+            animator.SetBool("IsCutting?", playerController.isInteracting);
             //Debug.LogWarning(animator.angularVelocity);
         }
         else

@@ -4,45 +4,72 @@ using UnityEngine;
 
 public class Finished_Table : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Bill_Manager billManager; // BillManager 참조
+
     void Start()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    /*
-    public void Finished(Food_Menu.menu menu)
-    {
-        //Debug.Log("test finished");
-        
-            
-        
-        switch(menu)
+        // BillManager가 Inspector에서 할당되지 않은 경우 씬에서 찾기
+        if (billManager == null)
         {
-           case Food_Menu.menu.fishSteak:
-           Debug.Log("생선스테이크 재출출");
-           break;
-            case Food_Menu.menu.meatSteak:
-           Debug.Log("소고기스테이크 재출");
-           break;
+            billManager = FindObjectOfType<Bill_Manager>();
+            if (billManager == null)
+            {
+                Debug.LogError("Finished_Table: BillManager not found in the scene!");
+            }
         }
     }
-    */
+
+    void Update()
+    {
+    }
 
     // 음식 제출 시 호출되는 메서드
     public void Finished(GameObject food)
     {
-        Food_State foodState = food.GetComponent<Food_State>();
-        if (foodState != null)
+        //Food_State foodState = food.GetComponent<Food_State>();
+        //if (foodState != null)
+        //{
+        //    // GameManager에 판매 금액 추가
+        //    GameManager.Instance.AddSales(foodState.price);
+        //    Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
+
+        //    // BillManager에서 해당 FoodMenu 빌지 제거
+        //    if (billManager != null)
+        //    {
+        //        billManager.CompleteBill(foodState.foodMenu);
+        //    }
+        //    else
+        //    {
+        //        Debug.LogWarning("Finished_Table: Cannot remove bill because BillManager is not assigned!");
+        //    }
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("Finished_Table: Food_State component not found on the submitted food!");
+        //}
+
+        //Destroy(food); // 음식 오브젝트 제거
+
+        if (food == null)
         {
-            GameManager.Instance.AddSales(foodState.price);
-            Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
+            Debug.LogWarning("Finished_Table: Submitted food is null!");
+            return;
         }
-        Destroy(food); // 음식 오브젝트 제거
+        Food_State foodState = food.GetComponent<Food_State>();
+        if (foodState == null)
+        {
+            Debug.LogWarning("Finished_Table: Food_State component not found on the submitted food!");
+            return;
+        }
+        if (billManager == null)
+        {
+            Debug.LogWarning("Finished_Table: billManager is not assigned!");
+            return;
+        }
+
+        //GameManager.Instance.AddSales(foodState.price);
+       //Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
+        billManager.CompleteBill(foodState.foodMenu);
+        Destroy(food);
     }
 }
