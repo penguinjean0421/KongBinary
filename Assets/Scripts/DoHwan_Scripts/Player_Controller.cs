@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Player_Controller : MonoBehaviour
@@ -197,25 +198,35 @@ public class Player_Controller : MonoBehaviour
 
     private void UsingFryPan()
     {
+        FryPan fryPan = currentTrigger.gameObject.GetComponent<FryPan>();
+        if (fryPan == null) return;
+
         if (isHandObject != null)
         {
             if (isHandObject.CompareTag("Food"))
                 return;
-            Ingredient ingredient = isHandObject.GetComponent<Ingredient>();
-            if (ingredient != null && ingredient.CurrentState == IngredientState.Prepared)
+            else if (isHandObject.CompareTag("Ingredient"))
             {
-                FryPan fryPan = currentTrigger.gameObject.GetComponent<FryPan>();
-                if (fryPan != null && fryPan.ingredient == null)
+                Ingredient ingredient = isHandObject.GetComponent<Ingredient>();
+                if (ingredient != null && ingredient.CurrentState == IngredientState.Prepared)
                 {
-                    fryPan.SetIngredient(isHandObject);
-                    isHandObject.transform.parent = null;
-                    isHandObject = null;
+                    //FryPan fryPan = currentTrigger.gameObject.GetComponent<FryPan>();
+                    if (fryPan != null && fryPan.ingredient == null)
+                    {
+                        fryPan.SetIngredient(isHandObject);
+                        isHandObject.transform.parent = null;
+                        isHandObject = null;
+                    }
                 }
+            }
+            else if (isHandObject.CompareTag("Dish"))
+            {
+                fryPan.CookingFryPan(this.gameObject);
             }
         }
         else if (isHandObject == null)
         {
-            FryPan fryPan = currentTrigger.gameObject.GetComponent<FryPan>();
+            //FryPan fryPan = currentTrigger.gameObject.GetComponent<FryPan>();
             if (fryPan != null && fryPan.ingredient != null)
             {
                 fryPan.CookingFryPan(this.gameObject);
@@ -225,25 +236,35 @@ public class Player_Controller : MonoBehaviour
 
     private void UsingPot()
     {
+        Pot pot = currentTrigger.gameObject.GetComponent<Pot>();
+        if (pot == null) return;
+
         if (isHandObject != null)
         {
             if (isHandObject.CompareTag("Food"))
                 return;
-            Ingredient ingredient = isHandObject.GetComponent<Ingredient>();
-            if (ingredient != null && ingredient.CurrentState == IngredientState.Prepared)
+            else if (isHandObject.CompareTag("Ingredient"))
             {
-                Pot pot = currentTrigger.gameObject.GetComponent<Pot>();
-                if (pot != null && (pot.ingredient_1 == null || pot.ingredient_2 == null))
+                Ingredient ingredient = isHandObject.GetComponent<Ingredient>();
+                if (ingredient != null && ingredient.CurrentState == IngredientState.Prepared)
                 {
-                    pot.SetIngredient(isHandObject);
-                    isHandObject.transform.parent = null;
-                    isHandObject = null;
+                   
+                    if (pot != null && (pot.ingredient_1 == null || pot.ingredient_2 == null))
+                    {
+                        pot.SetIngredient(isHandObject);
+                        isHandObject.transform.parent = null;
+                        isHandObject = null;
+                    }
                 }
+            }
+            else if (isHandObject.CompareTag("Dish"))
+            {
+                pot.CookingPot(this.gameObject);
             }
         }
         else if (isHandObject == null )
         {
-            Pot pot = currentTrigger.gameObject.GetComponent<Pot>();
+          
             if (pot != null)
             {
                 pot.CookingPot(this.gameObject);

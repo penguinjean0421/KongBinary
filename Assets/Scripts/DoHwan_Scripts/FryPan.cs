@@ -65,8 +65,11 @@ public class FryPan : MonoBehaviour
             if (playerController != null)
             {
                 Player_Controller controller = playerController.GetComponent<Player_Controller>();
-                if (controller != null && controller.handPosition != null)
+                if (controller != null && controller.handPosition != null && controller.isHandObject != null && controller.isHandObject.CompareTag("Dish"))
                 {
+                    Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
+                    controller.isHandObject = null; // 초기화
+
                     ingredient.transform.SetParent(controller.handPosition.transform);
                     ingredient.transform.position = controller.handPosition.transform.position;
                     ingredient.transform.rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
