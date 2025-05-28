@@ -80,8 +80,11 @@ public class Pot : MonoBehaviour
             if (playerController != null)
             {
                 Player_Controller controller = playerController.GetComponent<Player_Controller>();
-                if (controller != null && controller.handPosition != null)
+                if (controller != null && controller.handPosition != null&& controller.isHandObject != null && controller.isHandObject.CompareTag("Dish"))
                 {
+                    Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
+                    controller.isHandObject = null; // 초기화
+
                     ingredient_1.transform.SetParent(controller.handPosition.transform);
                     ingredient_1.transform.position = controller.handPosition.transform.position;
                     ingredient_1.transform.rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
@@ -99,20 +102,20 @@ public class Pot : MonoBehaviour
             Debug.LogWarning($"CookingPot: Cannot cook. ingredient_1: {(ingredient_1 == null ? "null" : "not null")}, ingredient_2: {(ingredient_2 == null ? "null" : "not null")}, isCooking: {isCooking}");
             return;
         }
-
-        Ingredient i1 = ingredient_1.GetComponent<Ingredient>();
-        Ingredient i2 = ingredient_2.GetComponent<Ingredient>();
-
-        if (i1 == null || i2 == null)
+        if (ingredient_1 != null && ingredient_2 != null)
         {
-            Debug.LogError($"CookingPot: Ingredient component missing. i1: {i1}, i2: {i2}");
-            return;
+            Ingredient i1 = ingredient_1.GetComponent<Ingredient>();
+            Ingredient i2 = ingredient_2.GetComponent<Ingredient>();
+
+            
+
+            if (i1.CurrentState == IngredientState.Prepared && i2.CurrentState == IngredientState.Prepared)
+            {
+                StartCoroutine(CookingCoroutine(i1, i2));
+            }
         }
 
-        if (i1.CurrentState == IngredientState.Prepared && i2.CurrentState == IngredientState.Prepared)
-        {
-            StartCoroutine(CookingCoroutine(i1, i2));
-        }
+      
         /*
         else if (ingredient_1.CompareTag("Food"))
         {

@@ -3,7 +3,16 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - CuttingBoard
+  - ingredientTable
+  - Ingredient
+  - FinishedTable
+  - FryPan
+  - Food
+  - WasteBasket
+  - Pot
+  - Dish
   layers:
   - Default
   - TransparentFX
