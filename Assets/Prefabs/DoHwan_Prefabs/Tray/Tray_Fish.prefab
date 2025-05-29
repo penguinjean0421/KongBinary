@@ -138,7 +138,7 @@ Transform:
   m_Children:
   - {fileID: 3981880965230407599}
   - {fileID: 6905955769135435119}
-  - {fileID: 2306295444435402440}
+  - {fileID: 7086529990817011798}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3762390366456078937
@@ -174,10 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef68f183cf9e24488be08773c658c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredient: {fileID: 8113271604215739514, guid: 82768a188fba96d40bd7fd51072e6507,
-    type: 3}
+  ingredient: {fileID: 8113271604215739514, guid: 82768a188fba96d40bd7fd51072e6507, type: 3}
   ingredientCount: 5
-  animator: {fileID: 9072371876653983672}
+  animator: {fileID: 3708601873103278000}
 --- !u!1 &5894554437232340281
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,80 +268,66 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4353019368017735957}
     m_Modifications:
-    - target: {fileID: 4653617169976292905, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
-      propertyPath: m_Name
-      value: SM_FoodBox_Blue
-      objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - target: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - target: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - target: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - target: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - target: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - target: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - target: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - target: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - target: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - target: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3194998636657860429, guid: a603a9037d891394e874a522c95b5468, type: 3}
+      propertyPath: m_Name
+      value: FoodBox_Blue
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4653617169976292905, guid: cca96d0b74c02734db3ec07f917e1f39,
-        type: 3}
+    - targetCorrespondingSourceObject: {fileID: 3194998636657860429, guid: a603a9037d891394e874a522c95b5468, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9133246532100285926}
-  m_SourcePrefab: {fileID: 100100000, guid: cca96d0b74c02734db3ec07f917e1f39, type: 3}
---- !u!4 &2306295444435402440 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5467133026958322835, guid: cca96d0b74c02734db3ec07f917e1f39,
-    type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: a603a9037d891394e874a522c95b5468, type: 3}
+--- !u!95 &3708601873103278000 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6388683968433036779, guid: a603a9037d891394e874a522c95b5468, type: 3}
   m_PrefabInstance: {fileID: 7772847890309075547}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &3119389050010346610 stripped
+--- !u!1 &5154468370285661462 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4653617169976292905, guid: cca96d0b74c02734db3ec07f917e1f39,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 3194998636657860429, guid: a603a9037d891394e874a522c95b5468, type: 3}
   m_PrefabInstance: {fileID: 7772847890309075547}
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &9133246532100285926
@@ -351,7 +336,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3119389050010346610}
+  m_GameObject: {fileID: 5154468370285661462}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -366,9 +351,8 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!95 &9072371876653983672 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 1601374771662042595, guid: cca96d0b74c02734db3ec07f917e1f39,
-    type: 3}
+--- !u!4 &7086529990817011798 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 686476246641052173, guid: a603a9037d891394e874a522c95b5468, type: 3}
   m_PrefabInstance: {fileID: 7772847890309075547}
   m_PrefabAsset: {fileID: 0}
