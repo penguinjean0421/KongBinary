@@ -138,7 +138,7 @@ Transform:
   m_Children:
   - {fileID: 3981880965230407599}
   - {fileID: 6905955769135435119}
-  - {fileID: 3083156180708482813}
+  - {fileID: 2824440229150025520}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3762390366456078937
@@ -174,10 +174,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ef68f183cf9e24488be08773c658c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredient: {fileID: 8113271604215739514, guid: 7d408f91258db5e47aa6fef187d40040,
-    type: 3}
+  ingredient: {fileID: 8113271604215739514, guid: 7d408f91258db5e47aa6fef187d40040, type: 3}
   ingredientCount: 5
-  animator: {fileID: 84212037551151962}
+  animator: {fileID: 1653478477174204225}
 --- !u!1 &5894554437232340281
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,80 +268,71 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4353019368017735957}
     m_Modifications:
-    - target: {fileID: 4653617169976292905, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
-      propertyPath: m_Name
-      value: SM_FoodBox_Red
-      objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - target: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - target: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - target: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - target: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - target: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - target: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - target: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - target: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - target: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - target: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5807643081916737070, guid: a7f1d384add86274c98916f429af527e, type: 3}
+      propertyPath: m_Name
+      value: FoodBox_Red
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4653617169976292905, guid: 02898d5cae3954086a15544b8f67b33e,
-        type: 3}
+    - targetCorrespondingSourceObject: {fileID: 5807643081916737070, guid: a7f1d384add86274c98916f429af527e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 972210625421014744}
-  m_SourcePrefab: {fileID: 100100000, guid: 02898d5cae3954086a15544b8f67b33e, type: 3}
---- !u!95 &84212037551151962 stripped
+  m_SourcePrefab: {fileID: 100100000, guid: a7f1d384add86274c98916f429af527e, type: 3}
+--- !u!95 &1653478477174204225 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 6934862645808441652, guid: 02898d5cae3954086a15544b8f67b33e,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 8639293153053840687, guid: a7f1d384add86274c98916f429af527e, type: 3}
   m_PrefabInstance: {fileID: 6995984351570031214}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2414565581842646087 stripped
+--- !u!4 &2824440229150025520 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5054402034901095774, guid: a7f1d384add86274c98916f429af527e, type: 3}
+  m_PrefabInstance: {fileID: 6995984351570031214}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3570895111822971968 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 4653617169976292905, guid: 02898d5cae3954086a15544b8f67b33e,
-    type: 3}
+  m_CorrespondingSourceObject: {fileID: 5807643081916737070, guid: a7f1d384add86274c98916f429af527e, type: 3}
   m_PrefabInstance: {fileID: 6995984351570031214}
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &972210625421014744
@@ -351,7 +341,7 @@ BoxCollider:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2414565581842646087}
+  m_GameObject: {fileID: 3570895111822971968}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -366,9 +356,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!4 &3083156180708482813 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5467133026958322835, guid: 02898d5cae3954086a15544b8f67b33e,
-    type: 3}
-  m_PrefabInstance: {fileID: 6995984351570031214}
-  m_PrefabAsset: {fileID: 0}
