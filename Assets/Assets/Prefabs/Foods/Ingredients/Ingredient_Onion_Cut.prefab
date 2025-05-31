@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8873857124917187654}
+  - component: {fileID: 4533051324998302127}
   m_Layer: 0
   m_Name: Ingredient_Onion_Cut
   m_TagString: Ingredient
@@ -32,6 +33,25 @@ Transform:
   - {fileID: 9216449802807383613}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4533051324998302127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2958337978735312625}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3250cc81c7ac9448a9c9999cc5e988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredient: 4
+  rawIngredientMesh: {fileID: 0}
+  preparedIngredientMesh: {fileID: 0}
+  fryPanFoodMesh: {fileID: 0}
+  rawMaterial: {fileID: 0}
+  preparedMaterial: {fileID: 0}
+  cookingMaterial: {fileID: 0}
 --- !u!1001 &8677822124254097878
 PrefabInstance:
   m_ObjectHideFlags: 0
