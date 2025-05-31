@@ -9,6 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1720129114531005199}
+  - component: {fileID: 3841447007333038843}
+  - component: {fileID: 4401629425212285169}
+  - component: {fileID: -7415215428322588361}
   m_Layer: 0
   m_Name: Ingredient_Carrot
   m_TagString: Ingredient
@@ -25,13 +28,82 @@ Transform:
   m_GameObject: {fileID: 1428562359735180254}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.5, y: 0, z: -7.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8450154868932845913}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3841447007333038843
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428562359735180254}
+  m_Mesh: {fileID: 8499898097768642962, guid: 406ab4c116550224d86f4db5719ac905, type: 3}
+--- !u!23 &4401629425212285169
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428562359735180254}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 80ec9cd2363f72d42b528f9ad28cc394, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-7415215428322588361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428562359735180254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3250cc81c7ac9448a9c9999cc5e988, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ingredient: 3
+  rawIngredientMesh: {fileID: 8499898097768642962, guid: 406ab4c116550224d86f4db5719ac905, type: 3}
+  preparedIngredientMesh: {fileID: -1401032928693501260, guid: faeaf65a0235e0247b8a5273d6e4a55e, type: 3}
+  fryPanFoodMesh: {fileID: 0}
+  rawMaterial: {fileID: 2100000, guid: 80ec9cd2363f72d42b528f9ad28cc394, type: 2}
+  preparedMaterial: {fileID: 2100000, guid: e8a9fdb234945e44394288090cc78ef5, type: 2}
+  cookingMaterial: {fileID: 0}
 --- !u!1001 &8272622581672756914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -83,6 +155,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 406ab4c116550224d86f4db5719ac905, type: 3}
       propertyPath: m_Name
       value: Carrot
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 406ab4c116550224d86f4db5719ac905, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

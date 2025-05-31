@@ -69,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredient: {fileID: 4290201265422849479, guid: d7a0da63391776a489c8ff34e7a502fb, type: 3}
   ingredientCount: 5
-  animator: {fileID: 4560236437568684932}
+  animator: {fileID: 2811591070644527066}
 --- !u!1001 &5237081332226332331
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -161,8 +161,8 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!95 &4560236437568684932 stripped
+--- !u!95 &2811591070644527066 stripped
 Animator:
-  m_CorrespondingSourceObject: {fileID: 8639293153053840687, guid: a7f1d384add86274c98916f429af527e, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8045995846791285105, guid: a7f1d384add86274c98916f429af527e, type: 3}
   m_PrefabInstance: {fileID: 5237081332226332331}
   m_PrefabAsset: {fileID: 0}

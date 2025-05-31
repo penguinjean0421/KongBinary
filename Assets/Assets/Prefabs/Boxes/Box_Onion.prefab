@@ -69,7 +69,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredient: {fileID: 2837328879171392232, guid: 3a53aab387cb5c24b88a4cb42b54bf16, type: 3}
   ingredientCount: 5
-  animator: {fileID: 8979615886994525640}
+  animator: {fileID: 3061240121158376175}
 --- !u!1001 &5800101945123274492
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -156,13 +156,13 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0.5, z: 0}
+--- !u!95 &3061240121158376175 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8792623336867652627, guid: 60170bf5db00b464cab9370cfe22fe4a, type: 3}
+  m_PrefabInstance: {fileID: 5800101945123274492}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3280552658013874711 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9077221376871273707, guid: 60170bf5db00b464cab9370cfe22fe4a, type: 3}
-  m_PrefabInstance: {fileID: 5800101945123274492}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &8979615886994525640 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3233611949910307636, guid: 60170bf5db00b464cab9370cfe22fe4a, type: 3}
   m_PrefabInstance: {fileID: 5800101945123274492}
   m_PrefabAsset: {fileID: 0}
