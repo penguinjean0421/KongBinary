@@ -80,6 +80,7 @@ MonoBehaviour:
   menuObject:
   - {fileID: 2077830001457551154, guid: e9c5e74597f599d4fbe3790ef41d293c, type: 3}
   - {fileID: 8367657672614547887, guid: e098a78f8c1e97b4c8f4ef007615395d, type: 3}
+  fireEffect: {fileID: 6398225847752762882}
 --- !u!65 &2053955383134600490
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1054,6 +1055,11 @@ PrefabInstance:
       addedObject: {fileID: 6616499553287935160}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a2cd36aa9be2a8642b37e339184bb2b1, type: 3}
+--- !u!1 &6398225847752762882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5670988540732005804, guid: a2cd36aa9be2a8642b37e339184bb2b1, type: 3}
+  m_PrefabInstance: {fileID: 1619174403124427694}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6687707505985477965 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5384040166159066851, guid: a2cd36aa9be2a8642b37e339184bb2b1, type: 3}
