@@ -71,6 +71,14 @@ public class Player_Controller : MonoBehaviour
         {
             FinishedTable();
         }
+        else if (currentTrigger.gameObject.CompareTag("Table"))
+        {
+            Table table = currentTrigger.gameObject.GetComponent<Table>();
+            if (table != null)
+            {
+                table.Interact(this); // Player_Controller 인스턴스 전달
+            }
+        }
         if (isInteracting)
         {
             if (currentTrigger != null)

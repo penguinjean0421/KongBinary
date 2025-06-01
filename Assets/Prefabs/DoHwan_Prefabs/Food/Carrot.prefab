@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8113271604215739514}
-  m_Mesh: {fileID: 8499898097768642962, guid: 0b9d0e0b6fdc4481d95ae68fc64b3366, type: 3}
+  m_Mesh: {fileID: 8499898097768642962, guid: 406ab4c116550224d86f4db5719ac905, type: 3}
 --- !u!23 &6989857004041501411
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -119,9 +119,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: 3
-  rawIngredientMesh: {fileID: 8499898097768642962, guid: 0b9d0e0b6fdc4481d95ae68fc64b3366, type: 3}
-  preparedIngredientMesh: {fileID: -1401032928693501260, guid: 4401b9080bc2f4f578dba7e4c05c9755, type: 3}
+  rawIngredientMesh: {fileID: 8499898097768642962, guid: 406ab4c116550224d86f4db5719ac905, type: 3}
+  preparedIngredientMesh: {fileID: -1401032928693501260, guid: faeaf65a0235e0247b8a5273d6e4a55e, type: 3}
   fryPanFoodMesh: {fileID: 4300002, guid: adf778fed97aa6c43a1ad3d6ff5e8083, type: 3}
-  rawMaterial: {fileID: 2100000, guid: 976f47fbf461443c48012915a0317e6e, type: 2}
-  preparedMaterial: {fileID: 2100000, guid: 9488f44fcd758454f9521c82b26db040, type: 2}
+  rawMaterial: {fileID: 2100000, guid: 80ec9cd2363f72d42b528f9ad28cc394, type: 2}
+  preparedMaterial: {fileID: 2100000, guid: e8a9fdb234945e44394288090cc78ef5, type: 2}
   cookingMaterial: {fileID: 0}

@@ -13,6 +13,7 @@ TagManager:
   - WasteBasket
   - Pot
   - Dish
+  - Table
   layers:
   - Default
   - TransparentFX
