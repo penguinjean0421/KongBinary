@@ -276,6 +276,7 @@ MonoBehaviour:
   menuObject:
   - {fileID: 7626744210299335666, guid: accbf546240387944b50731ffe416d3c, type: 3}
   - {fileID: 6110694858898565243, guid: e1ccdbd0c8098be42beff875a20a4a9e, type: 3}
+  fireEffect: {fileID: 2373877328894625536}
 --- !u!65 &341390593746612713
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -604,6 +605,11 @@ PrefabInstance:
 --- !u!4 &1429138338050827087 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9049846482426083811, guid: a2cd36aa9be2a8642b37e339184bb2b1, type: 3}
+  m_PrefabInstance: {fileID: 7945144493743430316}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2373877328894625536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5670988540732005804, guid: a2cd36aa9be2a8642b37e339184bb2b1, type: 3}
   m_PrefabInstance: {fileID: 7945144493743430316}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2663077443394534479 stripped

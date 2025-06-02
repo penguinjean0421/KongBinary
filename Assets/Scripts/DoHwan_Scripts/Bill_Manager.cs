@@ -7,7 +7,7 @@ public class Bill_Manager : MonoBehaviour
     [SerializeField] private GameObject[] billPrefabs; // 빌지 프리팹 배열
     [SerializeField] private Transform billParent; // 빌지가 생성될 부모 Canvas
     [SerializeField] private float spawnInterval = 10f; // 빌지 생성 간격 (초)
-    private const int MAX_BILLS = 8; // 최대 빌지 개수
+    [SerializeField] private int MAX_BILLS = 8; // 최대 빌지 개수
     private List<GameObject> bills = new List<GameObject>();
     private float timer;
 
