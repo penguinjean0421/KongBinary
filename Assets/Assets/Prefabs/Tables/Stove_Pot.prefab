@@ -410,6 +410,7 @@ MonoBehaviour:
   timerBar: {fileID: 8814786649556399570}
   menuObject:
   - {fileID: 1723714679191991329, guid: be3e363d686fd974881dcec723f0f06b, type: 3}
+  fireEffect: {fileID: 4016454900770501080}
 --- !u!65 &7570191566675452441
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -574,6 +575,11 @@ Transform:
 --- !u!4 &3727223998269983383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5384040166159066851, guid: a2cd36aa9be2a8642b37e339184bb2b1, type: 3}
+  m_PrefabInstance: {fileID: 8722969433786100852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4016454900770501080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5670988540732005804, guid: a2cd36aa9be2a8642b37e339184bb2b1, type: 3}
   m_PrefabInstance: {fileID: 8722969433786100852}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9173021110103970970
