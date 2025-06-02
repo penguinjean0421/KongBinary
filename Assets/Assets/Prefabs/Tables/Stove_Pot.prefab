@@ -521,6 +521,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stove
       objectReference: {fileID: 0}
+    - target: {fileID: 4426100357680487074, guid: a2cd36aa9be2a8642b37e339184bb2b1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426100357680487074, guid: a2cd36aa9be2a8642b37e339184bb2b1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5384040166159066851, guid: a2cd36aa9be2a8642b37e339184bb2b1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
