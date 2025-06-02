@@ -588,9 +588,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
-        m_MethodName: SettingActive
+      - m_Target: {fileID: 1513167952}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: OnClickSetting
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1075,6 +1075,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1513167951}
+  - component: {fileID: 1513167952}
   m_Layer: 0
   m_Name: UIManager
   m_TagString: Untagged
@@ -1091,12 +1092,24 @@ Transform:
   m_GameObject: {fileID: 1513167950}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 23.98436, y: -4.5570493, z: -7.3925576}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1513167952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513167950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3236514acc91d5c439e15cdcbf6d8447, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1634160468
 GameObject:
   m_ObjectHideFlags: 0
@@ -1485,6 +1498,6 @@ SceneRoots:
   - {fileID: 502405772}
   - {fileID: 2082713889}
   - {fileID: 1455532947}
-  - {fileID: 805294136}
   - {fileID: 1958072601}
   - {fileID: 1513167951}
+  - {fileID: 805294136}

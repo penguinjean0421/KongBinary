@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
     private int currentStage = 1; // 현재 스테이지 번호 (예시)
 
     private float sales;
-    [SerializeField] float clearSale;
+    [SerializeField] float star1Sale;
+    [SerializeField] float star2Sale;
+    [SerializeField] float star3Sale;
 
     void Awake()
     {
@@ -21,7 +23,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -64,12 +65,23 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         Debug.Log("Game Over! Time's up!");
+
         // 게임 오버 처리 (예: 씬 전환)
         // SceneManager.LoadScene("GameOver");
-
-        if (sales != clearSale) // 테스트용으로 != 처리함, 실제로는 >=
+        if (sales >= star1Sale)
         {
-            Debug.Log("클리어");
+            if (sales >= star3Sale)
+            {
+                Debug.Log("별 3개");
+            }
+            else if (sales >= star2Sale)
+            {
+                Debug.Log("별 2개");
+            }
+            else
+            {
+                Debug.Log("별 1개");
+            }
             OnStageClear();
         }
         else
@@ -130,13 +142,13 @@ public class GameManager : MonoBehaviour
         int current = StageData.Instance.currentStageIndex;
         StageData.Instance.SetStageCleared(current);
         StageData.Instance.IsStageCleared(current);
-        SceneManager.LoadScene("Score"); // Score로 바꿀 예정(함수 예정)
+        // SceneManager.LoadScene("Score"); // Score로 바꿀 예정(함수 예정)
     }
 
     // 클리어 실패
     public void OnStageFail()
     {
-        SceneManager.LoadScene("Score"); // Score로 바꿀 예정(함수 예정)
+        // SceneManager.LoadScene("Score"); // Score로 바꿀 예정(함수 예정)
     }
     #endregion
 }
