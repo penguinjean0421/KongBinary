@@ -15,11 +15,13 @@ public class Pot : MonoBehaviour
     [SerializeField] private float cookingTime = 3f;
     [SerializeField] private Slider timerBar;
     [SerializeField] private GameObject[] menuObject;
+    [SerializeField] private GameObject fireEffect;
 
     private bool isCooking = false;
 
     void Start()
     {
+        fireEffect.SetActive(false);
         if (timerBar != null)
         {
             timerBar.gameObject.SetActive(false);
@@ -142,6 +144,7 @@ public class Pot : MonoBehaviour
     private IEnumerator CookingCoroutine(Ingredient i1, Ingredient i2)
     {
         isCooking = true;
+        fireEffect.SetActive(true);
 
         GameObject playerController = GameObject.FindGameObjectWithTag("Player");
         Player_Controller controller = playerController?.GetComponent<Player_Controller>();
@@ -255,6 +258,7 @@ public class Pot : MonoBehaviour
             //controller.isInteracting = false;
         }
         isCooking = false;
+        fireEffect.SetActive(false);
     }
 }
 

@@ -17,11 +17,13 @@ public class FryPan : MonoBehaviour
     [SerializeField] private float cookingTime = 3f; // 요리에 걸리는 시간
     [SerializeField] private Slider timerBar; // 타이머바 UI
     [SerializeField] private GameObject[] menuObject;
+    [SerializeField] private GameObject fireEffect;
 
     private bool isCooking = false; // 현재 요리중인지 상태
    
     void Start()
     {
+        fireEffect.SetActive(false);
         // 타이머바 초기 비활성화
         if (timerBar != null)
         {
@@ -62,11 +64,14 @@ public class FryPan : MonoBehaviour
         else if (ingredient.CompareTag("Food"))
         {
             //GameObject playerController = GameObject.FindGameObjectWithTag("Player");
+            Debug.Log("test1");
             if (playerController != null)
             {
+                Debug.Log("test2");
                 Player_Controller controller = playerController.GetComponent<Player_Controller>();
                 if (controller != null && controller.handPosition != null && controller.isHandObject != null && controller.isHandObject.CompareTag("Dish"))
                 {
+                    Debug.Log("test3");
                     Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
                     controller.isHandObject = null; // 초기화
 
@@ -84,8 +89,9 @@ public class FryPan : MonoBehaviour
     {
         
         isCooking = true;
+        fireEffect.SetActive(true);
         // 플레이어 상호작용 잠금
-       // GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        // GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         Player_Controller playerController = playerMovement.GetComponent<Player_Controller>();
         if (playerController != null)
         {
@@ -197,6 +203,7 @@ public class FryPan : MonoBehaviour
             //playerController.isInteracting = false;
         }
         isCooking = false;
+        fireEffect.SetActive(false);
     }
 }
 
