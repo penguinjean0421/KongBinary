@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Food_Ingredient_Tray : MonoBehaviour
 {
     public GameObject ingredient;
-    public int ingredientCount = 5;
+    public int ingredientCount = 999;
     [SerializeField] private Animator animator;
 
     void Awake()
     {
-        if(animator == null)
+        if (animator == null)
         {
             return;
         }

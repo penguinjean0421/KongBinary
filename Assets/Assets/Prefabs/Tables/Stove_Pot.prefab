@@ -409,7 +409,9 @@ MonoBehaviour:
   cookingTime: 3
   timerBar: {fileID: 8814786649556399570}
   menuObject:
+  - {fileID: 2077830001457551154, guid: e9c5e74597f599d4fbe3790ef41d293c, type: 3}
   - {fileID: 1723714679191991329, guid: be3e363d686fd974881dcec723f0f06b, type: 3}
+  - {fileID: 8566932868533077634, guid: 03be6ca4843b4c742a1986ea3baf23a4, type: 3}
   fireEffect: {fileID: 4016454900770501080}
 --- !u!65 &7570191566675452441
 BoxCollider:

@@ -77,9 +77,9 @@ public class Bill_Manager : MonoBehaviour
 
     void UpdateBillPositions()
     {
-        float xOffset = 133f;
-        float yOffset = 912f;
-        float spacing = 200f; // 빌지 간 간격 (픽셀 단위)
+        float xOffset = 110f;
+        float yOffset = 950f;
+        float spacing = 180f; // 빌지 간 간격 (픽셀 단위)
 
         for (int i = 0; i < bills.Count; i++)
         {
