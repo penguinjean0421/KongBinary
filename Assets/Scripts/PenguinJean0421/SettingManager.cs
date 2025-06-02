@@ -1,11 +1,8 @@
 using UnityEngine;
-using UnityEngine.UI;
 public class SettingManager : MonoBehaviour
 {
     public static SettingManager Instance { get; private set; } // 싱글톤
     [SerializeField] GameObject settingScene;
-    SceneLoader sceneLoader; // 씬로더
-
     bool isPause;
 
     void Awake()
@@ -20,8 +17,6 @@ public class SettingManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        sceneLoader = GetComponent<SceneLoader>();
     }
 
     void Start()
@@ -29,7 +24,6 @@ public class SettingManager : MonoBehaviour
         settingScene.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

@@ -130,13 +130,13 @@ public class GameManager : MonoBehaviour
         int current = StageData.Instance.currentStageIndex;
         StageData.Instance.SetStageCleared(current);
         StageData.Instance.IsStageCleared(current);
-        SceneManager.LoadScene("Score");
+        SceneManager.LoadScene("Score"); // Score로 바꿀 예정(함수 예정)
     }
 
     // 클리어 실패
     public void OnStageFail()
     {
-        SceneManager.LoadScene("Score");
+        SceneManager.LoadScene("Score"); // Score로 바꿀 예정(함수 예정)
     }
     #endregion
 }

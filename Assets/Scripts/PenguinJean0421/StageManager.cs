@@ -8,7 +8,7 @@ public class StageManager : MonoBehaviour
 
     void Start()
     {
-        bool unlocked = (stageIndex == 1) || StageData.Instance.IsStageCleared(stageIndex - 1);
+        bool unlocked = (stageIndex == 0) || StageData.Instance.IsStageCleared(stageIndex - 1);
         stageButton.interactable = unlocked;
     }
 
