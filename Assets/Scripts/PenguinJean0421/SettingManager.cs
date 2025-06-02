@@ -44,13 +44,13 @@ public class SettingManager : MonoBehaviour
         isPause = !isPause;
         if (!isPause)  // 창 켜짐
         {
-            Time.timeScale = 0f;
+            Time.timeScale = 1f;
             // isPause = true;
             settingScene.SetActive(isPause);
         }
         else // 창 꺼짐
         {
-            Time.timeScale = 1f;
+            Time.timeScale = 0f;
             // isPause = false;
             settingScene.SetActive(isPause);
         }
