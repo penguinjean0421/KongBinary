@@ -84,6 +84,7 @@ public class Pot : MonoBehaviour
                 Player_Controller controller = playerController.GetComponent<Player_Controller>();
                 if (controller != null && controller.handPosition != null&& controller.isHandObject != null && controller.isHandObject.CompareTag("Dish"))
                 {
+                    /*
                     Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
                     controller.isHandObject = null; // 초기화
 
@@ -95,6 +96,20 @@ public class Pot : MonoBehaviour
                     ingredient_1 = null;
                     ingredient_2 = null;
                     return;
+                    */
+
+                    //Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
+                    //controller.isHandObject = null; // 초기화
+
+                    ingredient_1.transform.SetParent(FindChildRecursive(controller.isHandObject.transform, "Pos"));
+                    ingredient_1.transform.position = FindChildRecursive(controller.isHandObject.transform, "Pos").position;
+                    ingredient_1.transform.rotation = FindChildRecursive(controller.isHandObject.transform, "Pos").rotation * Quaternion.Euler(0, 90, 0);
+                    //controller.isHandObject = ingredient_1;
+                    //Debug.Log($"CookingPot: Picked up cooked ingredient {ingredient_1.name}");
+                    ingredient_1 = null;
+                    ingredient_2 = null;
+                    return;
+
                 }
             }
         }
@@ -140,7 +155,28 @@ public class Pot : MonoBehaviour
         }
         */
     }
+    Transform FindChildRecursive(Transform parent, string childName)
+    {
+        // 부모 오브젝트의 이름이 찾으려는 이름과 일치하면 해당 transform 반환
+        if (parent.name == childName)
+        {
+            return parent;
+        }
 
+        // 부모의 모든 자식 오브젝트를 순회하며 재귀적으로 탐색
+        foreach (Transform child in parent)
+        {
+            Transform result = FindChildRecursive(child, childName);
+            // 재귀 호출 결과 찾은 자식이 있다면 바로 반환
+            if (result != null)
+            {
+                return result;
+            }
+        }
+
+        // 모든 계층을 탐색했으나 찾지 못할 경우 null 반환
+        return null;
+    }
     private IEnumerator CookingCoroutine(Ingredient i1, Ingredient i2)
     {
         isCooking = true;
@@ -194,7 +230,7 @@ public class Pot : MonoBehaviour
                 }
             }
 
-            if ((i1.ingredient == global::ingredient.Fish && i2.ingredient == global::ingredient.Onion) ||
+            else if ((i1.ingredient == global::ingredient.Fish && i2.ingredient == global::ingredient.Onion) ||
                (i1.ingredient == global::ingredient.Onion && i2.ingredient == global::ingredient.Fish))
             {
                 foreach (GameObject menuItem in menuObject)

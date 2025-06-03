@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8113271604215739514
+--- !u!1 &2309483400551234825
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7373820408772652479}
-  - component: {fileID: 5174229780401199925}
-  - component: {fileID: 6989857004041501411}
-  - component: {fileID: 9197150860674018568}
-  - component: {fileID: -4913751494129948118}
+  - component: {fileID: 4731369266985712832}
+  - component: {fileID: 927425860443154511}
+  - component: {fileID: 1081586173037292024}
+  - component: {fileID: 3350337323094996059}
+  - component: {fileID: 9174199223912151277}
   m_Layer: 0
-  m_Name: Carrot
-  m_TagString: Ingredient
+  m_Name: waiter
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7373820408772652479
+--- !u!4 &4731369266985712832
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8113271604215739514}
+  m_GameObject: {fileID: 2309483400551234825}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 23, y: 1, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5174229780401199925
+--- !u!33 &927425860443154511
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8113271604215739514}
-  m_Mesh: {fileID: 8499898097768642962, guid: 406ab4c116550224d86f4db5719ac905, type: 3}
---- !u!23 &6989857004041501411
+  m_GameObject: {fileID: 2309483400551234825}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &1081586173037292024
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8113271604215739514}
+  m_GameObject: {fileID: 2309483400551234825}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c96bf79061335c64da1bf5bb1190b9f8, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,13 +85,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &9197150860674018568
-SphereCollider:
+--- !u!65 &3350337323094996059
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8113271604215739514}
+  m_GameObject: {fileID: 2309483400551234825}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -102,26 +102,24 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-4913751494129948118
+--- !u!114 &9174199223912151277
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8113271604215739514}
+  m_GameObject: {fileID: 2309483400551234825}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e3250cc81c7ac9448a9c9999cc5e988, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fb298e41c8c1124cbbea87677dcb410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ingredient: 3
-  rawIngredientMesh: {fileID: 8499898097768642962, guid: 406ab4c116550224d86f4db5719ac905, type: 3}
-  preparedIngredientMesh: {fileID: -1401032928693501260, guid: faeaf65a0235e0247b8a5273d6e4a55e, type: 3}
-  fryPanFoodMesh: {fileID: 4300002, guid: adf778fed97aa6c43a1ad3d6ff5e8083, type: 3}
-  rawMaterial: {fileID: 2100000, guid: 80ec9cd2363f72d42b528f9ad28cc394, type: 2}
-  preparedMaterial: {fileID: 2100000, guid: e8a9fdb234945e44394288090cc78ef5, type: 2}
-  cookingMaterial: {fileID: 0}
+  startTileObject: {fileID: 0}
+  targetTileObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  moveSpeed: 2
