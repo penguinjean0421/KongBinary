@@ -184,12 +184,15 @@ public class Player_Controller : MonoBehaviour
         {
             if (isHandObject.CompareTag("Food"))
                 return;
-            Ingredient i = isHandObject.GetComponent<Ingredient>();
-            if (i.CurrentState == IngredientState.Raw)
+            if (isHandObject.CompareTag("Ingredient"))
             {
-                cuttingBoard.SetIngredient(isHandObject);
-                Destroy(isHandObject);
-                isHandObject = null;
+                Ingredient i = isHandObject.GetComponent<Ingredient>();
+                if (i.CurrentState == IngredientState.Raw)
+                {
+                    cuttingBoard.SetIngredient(isHandObject);
+                    Destroy(isHandObject);
+                    isHandObject = null;
+                }
             }
         }
         else if (isHandObject == null && cuttingBoard.ingredient != null)
