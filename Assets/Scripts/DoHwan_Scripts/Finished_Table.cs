@@ -5,7 +5,7 @@ using UnityEngine;
 public class Finished_Table : MonoBehaviour
 {
     public Bill_Manager billManager; // BillManager 참조
-
+    [SerializeField] private ParticleSystem particleSystem;
     void Start()
     {
         // BillManager가 Inspector에서 할당되지 않은 경우 씬에서 찾기
@@ -73,6 +73,15 @@ public class Finished_Table : MonoBehaviour
 
 
         billManager.CompleteBill(foodState.foodMenu);
+        PlayParticle();
         //Destroy(food);
+    }
+
+    public void PlayParticle()
+    {
+        if (!particleSystem.isPlaying)
+        {
+            particleSystem.Play();
+        }
     }
 }
