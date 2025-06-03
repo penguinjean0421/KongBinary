@@ -51,7 +51,7 @@ public class StageData : MonoBehaviour
     public void ResetAllStageData(int maxStage)
     {
         Debug.Log("지워요");
-        for (int i = 1; i <= maxStage; i++)
+        for (int i = 0; i <= maxStage; i++)
         {
             PlayerPrefs.DeleteKey($"Stage{i}Clear");
         }

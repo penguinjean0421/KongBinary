@@ -15213,6 +15213,7 @@ MonoBehaviour:
   - {fileID: 8430326636918921684, guid: c298a0e50f7b3ea419845d3c28b7cf4a, type: 3}
   billParent: {fileID: 1699212173}
   spawnInterval: 1
+  MAX_BILLS: 8
 --- !u!4 &1730291475
 Transform:
   m_ObjectHideFlags: 0
@@ -15741,7 +15742,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb44abf1a28983b4fb2e8e2ff7df8bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 3
+  timeLimit: 60
   timerText: {fileID: 1715463868}
   star1Sale: 10
   star2Sale: 20
