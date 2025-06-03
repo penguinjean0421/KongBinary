@@ -64,14 +64,16 @@ public class FryPan : MonoBehaviour
         else if (ingredient.CompareTag("Food"))
         {
             //GameObject playerController = GameObject.FindGameObjectWithTag("Player");
-            Debug.Log("test1");
+            //Debug.Log("test1");
             if (playerController != null)
             {
-                Debug.Log("test2");
+               // Debug.Log("test2");
                 Player_Controller controller = playerController.GetComponent<Player_Controller>();
                 if (controller != null && controller.handPosition != null && controller.isHandObject != null && controller.isHandObject.CompareTag("Dish"))
                 {
-                    Debug.Log("test3");
+
+                    /*
+                    //Debug.Log("test3");
                     Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
                     controller.isHandObject = null; // 초기화
 
@@ -80,9 +82,45 @@ public class FryPan : MonoBehaviour
                     ingredient.transform.rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
                     controller.isHandObject = ingredient;
                     ingredient = null;
+                    */
+
+                    //FindChildRecursive(controller.isHandObject.transform,"Pos").SetParent(controller.handPosition.transform);
+                    //FindChildRecursive(controller.isHandObject.transform, "Pos").position = controller.handPosition.transform.position;
+                    //FindChildRecursive(controller.isHandObject.transform, "Pos").rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
+                    //controller.isHandObject = ingredient;
+                    //ingredient = null;
+
+                    ingredient.transform.SetParent(FindChildRecursive(controller.isHandObject.transform, "Pos"));
+                    ingredient.transform.position = FindChildRecursive(controller.isHandObject.transform, "Pos").position;
+                    ingredient.transform.rotation = FindChildRecursive(controller.isHandObject.transform, "Pos").rotation * Quaternion.Euler(0, 90, 0);
+                    //controller.isHandObject = ingredient;
+                    ingredient = null;
                 }
             }
         }
+    }
+
+    Transform FindChildRecursive(Transform parent, string childName)
+    {
+        // 부모 오브젝트의 이름이 찾으려는 이름과 일치하면 해당 transform 반환
+        if (parent.name == childName)
+        {
+            return parent;
+        }
+
+        // 부모의 모든 자식 오브젝트를 순회하며 재귀적으로 탐색
+        foreach (Transform child in parent)
+        {
+            Transform result = FindChildRecursive(child, childName);
+            // 재귀 호출 결과 찾은 자식이 있다면 바로 반환
+            if (result != null)
+            {
+                return result;
+            }
+        }
+
+        // 모든 계층을 탐색했으나 찾지 못할 경우 null 반환
+        return null;
     }
 
     private IEnumerator CookingCoroutine(Ingredient _ingredient, Player_Movement playerMovement)

@@ -139,7 +139,7 @@ public class Player_Controller : MonoBehaviour
             currentTrigger = null;
             return;
         }
-
+        
         float shortestDistance = float.MaxValue;
         Collider nearestTrigger = null;
 
@@ -282,6 +282,7 @@ public class Player_Controller : MonoBehaviour
 
     private void FinishedTable()
     {
+        /*
         if (isHandObject != null)
         {
             Finished_Table finishedTable = currentTrigger.gameObject.GetComponent<Finished_Table>();
@@ -295,6 +296,60 @@ public class Player_Controller : MonoBehaviour
               
             }
         }
+        */
+        if (isHandObject != null)
+        {
+            Finished_Table finishedTable = currentTrigger.gameObject.GetComponent<Finished_Table>();
+            if (finishedTable != null)
+            {
+                if (isHandObject.CompareTag("Dish"))
+                {
+                    //finishedTable.Finished(isHandObject);
+                    //isHandObject = null;
+                    GameObject food = FindChildWithTag(isHandObject.transform, "Food");
+                    if (food != null) 
+                    {
+                        finishedTable.Finished(food);
+                        Destroy(isHandObject);
+                        isHandObject = null;
+                        
+                    }
+                }
+
+            }
+        }
+
+    }
+
+    public GameObject FindChildWithTag(Transform parent, string tagToFind)
+    {
+        // 부모 오브젝트 자체가 지정한 태그를 가지고 있는지 확인합니다.
+        if (parent.CompareTag(tagToFind))
+        {
+            return parent.gameObject;
+        }
+
+        // 부모의 모든 자식 오브젝트를 순회합니다.
+        for (int i = 0; i < parent.childCount; i++)
+        {
+            Transform child = parent.GetChild(i);
+
+            // 현재 자식 오브젝트가 지정한 태그를 가지고 있는지 확인합니다.
+            if (child.CompareTag(tagToFind))
+            {
+                return child.gameObject;
+            }
+
+            // 자식 오브젝트의 자식들을 재귀적으로 탐색합니다.
+            GameObject found = FindChildWithTag(child, tagToFind);
+            if (found != null)
+            {
+                return found;
+            }
+        }
+
+        // 지정한 태그를 가진 오브젝트가 없다면 null을 반환합니다.
+        return null;
     }
 
     #endregion
