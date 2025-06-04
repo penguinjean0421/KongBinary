@@ -3,13 +3,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
-    public int stageIndex;
-    Button stageButton;
-
-    void Awake()
-    {
-        stageButton = GetComponent<Button>();
-    }
+    public int stageIndex; // 1부터 시작
+    public Button stageButton;
 
     void Start()
     {
@@ -22,16 +17,8 @@ public class StageManager : MonoBehaviour
         StageData.Instance.currentStageIndex = stageIndex;
         SceneManager.LoadScene($"Level{stageIndex}");
 
-        /* 씬 이름 아래 처럼 해주세요 (튜토리얼이 0번)
+        /* 아래 처럼 해주세요
         SceneManager.LoadScene($"Stage{stageIndex}"); 
         */
-    }
-
-    public void ClearTuto()
-    {
-        StageData.Instance.currentStageIndex = stageIndex;
-        StageData.Instance.SetStageCleared(stageIndex);
-        StageData.Instance.IsStageCleared(stageIndex);
-        SceneManager.LoadScene("ChooseStage");
     }
 }
