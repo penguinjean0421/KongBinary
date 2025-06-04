@@ -122,4 +122,6 @@ MonoBehaviour:
   targetTileObjects:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   moveSpeed: 2
