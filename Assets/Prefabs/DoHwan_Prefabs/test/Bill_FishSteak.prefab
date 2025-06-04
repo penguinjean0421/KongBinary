@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 70e919ceb992d4cc085c5d7d72335bdb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e528b8e4d4f9840798048734ba33bc52, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -199,7 +199,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Button
 --- !u!1 &8430326636918921684
 GameObject:
   m_ObjectHideFlags: 0
