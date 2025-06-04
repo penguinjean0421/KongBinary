@@ -23,6 +23,11 @@ public class TileManager : MonoBehaviour
             return;
         }
 
+     
+    }
+
+    private void Start()
+    {
         Tile[] tiles = FindObjectsOfType<Tile>();
         if (tiles.Length == 0)
         {
