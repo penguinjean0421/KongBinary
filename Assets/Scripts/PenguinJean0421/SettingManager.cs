@@ -3,7 +3,7 @@ public class SettingManager : MonoBehaviour
 {
     public static SettingManager Instance { get; private set; } // 싱글톤
     [SerializeField] GameObject settingScene;
-    bool isPlaying;
+    bool isPause;
 
     void Awake()
     {
@@ -35,19 +35,19 @@ public class SettingManager : MonoBehaviour
     // 환경설정 창 실행
     public void SettingActive()
     {
-        isPlaying = !isPlaying;
-        if (!isPlaying)  // 창 켜짐
+        isPause = !isPause;
+        if (!isPause)  // 창 켜짐
         {
             Time.timeScale = 1f;
-            // isPlaying = true;
-            settingScene.SetActive(isPlaying);
+            // isPause = true;
+            settingScene.SetActive(isPause);
         }
         else // 창 꺼짐
         {
             Time.timeScale = 0f;
-            // isPlaying = false;
-            settingScene.SetActive(isPlaying);
+            // isPause = false;
+            settingScene.SetActive(isPause);
         }
-        Debug.Log($"환경설정 창 : {isPlaying}");
+        Debug.Log($"환경설정 창 : {isPause}");
     }
 }
