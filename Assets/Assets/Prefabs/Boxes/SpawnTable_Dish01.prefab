@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ingredient: {fileID: 180231512847717248, guid: f331bafcbec1a3b46902279ca8be9059, type: 3}
-  ingredientCount: 5
+  ingredientCount: 9999
   animator: {fileID: 0}
 --- !u!1001 &2035147388242745007
 PrefabInstance:
