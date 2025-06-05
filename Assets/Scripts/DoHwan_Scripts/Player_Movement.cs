@@ -17,6 +17,7 @@ public class Player_Movement : MonoBehaviour
     private Rigidbody rb;
     private Player_Controller playerController;
     [SerializeField] public Animator animator;
+    [SerializeField] private ParticleSystem dustParticle;
 
     void Start()
     {
@@ -57,6 +58,11 @@ public class Player_Movement : MonoBehaviour
         {
             // 이동 중지
             rb.velocity = Vector3.zero;
+            if (dustParticle != null && dustParticle.isPlaying)
+            {
+                dustParticle.Stop(); // 상호작용 중 파티클 비활성화
+            }
+
             return;
         }
 
@@ -130,7 +136,25 @@ public class Player_Movement : MonoBehaviour
         {
             // 입력이 없을 때는 속도를 0으로
             rb.velocity = Vector3.zero;
+            if (dustParticle != null && dustParticle.isPlaying)
+            {
+                dustParticle.Stop(); // 이동 멈춤 시 파티클 비활성화
+            }
         }
+
+        // 먼지 파티클 제어
+        if (dustParticle != null)
+        {
+            if (rb.velocity.magnitude > 0.1f && !dustParticle.isPlaying)
+            {
+                dustParticle.Play(); // 달리기 중이고 이동 중일 때 파티클 활성화
+            }
+            else if ((rb.velocity.magnitude <= 0.1f) && dustParticle.isPlaying)
+            {
+                dustParticle.Stop(); // 달리기 중지 또는 이동 멈춤 시 파티클 비활성화
+            }
+        }
+
     }
 
     private void MoveMent(float horizontalInput, float verticalInput)
