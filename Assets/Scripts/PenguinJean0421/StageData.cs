@@ -4,8 +4,7 @@ public class StageData : MonoBehaviour
 {
     public static StageData Instance { get; private set; }
     public int currentStageIndex { get; internal set; }
-    [SerializeField] int maxStage = 10; // 스테이지 갯수(초기화용)
-
+    int maxStage = 10000; // 스테이지 초기화
     void Awake()
     {
         // 싱글톤 설정

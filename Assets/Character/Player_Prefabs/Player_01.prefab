@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerType: 0
-  walkSpeed: 5
+  walkSpeed: 8
   sprintSpeed: 8
   rotationSpeed: 10
   animator: {fileID: 94785896501703978}
