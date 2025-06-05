@@ -17,6 +17,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] float star2Sale;
     [SerializeField] float star3Sale;
 
+    [SerializeField] GameObject scoreUI;
+    // [SerializeField] GameObject succedUI;
+    // [SerializeField] GameObject failUI;
+
     void Awake()
     {
         // 싱글톤 설정
@@ -34,6 +38,9 @@ public class GameManager : MonoBehaviour
     {
         ResetTimer(); // 게임 시작 시 타이머 초기화
         sales = 0; // 판매액 초기화
+
+        scoreUI.SetActive(false);
+        // succedUI.SetActive(false);
     }
 
     void Update()
@@ -65,7 +72,7 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         Debug.Log("Game Over! Time's up!");
-
+        scoreUI.SetActive(true);
         // 게임 오버 처리 (예: 씬 전환)
         // SceneManager.LoadScene("GameOver");
         if (sales >= star1Sale)
@@ -139,16 +146,18 @@ public class GameManager : MonoBehaviour
     // 스테이지 클리어
     public void OnStageClear()
     {
+        // succedUI.SetActive(true);
+
         int current = StageData.Instance.currentStageIndex;
+
         StageData.Instance.SetStageCleared(current);
         StageData.Instance.IsStageCleared(current);
-        // SceneManager.LoadScene("Score"); // Score로 바꿀 예정(함수 예정)
     }
 
     // 클리어 실패
     public void OnStageFail()
     {
-        // SceneManager.LoadScene("Score"); // Score로 바꿀 예정(함수 예정)
+        // fail.SetActive(true);
     }
     #endregion
 }

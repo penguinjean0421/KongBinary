@@ -4,7 +4,12 @@ using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
     public int stageIndex; // 1부터 시작
-    public Button stageButton;
+    Button stageButton;
+
+    void Awake()
+    {
+        stageButton = GetComponent<Button>();
+    }
 
     void Start()
     {
@@ -20,5 +25,11 @@ public class StageManager : MonoBehaviour
         /* 아래 처럼 해주세요
         SceneManager.LoadScene($"Stage{stageIndex}"); 
         */
+    }
+
+    public void LoadNextStage()
+    {
+        StageData.Instance.currentStageIndex = stageIndex;
+        SceneManager.LoadScene($"Level{stageIndex + 1}");
     }
 }
