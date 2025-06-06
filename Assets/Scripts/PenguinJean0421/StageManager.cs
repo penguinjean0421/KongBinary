@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
-    public int stageIndex; // 1부터 시작
+    public int stageIndex; // 0(튜토리얼) 부터 시작
     Button stageButton;
 
     void Awake()
