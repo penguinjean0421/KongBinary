@@ -3,17 +3,15 @@ using UnityEngine.UI;
 
 public class ScoreUI : MonoBehaviour
 {
-    GameObject scoreUI;
-    GameObject succedUI;
-    GameObject failUI;
+    GameObject scoreUI; // 공통 UI
+    GameObject succedUI; // Clear 시
+    GameObject failUI; // Clear 실패 시
 
     void Awake()
     {
         scoreUI = GameObject.Find("ScoreUI");
         succedUI = GameObject.Find("SuccedUI");
         failUI = GameObject.Find("FailUI");
-
-
     }
 
     void Start()
