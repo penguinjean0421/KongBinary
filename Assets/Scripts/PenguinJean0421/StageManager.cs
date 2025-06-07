@@ -27,9 +27,10 @@ public class StageManager : MonoBehaviour
         */
     }
 
+    // 다음 스테이지 로드
     public void LoadNextStage()
     {
-        StageData.Instance.currentStageIndex = stageIndex;
-        SceneManager.LoadScene($"Level{stageIndex + 1}");
+        StageData.Instance.currentStageIndex++;
+        SceneManager.LoadScene($"Level{StageData.Instance.currentStageIndex}");
     }
 }

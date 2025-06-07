@@ -18540,9 +18540,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 3
   timerText: {fileID: 1715463868}
-  star1Sale: 10
-  star2Sale: 20
-  star3Sale: 30
+  sales: 2
+  star1Sale: 1
+  star2Sale: 3
+  star3Sale: 5
   scoreUI: {fileID: 2096371551}
 --- !u!4 &1790077405
 Transform:
