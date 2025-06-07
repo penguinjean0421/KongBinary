@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -192,7 +194,10 @@ public class Player_Controller : MonoBehaviour
     private void ApplyHighlight(GameObject target)
     {
         // 자식 포함 모든 Renderer 가져오기 (비활성화된 오브젝트 포함)
-        Renderer[] renderers = target.GetComponentsInChildren<Renderer>(true);
+        //if (!(target.CompareTag("Ingredient") || target.CompareTag("Food")))
+        Renderer[] renderers = target.GetComponentsInChildren<Renderer>(true)
+            .Where(renderer => !renderer.gameObject.CompareTag("Ingredient") && !renderer.gameObject.CompareTag("Food"))
+            .ToArray();
         if (renderers == null || renderers.Length == 0)
         {
             Debug.LogWarning($"No renderers found in {target.name}");
