@@ -47,10 +47,11 @@ public class FryPan : MonoBehaviour
         if (ingredient == null || isCooking)
             return;
 
-        Ingredient i = ingredient.GetComponent<Ingredient>();
+      
 
         if (ingredient.CompareTag("Ingredient"))
         {
+            Ingredient i = ingredient.GetComponent<Ingredient>();
             if (i.CurrentState == IngredientState.Prepared)//if(ingredient.CompareTag("Food"))
             {
                 Player_Movement playerMovement = playerController.GetComponent<Player_Movement>();
