@@ -155,7 +155,7 @@ public class Bill_Manager : MonoBehaviour
         if (rectTransform == null) yield break;
 
         // 초기 위치 (오른쪽 밖)
-        float startX = 1000f;
+        float startX = 2500F;
         rectTransform.anchoredPosition = new Vector2(startX, yOffset);
 
         // 목표 위치 계산 (가장 오른쪽에 추가)

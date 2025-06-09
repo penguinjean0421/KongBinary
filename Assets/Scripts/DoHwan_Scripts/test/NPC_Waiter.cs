@@ -147,7 +147,7 @@ public class NPC_Waiter : MonoBehaviour
             {
                 Vector2Int nextPos = path[i];
                 Vector3 targetWorldPos = new Vector3(nextPos.x, transform.position.y, nextPos.y);
-                Debug.Log($"NPC_Waiter: Moving to {nextPos}");
+                //Debug.Log($"NPC_Waiter: Moving to {nextPos}");
                 while (Vector3.Distance(transform.position, targetWorldPos) > 0.01f)
                 {
                     transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * Time.deltaTime);
