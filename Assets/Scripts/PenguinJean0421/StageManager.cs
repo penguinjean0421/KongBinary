@@ -31,8 +31,6 @@ public class StageManager : MonoBehaviour
             bool isUnlocked = (stageIndex == 0) || StageData.Instance.IsStageCleared(stageIndex - 1);
             stageButton.interactable = isUnlocked;
         }
-
-
     }
 
     public void LoadStage()
@@ -43,12 +41,5 @@ public class StageManager : MonoBehaviour
         /* 아래 처럼 해주세요
         SceneManager.LoadScene($"Stage{stageIndex}"); 
         */
-    }
-
-    // 다음 스테이지 로드
-    public void LoadNextStage()
-    {
-        StageData.Instance.currentStageIndex++;
-        SceneManager.LoadScene($"Level{StageData.Instance.currentStageIndex}");
     }
 }

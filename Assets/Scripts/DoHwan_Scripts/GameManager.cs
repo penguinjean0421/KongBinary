@@ -36,12 +36,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        ResetGameObj();
     }
 
     void Start()
     {
+        ResetGameObj();
         ResetTimer(); // 게임 시작 시 타이머 초기화
         sales = 0; // 판매액 초기화
 
@@ -89,7 +88,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over! Time's up!");
         ScoreUI();
 
-
         // scoreUI.SetActive(true);
         // 게임 오버 처리 (예: 씬 전환)
         // SceneManager.LoadScene("GameOver");
@@ -121,24 +119,31 @@ public class GameManager : MonoBehaviour
     }
 
     // 다음 스테이지로 이동
-    public void GoToNextStage()
-    {
-        currentStage++;
-        ResetTimer(); // 타이머 초기화
-        Debug.Log($"Moving to Stage {currentStage}");
+    // public void GoToNextStage()
+    // {
+    //     currentStage++;
+    //     ResetTimer(); // 타이머 초기화
+    //     Debug.Log($"Moving to Stage {currentStage}");
 
-        // 다음 스테이지 씬 로드 (예: "Stage2", "Stage3" 등)
-        string nextSceneName = $"Stage{currentStage}";
-        if (Application.CanStreamedLevelBeLoaded(nextSceneName))
-        {
-            SceneManager.LoadScene(nextSceneName);
-        }
-        else
-        {
-            Debug.Log("No more stages! Game Cleared!");
-            // 모든 스테이지 클리어 시 처리
-            SceneManager.LoadScene("GameClear");
-        }
+    //     // 다음 스테이지 씬 로드 (예: "Stage2", "Stage3" 등)
+    //     string nextSceneName = $"Stage{currentStage}";
+    //     if (Application.CanStreamedLevelBeLoaded(nextSceneName))
+    //     {
+    //         SceneManager.LoadScene(nextSceneName);
+    //     }
+    //     else
+    //     {
+    //         Debug.Log("No more stages! Game Cleared!");
+    //         // 모든 스테이지 클리어 시 처리
+    //         SceneManager.LoadScene("GameClear");
+    //     }
+    // }
+
+    // 다음 스테이지 로드
+    public void LoadNextStage()
+    {
+        StageData.Instance.currentStageIndex++;
+        SceneManager.LoadScene($"Level{StageData.Instance.currentStageIndex}");
     }
 
     // 시간 연장 아이템 등으로 호출 가능
@@ -176,21 +181,21 @@ public class GameManager : MonoBehaviour
             if (sales >= star1Sale[currentStage - 1]) // 1번째 별
             {
                 Debug.Log($"{currentStage} 스테이지 별 1개");
-                ScoreData.Instance.GetStars(currentStage, 1);
+                // ScoreData.Instance.GetStars(currentStage, 1);
                 // star1.SetActive(true);
             }
 
             if (sales >= star2Sale[currentStage - 1]) // 2번째 별
             {
                 Debug.Log($"{currentStage} 스테이지 별 2개");
-                ScoreData.Instance.GetStars(currentStage, 2);
+                // ScoreData.Instance.GetStars(currentStage, 2);
                 // star2.SetActive(true);
             }
 
             if (sales >= star3Sale[currentStage - 1]) // 3번째 별 
             {
                 Debug.Log($"{currentStage} 스테이지 별 3개");
-                ScoreData.Instance.GetStars(currentStage, 3);
+                // ScoreData.Instance.GetStars(currentStage, 3);
                 // star3.SetActive(true);
             }
 
