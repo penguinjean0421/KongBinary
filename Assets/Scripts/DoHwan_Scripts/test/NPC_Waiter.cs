@@ -15,6 +15,8 @@ public class NPC_Waiter : MonoBehaviour
 
     void Start()
     {
+        StartCoroutine(DelayedExecution());
+        /*
         if (startTileObject != null)
         {
             startTile = new Vector2Int(Mathf.RoundToInt(startTileObject.transform.position.x), Mathf.RoundToInt(startTileObject.transform.position.z));
@@ -50,6 +52,53 @@ public class NPC_Waiter : MonoBehaviour
         {
             Debug.LogError($"NPC_Waiter: Target tile {currentTarget} not found! Please add a tile at this position.");
             return;
+        }
+
+        Debug.Log($"NPC_Waiter: Starting at {startTile}, moving to {currentTarget}");
+        */
+    }
+
+    IEnumerator DelayedExecution()
+    {
+        // 한 프레임 대기 (Start가 끝난 후 실행)
+        yield return null;
+        // 원하는 로직 작성
+        Debug.Log("Start 이후 실행됨!");
+        if (startTileObject != null)
+        {
+            startTile = new Vector2Int(Mathf.RoundToInt(startTileObject.transform.position.x), Mathf.RoundToInt(startTileObject.transform.position.z));
+            transform.position = new Vector3(startTile.x, transform.position.y, startTile.y);
+            Debug.Log($"NPC_Waiter: startTileObject position: {startTileObject.transform.position}, converted to startTile: {startTile}");
+        }
+        else
+        {
+            Debug.LogError("NPC_Waiter: Start tile object not assigned!");
+            yield return null; 
+        }
+
+        if (targetTileObjects != null && targetTileObjects.Length > 0)
+        {
+            int randomIndex = Random.Range(0, targetTileObjects.Length);
+            GameObject initialTargetObject = targetTileObjects[randomIndex];
+            currentTarget = new Vector2Int(Mathf.RoundToInt(initialTargetObject.transform.position.x), Mathf.RoundToInt(initialTargetObject.transform.position.z));
+        }
+        else
+        {
+            Debug.LogError("NPC_Waiter: No target tile objects assigned!");
+            yield return null; 
+        }
+
+        Tile start = TileManager.Instance.GetTile(startTile);
+        Tile target = TileManager.Instance.GetTile(currentTarget);
+        if (start == null)
+        {
+            Debug.LogError($"NPC_Waiter: Start tile {startTile} not found! Please add a tile at this position.");
+            yield return null; 
+        }
+        if (target == null)
+        {
+            Debug.LogError($"NPC_Waiter: Target tile {currentTarget} not found! Please add a tile at this position.");
+            yield return null; 
         }
 
         Debug.Log($"NPC_Waiter: Starting at {startTile}, moving to {currentTarget}");
