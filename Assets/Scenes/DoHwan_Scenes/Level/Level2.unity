@@ -1710,7 +1710,7 @@ GameObject:
   - component: {fileID: 1467881656}
   - component: {fileID: 1467881655}
   m_Layer: 5
-  m_Name: NextStage
+  m_Name: ScoreUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2275,7 +2275,7 @@ GameObject:
   - component: {fileID: 1715463869}
   - component: {fileID: 1715463868}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: TimerText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2481,7 +2481,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLimit: 5
-  timerText: {fileID: 1715463868}
   sales: 10
   star1Sale: 5
   star2Sale: 15

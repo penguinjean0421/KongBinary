@@ -46,4 +46,11 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("Start");
     }
+
+    // 다음 스테이지 로드
+    public void LoadNextStage()
+    {
+        StageData.Instance.currentStageIndex++;
+        SceneManager.LoadScene($"Level{StageData.Instance.currentStageIndex}");
+    }
 }
