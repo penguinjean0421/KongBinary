@@ -21,9 +21,11 @@ public class Bill_Manager : MonoBehaviour
     private float gameTime;
     private float timer;
 
-    [SerializeField] private float xOffset = 110f;
-    [SerializeField] private float yOffset = 950f;
-    [SerializeField] private float spacing = 180f; // 빌지 간 간격 (픽셀 단위)
+
+    [SerializeField] private float XOFFSET = 110f;
+    [SerializeField] private float YOFFSET = 950f;
+    [SerializeField] private float SPACING = 180f; // 빌지 간 간격 (픽셀 단위)
+
 
     void Start()
     {
@@ -153,7 +155,10 @@ public class Bill_Manager : MonoBehaviour
 
     void UpdateBillPositions()
     {
-       
+
+        float xOffset = XOFFSET;
+        float yOffset = YOFFSET;
+        float spacing = SPACING; // 빌지 간 간격 (픽셀 단위)
 
         for (int i = 0; i < bills.Count; i++)
         {
