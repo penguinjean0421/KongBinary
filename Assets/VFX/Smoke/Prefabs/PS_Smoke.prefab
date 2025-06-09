@@ -41,7 +41,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4838212176426776692}
   serializedVersion: 8
-  lengthInSec: 0.1
+  lengthInSec: 0.08
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -106,7 +106,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
+  moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -115,9 +115,9 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 1
-      minScalar: 5
+      minMaxState: 3
+      scalar: 0.6
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -168,9 +168,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 1.5
-      minScalar: 5
+      minMaxState: 3
+      scalar: 0.5
+      minScalar: 0.2
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -287,8 +287,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 4
-      minScalar: 2
+      scalar: 10
+      minScalar: 5
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -1055,20 +1055,20 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0.2
           value: 1
-          inSlope: -0.000000792335
-          outSlope: -0.000000792335
-          tangentMode: 0
+          inSlope: 0.11118536
+          outSlope: -1.2304841
+          tangentMode: 1
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.18806642
+          outWeight: 0.20317218
         - serializedVersion: 3
           time: 1
           value: 0
-          inSlope: -1.6887751
-          outSlope: -1.6887751
+          inSlope: -0.8213396
+          outSlope: -0.8213396
           tangentMode: 0
           weightedMode: 0
-          inWeight: 0.37009066
+          inWeight: 0.23413904
           outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2

@@ -150,11 +150,23 @@ MonoBehaviour:
   billPrefabs:
   - {fileID: 3275444404635187503, guid: f0107a2332e134e059ebe585e7e8a052, type: 3}
   - {fileID: 3304862998470929631, guid: 0524faf74878846168283c0a8c50dcd4, type: 3}
-  - {fileID: 7390452742857256700, guid: feb9d05d927914a2ebae0ccce080f81f, type: 3}
   - {fileID: 7684283661489463137, guid: 572c310318298463cb75b138c3713831, type: 3}
+  - {fileID: 7390452742857256700, guid: feb9d05d927914a2ebae0ccce080f81f, type: 3}
   billParent: {fileID: 0}
-  spawnInterval: 1
-  MAX_BILLS: 5
+  totalGameTime: 120
+  initialBillStacks:
+  - menu: 1
+    stackCount: 4
+  - menu: 2
+    stackCount: 4
+  - menu: 4
+    stackCount: 4
+  - menu: 5
+    stackCount: 4
+  xOffset: 110
+  yOffset: 950
+  spacing: 180
+  moveDuration: 1
 --- !u!1 &6218830112042524910
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,11 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLimit: 60
-  timerText: {fileID: 0}
-  star1Sale: 0
-  star2Sale: 0
-  star3Sale: 0
-  scoreUI: {fileID: 0}
+  sales: 0
 --- !u!1001 &8360839558220236309
 PrefabInstance:
   m_ObjectHideFlags: 0
