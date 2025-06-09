@@ -3,8 +3,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
-    public int stageIndex; // 1부터 시작
-    public Button stageButton;
+    public int stageIndex; // 0(튜토리얼) 부터 시작
+    Button stageButton;
+
+    void Awake()
+    {
+        stageButton = GetComponent<Button>();
+    }
 
     void Start()
     {
@@ -20,5 +25,12 @@ public class StageManager : MonoBehaviour
         /* 아래 처럼 해주세요
         SceneManager.LoadScene($"Stage{stageIndex}"); 
         */
+    }
+
+    // 다음 스테이지 로드
+    public void LoadNextStage()
+    {
+        StageData.Instance.currentStageIndex++;
+        SceneManager.LoadScene($"Level{StageData.Instance.currentStageIndex}");
     }
 }
