@@ -2,24 +2,28 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // 싱글톤
-    [SerializeField] private float timeLimit = 240f; // 4분(240초)
+    public float timeLimit = 120f; // 제한 시간
     private float timeRemaining;
-    [SerializeField] private Text timerText; // 타이머 UI 텍스트
+    Text timerText; // 타이머 UI 텍스트
 
     private bool isGameOver = false;
-    private int currentStage; // 현재 스테이지 번호 (예시)
+    private int currentStage; // 현재 스테이지 번호
 
-    [SerializeField] float sales;
-    [SerializeField] float star1Sale;
-    [SerializeField] float star2Sale;
-    [SerializeField] float star3Sale;
+    [SerializeField] internal float sales;
+    internal float[] star1Sale = new float[5] { 500, 1000, 1500, 2000, 2500 }; // (배열화 해서 레벨별로 다르게 설정)
+    internal float[] star2Sale = new float[5] { 1000, 1500, 2000, 2500, 3000 }; // (배열화 해서 레벨별로 다르게 설정)
+    internal float[] star3Sale = new float[5] { 1500, 2000, 2500, 3000, 4500 }; // (배열화 해서 레벨별로 다르게 설정)
 
-    [SerializeField] GameObject scoreUI;
-    // [SerializeField] GameObject succedUI;
-    // [SerializeField] GameObject failUI;
+    GameObject scoreUI;
+    GameObject failUI;
+    GameObject succedUI;
+    GameObject star1;
+    GameObject star2;
+    GameObject star3;
 
     void Awake()
     {
@@ -27,13 +31,24 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
             Destroy(gameObject);
         }
 
-        currentStage = StageData.Instance.currentStageIndex;
+        GameManager.Instance.currentStage = StageData.Instance.currentStageIndex;
+        GameManager.Instance.timerText = GameObject.Find("TimerText").GetComponent<Text>();
+
+        GameManager.Instance.scoreUI = GameObject.Find("ScoreUI");
+
+        // GameManager.Instance.succedUI = GameObject.Find("SuccedUI");
+        // GameManager.Instance.failUI = GameObject.Find("FailUI");
+
+        // GameManager.Instance.star1 = GameObject.Find("Star1");
+        // GameManager.Instance.star2 = GameObject.Find("Star2");
+        // GameManager.Instance.star3 = GameObject.Find("Star3");
     }
 
     void Start()
@@ -41,9 +56,8 @@ public class GameManager : MonoBehaviour
         ResetTimer(); // 게임 시작 시 타이머 초기화
         sales = 0; // 판매액 초기화
 
-        scoreUI.SetActive(false);
-        Debug.Log($"현재 스테이지는 {currentStage} 입니다.");
-        // succedUI.SetActive(false);
+        GameManager.Instance.scoreUI.SetActive(false);
+        Debug.Log($"현재 스테이지는 {GameManager.Instance.currentStage} 입니다.");
     }
 
     void Update()
@@ -62,8 +76,12 @@ public class GameManager : MonoBehaviour
             timeRemaining = 0;
             GameOver();
         }
-    }
 
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            AddSales(500f);
+        }
+    }
     void UpdateTimerUI()
     {
         int minutes = Mathf.FloorToInt(timeRemaining / 60);
@@ -75,32 +93,13 @@ public class GameManager : MonoBehaviour
     {
         isGameOver = true;
         Debug.Log("Game Over! Time's up!");
-        scoreUI.SetActive(true);
+        ScoreUI();
+
+
+        // scoreUI.SetActive(true);
         // 게임 오버 처리 (예: 씬 전환)
         // SceneManager.LoadScene("GameOver");
 
-        // ScoreUI.
-        if (sales >= star1Sale)
-        {
-            if (sales >= star3Sale)
-            {
-                Debug.Log("별 3개");
-            }
-            else if (sales >= star2Sale)
-            {
-                Debug.Log("별 2개");
-            }
-            else
-            {
-                Debug.Log("별 1개");
-            }
-            OnStageClear();
-        }
-        else
-        {
-            Debug.Log("실패");
-            OnStageFail();
-        }
     }
 
     // 타이머 초기화 메서드
@@ -147,12 +146,52 @@ public class GameManager : MonoBehaviour
         Debug.Log($"매출 증가: {amount}, 총 매출: {sales}");
     }
 
-    #region  스테이지 클리어 체크
+    #region  ScoreUI
+
+    // 타임 오버 후 출력
+    void ScoreUI()
+    {
+        scoreUI.SetActive(true);
+
+        if (sales < star1Sale[currentStage - 1])
+        {
+            Debug.Log("실패");
+            // failUI.SetActive(true);
+        }
+        else
+        {
+            StageData.Instance.SetStageCleared(currentStage);
+            StageData.Instance.IsStageCleared(currentStage);
+
+            if (sales >= star1Sale[currentStage - 1]) // 1번째 별
+            {
+                Debug.Log($"{currentStage} 스테이지 별 1개");
+                // star1.SetActive(true);
+            }
+
+            if (sales >= star2Sale[currentStage - 1]) // 2번째 별
+            {
+                Debug.Log($"{currentStage} 스테이지 별 2개");
+                // star2.SetActive(true);
+            }
+
+            if (sales >= star3Sale[currentStage - 1]) // 3번째 별 
+            {
+                Debug.Log($"{currentStage} 스테이지 별 3개");
+                // star3.SetActive(true);
+            }
+
+            // succedUI.SetActive(true);
+        }
+    }
+
+
+
+
     // 스테이지 클리어
     public void OnStageClear()
     {
-        StageData.Instance.SetStageCleared(currentStage);
-        StageData.Instance.IsStageCleared(currentStage);
+
     }
 
     // 클리어 실패
