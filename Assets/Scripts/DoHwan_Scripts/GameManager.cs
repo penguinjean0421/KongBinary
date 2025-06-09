@@ -12,10 +12,10 @@ public class GameManager : MonoBehaviour
     private bool isGameOver = false;
     private int currentStage; // 현재 스테이지 번호 (예시)
 
-    [SerializeField] float sales;
-    [SerializeField] float star1Sale;
-    [SerializeField] float star2Sale;
-    [SerializeField] float star3Sale;
+    [SerializeField] internal float sales;
+    [SerializeField] internal float star1Sale;
+    [SerializeField] internal float star2Sale;
+    [SerializeField] internal float star3Sale;
 
     [SerializeField] GameObject scoreUI;
     // [SerializeField] GameObject succedUI;
@@ -79,28 +79,6 @@ public class GameManager : MonoBehaviour
         // 게임 오버 처리 (예: 씬 전환)
         // SceneManager.LoadScene("GameOver");
 
-        // ScoreUI.
-        if (sales >= star1Sale)
-        {
-            if (sales >= star3Sale)
-            {
-                Debug.Log("별 3개");
-            }
-            else if (sales >= star2Sale)
-            {
-                Debug.Log("별 2개");
-            }
-            else
-            {
-                Debug.Log("별 1개");
-            }
-            OnStageClear();
-        }
-        else
-        {
-            Debug.Log("실패");
-            OnStageFail();
-        }
     }
 
     // 타이머 초기화 메서드
@@ -147,12 +125,42 @@ public class GameManager : MonoBehaviour
         Debug.Log($"매출 증가: {amount}, 총 매출: {sales}");
     }
 
-    #region  스테이지 클리어 체크
+    #region  ScoreUI
+    void ClearUI()
+    {
+        if (sales < star1Sale)
+        {
+            Debug.Log("실패");
+        }
+        else
+        {
+            if (sales >= star3Sale) // 3번째 별 
+            {
+                Debug.Log("별 3개");
+            }
+
+            if (sales >= star2Sale) // 2번째 별
+            {
+                Debug.Log("별 2개");
+            }
+
+            if (sales >= star1Sale) // 1번째 별
+            {
+                Debug.Log("별 1개");
+            }
+
+            StageData.Instance.SetStageCleared(currentStage);
+            StageData.Instance.IsStageCleared(currentStage);
+        }
+    }
+
+
+
+
     // 스테이지 클리어
     public void OnStageClear()
     {
-        StageData.Instance.SetStageCleared(currentStage);
-        StageData.Instance.IsStageCleared(currentStage);
+
     }
 
     // 클리어 실패

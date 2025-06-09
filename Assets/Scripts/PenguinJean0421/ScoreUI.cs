@@ -23,28 +23,5 @@ public class ScoreUI : MonoBehaviour
     }
 
 
-    // public void ClearUI()
-    // {
-    //     if (sales >= star1Sale)
-    //     {
-    //         if (sales >= star3Sale)
-    //         {
-    //             Debug.Log("별 3개");
-    //         }
-    //         else if (sales >= star2Sale)
-    //         {
-    //             Debug.Log("별 2개");
-    //         }
-    //         else
-    //         {
-    //             Debug.Log("별 1개");
-    //         }
-    //         OnStageClear();
-    //     }
-    //     else
-    //     {
-    //         Debug.Log("실패");
-    //         OnStageFail();
-    //     }
-    // }
+
 }
