@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
+using System.Collections;
+
+
 
 public class Bill_Manager : MonoBehaviour
 {
@@ -21,11 +24,10 @@ public class Bill_Manager : MonoBehaviour
     private float gameTime;
     private float timer;
 
-
-    [SerializeField] private float XOFFSET = 110f;
-    [SerializeField] private float YOFFSET = 950f;
-    [SerializeField] private float SPACING = 180f; // 빌지 간 간격 (픽셀 단위)
-
+    [SerializeField] private float xOffset = 110f;
+    [SerializeField] private float yOffset = 950f;
+    [SerializeField] private float spacing = 180f; // 빌지 간 간격 (픽셀 단위)
+    [SerializeField] private float moveDuration = 1f; // 이동 지속 시간 (초)
 
     void Start()
     {
@@ -93,9 +95,6 @@ public class Bill_Manager : MonoBehaviour
         {
             timer = 0f;
         }
-
-        // 빌지 위치 업데이트
-        UpdateBillPositions();
     }
 
     void SpawnInitialBills()
@@ -145,6 +144,60 @@ public class Bill_Manager : MonoBehaviour
 
         billStacks[randomMenu]--; // 스택 감소
         Debug.Log($"Spawned bill: {randomMenu}, Remaining stacks - {randomMenu}: {billStacks[randomMenu]}");
+
+        // 오른쪽에서 이동 시작
+        StartCoroutine(MoveBill(newBill));
+    }
+
+    IEnumerator MoveBill(GameObject bill)
+    {
+        RectTransform rectTransform = bill.GetComponent<RectTransform>();
+        if (rectTransform == null) yield break;
+
+        // 초기 위치 (오른쪽 밖)
+        float startX = 1000f;
+        rectTransform.anchoredPosition = new Vector2(startX, yOffset);
+
+        // 목표 위치 계산 (가장 오른쪽에 추가)
+        float targetX = xOffset + (bills.Count - 1) * spacing;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < moveDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / moveDuration;
+            rectTransform.anchoredPosition = Vector2.Lerp(new Vector2(startX, yOffset), new Vector2(targetX, yOffset), t);
+            yield return null;
+        }
+
+        // 이동 완료 후 정렬
+        StartCoroutine(SmoothAlignBills());
+    }
+
+    IEnumerator SmoothAlignBills()
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < moveDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float t = elapsedTime / moveDuration;
+
+            for (int i = 0; i < bills.Count; i++)
+            {
+                RectTransform rectTransform = bills[i].GetComponent<RectTransform>();
+                if (rectTransform != null)
+                {
+                    float targetX = xOffset + i * spacing;
+                    Vector2 startPos = rectTransform.anchoredPosition;
+                    rectTransform.anchoredPosition = Vector2.Lerp(startPos, new Vector2(targetX, yOffset), t);
+                }
+            }
+
+            yield return null;
+        }
+
+        // 최종 정렬
         UpdateBillPositions();
     }
 
@@ -155,18 +208,12 @@ public class Bill_Manager : MonoBehaviour
 
     void UpdateBillPositions()
     {
-
-        float xOffset = XOFFSET;
-        float yOffset = YOFFSET;
-        float spacing = SPACING; // 빌지 간 간격 (픽셀 단위)
-
         for (int i = 0; i < bills.Count; i++)
         {
             RectTransform rectTransform = bills[i].GetComponent<RectTransform>();
             if (rectTransform != null)
             {
-                rectTransform.anchoredPosition = new Vector2(xOffset, yOffset);
-                xOffset += spacing; // 오른쪽으로 쌓임
+                rectTransform.anchoredPosition = new Vector2(xOffset + i * spacing, yOffset);
             }
         }
     }
@@ -183,7 +230,7 @@ public class Bill_Manager : MonoBehaviour
 
                 Destroy(bills[i]);
                 bills.RemoveAt(i);
-                UpdateBillPositions();
+                StartCoroutine(SmoothAlignBills());
                 Debug.Log($"BillManager: Removed bill with FoodMenu {menuType}");
 
                 // 빌지가 1개 남았을 때 1개 랜덤 생성
