@@ -119,6 +119,7 @@ public class Pot : MonoBehaviour
             Debug.LogWarning($"CookingPot: Cannot cook. ingredient_1: {(ingredient_1 == null ? "null" : "not null")}, ingredient_2: {(ingredient_2 == null ? "null" : "not null")}, isCooking: {isCooking}");
             return;
         }
+
         if (ingredient_1 != null && ingredient_2 != null)
         {
             Ingredient i1 = ingredient_1.GetComponent<Ingredient>();

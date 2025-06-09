@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -19,6 +21,11 @@ public class Player_Controller : MonoBehaviour
 
     private Player_Movement playerMovement;
 
+    // 강조 효과 관련 변수
+    [SerializeField] private Color highlightColor = Color.yellow; // 강조 색상
+    [SerializeField] private float highlightIntensity = 1f; // 발광 강도
+    private Dictionary<Renderer, Material> originalMaterials = new Dictionary<Renderer, Material>(); // 원본 재질 저장
+
     private void Start()
     {
         playerMovement = this.GetComponent<Player_Movement>();
@@ -34,13 +41,14 @@ public class Player_Controller : MonoBehaviour
     {
         // 입력 처리는 Player_Movement로 이동됨
         // 여기서는 상호작용 관련 상태만 관리
-        // UpdateNearestTrigger 호출 제거
     }
 
     void FixedUpdate()
     {
-        // FixedUpdate에서 가장 가까운 트리거 갱신
+        
+        // FixedUpdate에서 가장 가까운 트리거 갱신 및 강조 효과 적용
         UpdateNearestTrigger();
+        UpdateHighlight();
     }
 
     public void OnTag()
@@ -85,7 +93,7 @@ public class Player_Controller : MonoBehaviour
             {
                 // currentTrigger의 위치를 바라보게 회전
                 Vector3 lookPos = currentTrigger.transform.position - transform.position;
-                lookPos.y = 0; // y축 회전만 하도록(고개를 숙이거나 들지 않게)
+                lookPos.y = 0; // y축 회전만 하도록
                 if (lookPos != Vector3.zero)
                 {
                     transform.rotation = Quaternion.LookRotation(lookPos);
@@ -95,22 +103,19 @@ public class Player_Controller : MonoBehaviour
     }
 
     #region Triggers
-
     private void OnTriggerEnter(Collider other)
     {
-        // 트리거에 들어갈 때 상태 설정
-        isInTrigger = true;
-        if (!currentTriggers.Contains(other))
+        if (other != null && !currentTriggers.Contains(other))
         {
             currentTriggers.Add(other);
+            isInTrigger = true;
+            UpdateNearestTrigger();
         }
-        UpdateNearestTrigger();
     }
 
     private void OnTriggerStay(Collider other)
     {
-        // 트리거 안에 있는 동안 상태 유지
-        if (!currentTriggers.Contains(other))
+        if (other != null && !currentTriggers.Contains(other))
         {
             currentTriggers.Add(other);
         }
@@ -119,8 +124,11 @@ public class Player_Controller : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        // 트리거에서 나가면 상태 초기화
-        currentTriggers.Remove(other);
+        if (other != null)
+        {
+            currentTriggers.Remove(other);
+            RemoveHighlight(other.gameObject); // 트리거 나갈 때 즉시 강조 제거
+        }
         if (currentTriggers.Count == 0)
         {
             isInTrigger = false;
@@ -134,20 +142,23 @@ public class Player_Controller : MonoBehaviour
 
     private void UpdateNearestTrigger()
     {
+        // 유효하지 않은 트리거 제거
+        currentTriggers.RemoveAll(trigger => trigger == null || !trigger.gameObject.activeInHierarchy);
+
         if (currentTriggers.Count == 0)
         {
             currentTrigger = null;
             return;
         }
-        
+
         float shortestDistance = float.MaxValue;
         Collider nearestTrigger = null;
 
         foreach (Collider trigger in currentTriggers)
         {
-            if (trigger != null)
+            if (trigger != null && trigger.gameObject.activeInHierarchy)
             {
-                float distance = (trigger.transform.position - transform.position).sqrMagnitude; // 성능 최적화
+                float distance = (trigger.transform.position - transform.position).sqrMagnitude;
                 if (distance < shortestDistance)
                 {
                     shortestDistance = distance;
@@ -158,6 +169,75 @@ public class Player_Controller : MonoBehaviour
 
         currentTrigger = nearestTrigger;
     }
+    #endregion
+
+    #region Highlight
+
+    private void UpdateHighlight()
+    {
+        // 모든 트리거의 강조 효과 제거
+        foreach (Collider trigger in currentTriggers.ToArray()) // 복사본 사용
+        {
+            if (trigger != null && trigger != currentTrigger && trigger.gameObject != null)
+            {
+                RemoveHighlight(trigger.gameObject);
+            }
+        }
+
+        // 가장 가까운 트리거에 강조 효과 적용
+        if (currentTrigger != null && currentTrigger.gameObject != null)
+        {
+            ApplyHighlight(currentTrigger.gameObject);
+        }
+    }
+
+    private void ApplyHighlight(GameObject target)
+    {
+        // 자식 포함 모든 Renderer 가져오기 (비활성화된 오브젝트 포함)
+        //if (!(target.CompareTag("Ingredient") || target.CompareTag("Food")))
+        Renderer[] renderers = target.GetComponentsInChildren<Renderer>(true)
+            .Where(renderer => !renderer.gameObject.CompareTag("Ingredient") && !renderer.gameObject.CompareTag("Food") && !renderer.gameObject.CompareTag("Effect"))
+            .ToArray();
+        if (renderers == null || renderers.Length == 0)
+        {
+            Debug.LogWarning($"No renderers found in {target.name}");
+            return;
+        }
+
+        foreach (Renderer renderer in renderers)
+        {
+            if (renderer == null) continue;
+
+            // 원본 재질 저장 (최초 강조 시)
+            if (!originalMaterials.ContainsKey(renderer))
+            {
+                originalMaterials[renderer] = new Material(renderer.material); // 원본 재질 복사
+                Debug.Log($"Stored original material for {renderer.gameObject.name}");
+            }
+
+            Material material = renderer.material;
+            material.EnableKeyword("_EMISSION");
+            material.SetColor("_EmissionColor", highlightColor * highlightIntensity);
+        }
+    }
+
+    private void RemoveHighlight(GameObject target)
+    {
+        // 자식 포함 모든 Renderer 가져오기 (비활성화된 오브젝트 포함)
+        Renderer[] renderers = target.GetComponentsInChildren<Renderer>(true);
+        if (renderers == null || renderers.Length == 0) return;
+
+        foreach (Renderer renderer in renderers)
+        {
+            if (renderer != null && originalMaterials.ContainsKey(renderer))
+            {
+                // 원본 재질로 복구
+                renderer.material = new Material(originalMaterials[renderer]);
+                Debug.Log($"Restored material for {renderer.gameObject.name}");
+            }
+        }
+    }
+
     #endregion
 
     #region Interaction
@@ -221,7 +301,6 @@ public class Player_Controller : MonoBehaviour
                 Ingredient ingredient = isHandObject.GetComponent<Ingredient>();
                 if (ingredient != null && ingredient.CurrentState == IngredientState.Prepared)
                 {
-                    //FryPan fryPan = currentTrigger.gameObject.GetComponent<FryPan>();
                     if (fryPan != null && fryPan.ingredient == null)
                     {
                         fryPan.SetIngredient(isHandObject);
@@ -237,7 +316,6 @@ public class Player_Controller : MonoBehaviour
         }
         else if (isHandObject == null)
         {
-            //FryPan fryPan = currentTrigger.gameObject.GetComponent<FryPan>();
             if (fryPan != null && fryPan.ingredient != null)
             {
                 fryPan.CookingFryPan(this.gameObject);
@@ -259,7 +337,6 @@ public class Player_Controller : MonoBehaviour
                 Ingredient ingredient = isHandObject.GetComponent<Ingredient>();
                 if (ingredient != null && ingredient.CurrentState == IngredientState.Prepared)
                 {
-                   
                     if (pot != null && (pot.ingredient_1 == null || pot.ingredient_2 == null))
                     {
                         pot.SetIngredient(isHandObject);
@@ -273,9 +350,8 @@ public class Player_Controller : MonoBehaviour
                 pot.CookingPot(this.gameObject);
             }
         }
-        else if (isHandObject == null )
+        else if (isHandObject == null)
         {
-          
             if (pot != null)
             {
                 pot.CookingPot(this.gameObject);
@@ -285,21 +361,6 @@ public class Player_Controller : MonoBehaviour
 
     private void FinishedTable()
     {
-        /*
-        if (isHandObject != null)
-        {
-            Finished_Table finishedTable = currentTrigger.gameObject.GetComponent<Finished_Table>();
-            if (finishedTable != null)
-            {
-                if (isHandObject.CompareTag("Food"))
-                {
-                    finishedTable.Finished(isHandObject);
-                    isHandObject = null;
-                }
-              
-            }
-        }
-        */
         if (isHandObject != null)
         {
             Finished_Table finishedTable = currentTrigger.gameObject.GetComponent<Finished_Table>();
@@ -307,51 +368,38 @@ public class Player_Controller : MonoBehaviour
             {
                 if (isHandObject.CompareTag("Dish"))
                 {
-                    //finishedTable.Finished(isHandObject);
-                    //isHandObject = null;
                     GameObject food = FindChildWithTag(isHandObject.transform, "Food");
-                    if (food != null) 
+                    if (food != null)
                     {
                         finishedTable.Finished(food);
                         Destroy(isHandObject);
                         isHandObject = null;
-                        
                     }
                 }
-
             }
         }
-
     }
 
     public GameObject FindChildWithTag(Transform parent, string tagToFind)
     {
-        // 부모 오브젝트 자체가 지정한 태그를 가지고 있는지 확인합니다.
         if (parent.CompareTag(tagToFind))
         {
             return parent.gameObject;
         }
 
-        // 부모의 모든 자식 오브젝트를 순회합니다.
         for (int i = 0; i < parent.childCount; i++)
         {
             Transform child = parent.GetChild(i);
-
-            // 현재 자식 오브젝트가 지정한 태그를 가지고 있는지 확인합니다.
             if (child.CompareTag(tagToFind))
             {
                 return child.gameObject;
             }
-
-            // 자식 오브젝트의 자식들을 재귀적으로 탐색합니다.
             GameObject found = FindChildWithTag(child, tagToFind);
             if (found != null)
             {
                 return found;
             }
         }
-
-        // 지정한 태그를 가진 오브젝트가 없다면 null을 반환합니다.
         return null;
     }
 
