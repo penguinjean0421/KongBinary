@@ -10,9 +10,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Text timerText; // 타이머 UI 텍스트
 
     private bool isGameOver = false;
-    private int currentStage = 1; // 현재 스테이지 번호 (예시)
+    private int currentStage; // 현재 스테이지 번호 (예시)
 
-    private float sales;
+    [SerializeField] float sales;
     [SerializeField] float star1Sale;
     [SerializeField] float star2Sale;
     [SerializeField] float star3Sale;
@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        currentStage = StageData.Instance.currentStageIndex;
     }
 
     void Start()
@@ -40,6 +42,7 @@ public class GameManager : MonoBehaviour
         sales = 0; // 판매액 초기화
 
         scoreUI.SetActive(false);
+        Debug.Log($"현재 스테이지는 {currentStage} 입니다.");
         // succedUI.SetActive(false);
     }
 
@@ -75,6 +78,8 @@ public class GameManager : MonoBehaviour
         scoreUI.SetActive(true);
         // 게임 오버 처리 (예: 씬 전환)
         // SceneManager.LoadScene("GameOver");
+
+        // ScoreUI.
         if (sales >= star1Sale)
         {
             if (sales >= star3Sale)
@@ -146,12 +151,8 @@ public class GameManager : MonoBehaviour
     // 스테이지 클리어
     public void OnStageClear()
     {
-        // succedUI.SetActive(true);
-
-        int current = StageData.Instance.currentStageIndex;
-
-        StageData.Instance.SetStageCleared(current);
-        StageData.Instance.IsStageCleared(current);
+        StageData.Instance.SetStageCleared(currentStage);
+        StageData.Instance.IsStageCleared(currentStage);
     }
 
     // 클리어 실패
