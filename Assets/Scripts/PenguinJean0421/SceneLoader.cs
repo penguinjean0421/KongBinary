@@ -52,5 +52,6 @@ public class SceneLoader : MonoBehaviour
     {
         StageData.Instance.currentStageIndex++;
         SceneManager.LoadScene($"Level{StageData.Instance.currentStageIndex}");
+        GameManager.Instance.ResetGameObj();
     }
 }
