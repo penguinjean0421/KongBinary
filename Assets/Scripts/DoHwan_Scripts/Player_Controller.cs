@@ -196,7 +196,7 @@ public class Player_Controller : MonoBehaviour
         // 자식 포함 모든 Renderer 가져오기 (비활성화된 오브젝트 포함)
         //if (!(target.CompareTag("Ingredient") || target.CompareTag("Food")))
         Renderer[] renderers = target.GetComponentsInChildren<Renderer>(true)
-            .Where(renderer => !renderer.gameObject.CompareTag("Ingredient") && !renderer.gameObject.CompareTag("Food"))
+            .Where(renderer => !renderer.gameObject.CompareTag("Ingredient") && !renderer.gameObject.CompareTag("Food") && !renderer.gameObject.CompareTag("Effect"))
             .ToArray();
         if (renderers == null || renderers.Length == 0)
         {
