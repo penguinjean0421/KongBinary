@@ -16,6 +16,7 @@ public class Pot : MonoBehaviour
     [SerializeField] private Slider timerBar;
     [SerializeField] private GameObject[] menuObject;
     [SerializeField] private GameObject fireEffect;
+    [SerializeField] private Image ingredientUI; // UI에 표시할 Image 컴포넌트
 
     private bool isCooking = false;
 
@@ -27,6 +28,7 @@ public class Pot : MonoBehaviour
             timerBar.gameObject.SetActive(false);
             timerBar.value = 0f;
         }
+        UpdateIngredientUI(); // 요리 완료 후 UI 업데이트
     }
 
     public void SetIngredient(GameObject newIngredient)
@@ -68,6 +70,8 @@ public class Pot : MonoBehaviour
             ingredient_2.transform.parent = ingredientPos_2.transform;
             Debug.Log($"SetIngredient: ingredient_2 set as {ingredient_2.name}");
         }
+
+        UpdateIngredientUI(); // 요리 완료 후 UI 업데이트
     }
 
     public void CookingPot(GameObject playerController)
@@ -108,6 +112,7 @@ public class Pot : MonoBehaviour
                     //Debug.Log($"CookingPot: Picked up cooked ingredient {ingredient_1.name}");
                     ingredient_1 = null;
                     ingredient_2 = null;
+                    UpdateIngredientUI(); // 요리 완료 후 UI 업데이트
                     return;
 
                 }
@@ -296,6 +301,38 @@ public class Pot : MonoBehaviour
         }
         isCooking = false;
         fireEffect.SetActive(false);
+        UpdateIngredientUI(); // 요리 완료 후 UI 업데이트
+    }
+
+    private void UpdateIngredientUI()
+    {
+        if (ingredientUI != null)
+        {
+            if (ingredient_1 != null && ingredient_2==null)
+            {
+                Ingredient ingredient = ingredient_1.GetComponent<Ingredient>();
+                Food_State food = ingredient_1.GetComponent<Food_State>();
+                if (ingredient != null && ingredient.sprite != null) // Ingredient에 sprite 필드가 있다고 가정
+                {
+                    ingredientUI.gameObject.SetActive(true);
+                    ingredientUI.sprite = ingredient.sprite;
+                }
+                else if (food != null && food.sprite != null) // Ingredient에 sprite 필드가 있다고 가정
+                {
+                    ingredientUI.gameObject.SetActive(true);
+                    ingredientUI.sprite = food.sprite;
+                }
+                else
+                {
+                    ingredientUI.gameObject.SetActive(false);
+                    Debug.LogWarning($"UpdateIngredientUI: {ingredient_1.name} has no valid sprite");
+                }
+            }
+            else
+            {
+                ingredientUI.gameObject.SetActive(false); // 재료가 없으면 UI 비활성화
+            }
+        }
     }
 }
 

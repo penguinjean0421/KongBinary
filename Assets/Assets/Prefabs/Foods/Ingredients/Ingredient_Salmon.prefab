@@ -103,3 +103,4 @@ MonoBehaviour:
   rawMaterial: {fileID: 2100000, guid: b962d43eb5600b34cb392293dcc1c786, type: 2}
   preparedMaterial: {fileID: 2100000, guid: 993390a3ffe99484cb4a06e6d5e896e2, type: 2}
   cookingMaterial: {fileID: 2100000, guid: baec3635655225d49bf2d4d4d4fef723, type: 2}
+  sprite: {fileID: 21300000, guid: 7ca0f2356513749bc8bb3171f6f7fd19, type: 3}
