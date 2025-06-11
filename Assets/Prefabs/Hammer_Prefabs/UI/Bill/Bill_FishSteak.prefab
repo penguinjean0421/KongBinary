@@ -215,6 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodMenu: 2
   price: 20
+  sprite: {fileID: 0}
 --- !u!1 &7128378191524063449
 GameObject:
   m_ObjectHideFlags: 0
