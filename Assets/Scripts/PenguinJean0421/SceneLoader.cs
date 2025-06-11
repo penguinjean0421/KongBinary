@@ -7,13 +7,14 @@ public class SceneLoader : MonoBehaviour
     {
         // 튜토 구현 되면 아래 #if ~ #endif 지울것
 #if UNITY_EDITOR
-        StageData.Instance.SetStageCleared(0);
-        StageData.Instance.IsStageCleared(0);
+        // StageData.Instance.SetStageCleared(0);
+        // StageData.Instance.IsStageCleared(0);
 #endif
 
         if (PlayerPrefs.GetInt($"Stage0Clear") == 0)
         {
-            SceneManager.LoadScene("SettingController");
+            SceneManager.LoadScene("SampleScene");
+            // ("SettingController");
         }
 
         else
