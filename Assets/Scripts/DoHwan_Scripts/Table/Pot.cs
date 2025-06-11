@@ -69,6 +69,7 @@ public class Pot : MonoBehaviour
             ingredient_2.transform.rotation = ingredientPos_2.transform.rotation;
             ingredient_2.transform.parent = ingredientPos_2.transform;
             Debug.Log($"SetIngredient: ingredient_2 set as {ingredient_2.name}");
+            CookingPot();
         }
 
         UpdateIngredientUI(); // 요리 완료 후 UI 업데이트
@@ -88,19 +89,7 @@ public class Pot : MonoBehaviour
                 Player_Controller controller = playerController.GetComponent<Player_Controller>();
                 if (controller != null && controller.handPosition != null&& controller.isHandObject != null && controller.isHandObject.CompareTag("Dish"))
                 {
-                    /*
-                    Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
-                    controller.isHandObject = null; // 초기화
-
-                    ingredient_1.transform.SetParent(controller.handPosition.transform);
-                    ingredient_1.transform.position = controller.handPosition.transform.position;
-                    ingredient_1.transform.rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
-                    controller.isHandObject = ingredient_1;
-                    Debug.Log($"CookingPot: Picked up cooked ingredient {ingredient_1.name}");
-                    ingredient_1 = null;
-                    ingredient_2 = null;
-                    return;
-                    */
+         
 
                     //Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
                     //controller.isHandObject = null; // 초기화
@@ -138,28 +127,22 @@ public class Pot : MonoBehaviour
             }
         }
 
-      
-        /*
-        else if (ingredient_1.CompareTag("Food"))
+    }
+    
+    public void CookingPot()
+    {
+        if (ingredient_1 != null && ingredient_2 != null && ingredient_1.CompareTag("Ingredient"))
         {
-            Debug.Log("여기서 요리 손으로");
-            //GameObject playerController = GameObject.FindGameObjectWithTag("Player");
-            if (playerController != null)
+            Ingredient i1 = ingredient_1.GetComponent<Ingredient>();
+            Ingredient i2 = ingredient_2.GetComponent<Ingredient>();
+
+
+
+            if (i1.CurrentState == IngredientState.Prepared && i2.CurrentState == IngredientState.Prepared)
             {
-                Player_Controller controller = playerController.GetComponent<Player_Controller>();
-                if (controller != null && controller.handPosition != null)
-                {
-                    ingredient_1.transform.SetParent(controller.handPosition.transform);
-                    ingredient_1.transform.position = controller.handPosition.transform.position;
-                    ingredient_1.transform.rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
-                    controller.isHandObject = ingredient_1;
-                    Debug.Log($"CookingPot: Picked up cooked ingredient {ingredient_1.name}");
-                    ingredient_1 = null;
-                    ingredient_2 = null;
-                }
+                StartCoroutine(CookingCoroutine(i1, i2));
             }
         }
-        */
     }
     Transform FindChildRecursive(Transform parent, string childName)
     {
