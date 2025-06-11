@@ -9,12 +9,12 @@ public class SceneLoader : MonoBehaviour
 #if UNITY_EDITOR
         // StageData.Instance.SetStageCleared(0);
         // StageData.Instance.IsStageCleared(0);
+        StageData.Instance.ResetAllStageData(StageData.Instance.maxStage);
 #endif
 
         if (PlayerPrefs.GetInt($"Stage0Clear") == 0)
         {
-            SceneManager.LoadScene("SampleScene");
-            // ("SettingController");
+            SceneManager.LoadScene("CharPick");
         }
 
         else
@@ -26,7 +26,7 @@ public class SceneLoader : MonoBehaviour
     // 게임 튜토리얼 창 입장
     public void OnClickTutorial()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Stage0");
     }
 
     // 스테이지 선택창 이동
@@ -54,5 +54,13 @@ public class SceneLoader : MonoBehaviour
         StageData.Instance.currentStageIndex++;
         SceneManager.LoadScene($"Level{StageData.Instance.currentStageIndex}");
         GameManager.Instance.ResetGameObj();
+    }
+
+    // 튜토리얼 클리어 처리
+    public void ClearTuto()
+    {
+        StageData.Instance.SetStageCleared(0);
+        StageData.Instance.IsStageCleared(0);
+        OnClickStage();
     }
 }
