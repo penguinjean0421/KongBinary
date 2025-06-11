@@ -91,7 +91,7 @@ public class NPC_Waiter : MonoBehaviour
                 {
                     currentTarget = startTile;
                 }
-                Debug.Log($"NPC_Waiter: Reached {currentPos}, now moving to {currentTarget}");
+                //Debug.Log($"NPC_Waiter: Reached {currentPos}, now moving to {currentTarget}");
             }
 
             // 경로 계산
@@ -136,7 +136,7 @@ public class NPC_Waiter : MonoBehaviour
 
     private List<Vector2Int> FindPath(Vector2Int start, Vector2Int target)
     {
-        Debug.Log($"NPC_Waiter: Finding path from {start} to {target}");
+        //Debug.Log($"NPC_Waiter: Finding path from {start} to {target}");
 
         // A* 노드
         var openSet = new List<Vector2Int> { start };
@@ -170,7 +170,7 @@ public class NPC_Waiter : MonoBehaviour
                     curr = cameFrom[curr];
                 }
                 path.Reverse();
-                Debug.Log($"NPC_Waiter: Path found: {string.Join(" -> ", path)}");
+                //Debug.Log($"NPC_Waiter: Path found: {string.Join(" -> ", path)}");
                 return path;
             }
 
