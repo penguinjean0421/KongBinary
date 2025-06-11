@@ -16,6 +16,7 @@ public class Pot : MonoBehaviour
     [SerializeField] private Slider timerBar;
     [SerializeField] private GameObject[] menuObject;
     [SerializeField] private GameObject fireEffect;
+    [SerializeField] private Image ingredientUI; // UI에 표시할 Image 컴포넌트
 
     private bool isCooking = false;
 
@@ -27,6 +28,7 @@ public class Pot : MonoBehaviour
             timerBar.gameObject.SetActive(false);
             timerBar.value = 0f;
         }
+        UpdateIngredientUI(); // 요리 완료 후 UI 업데이트
     }
 
     public void SetIngredient(GameObject newIngredient)
@@ -67,7 +69,10 @@ public class Pot : MonoBehaviour
             ingredient_2.transform.rotation = ingredientPos_2.transform.rotation;
             ingredient_2.transform.parent = ingredientPos_2.transform;
             Debug.Log($"SetIngredient: ingredient_2 set as {ingredient_2.name}");
+            CookingPot();
         }
+
+        UpdateIngredientUI(); // 요리 완료 후 UI 업데이트
     }
 
     public void CookingPot(GameObject playerController)
@@ -84,19 +89,7 @@ public class Pot : MonoBehaviour
                 Player_Controller controller = playerController.GetComponent<Player_Controller>();
                 if (controller != null && controller.handPosition != null&& controller.isHandObject != null && controller.isHandObject.CompareTag("Dish"))
                 {
-                    /*
-                    Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
-                    controller.isHandObject = null; // 초기화
-
-                    ingredient_1.transform.SetParent(controller.handPosition.transform);
-                    ingredient_1.transform.position = controller.handPosition.transform.position;
-                    ingredient_1.transform.rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
-                    controller.isHandObject = ingredient_1;
-                    Debug.Log($"CookingPot: Picked up cooked ingredient {ingredient_1.name}");
-                    ingredient_1 = null;
-                    ingredient_2 = null;
-                    return;
-                    */
+         
 
                     //Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
                     //controller.isHandObject = null; // 초기화
@@ -108,6 +101,7 @@ public class Pot : MonoBehaviour
                     //Debug.Log($"CookingPot: Picked up cooked ingredient {ingredient_1.name}");
                     ingredient_1 = null;
                     ingredient_2 = null;
+                    UpdateIngredientUI(); // 요리 완료 후 UI 업데이트
                     return;
 
                 }
@@ -133,28 +127,22 @@ public class Pot : MonoBehaviour
             }
         }
 
-      
-        /*
-        else if (ingredient_1.CompareTag("Food"))
+    }
+    
+    public void CookingPot()
+    {
+        if (ingredient_1 != null && ingredient_2 != null && ingredient_1.CompareTag("Ingredient"))
         {
-            Debug.Log("여기서 요리 손으로");
-            //GameObject playerController = GameObject.FindGameObjectWithTag("Player");
-            if (playerController != null)
+            Ingredient i1 = ingredient_1.GetComponent<Ingredient>();
+            Ingredient i2 = ingredient_2.GetComponent<Ingredient>();
+
+
+
+            if (i1.CurrentState == IngredientState.Prepared && i2.CurrentState == IngredientState.Prepared)
             {
-                Player_Controller controller = playerController.GetComponent<Player_Controller>();
-                if (controller != null && controller.handPosition != null)
-                {
-                    ingredient_1.transform.SetParent(controller.handPosition.transform);
-                    ingredient_1.transform.position = controller.handPosition.transform.position;
-                    ingredient_1.transform.rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
-                    controller.isHandObject = ingredient_1;
-                    Debug.Log($"CookingPot: Picked up cooked ingredient {ingredient_1.name}");
-                    ingredient_1 = null;
-                    ingredient_2 = null;
-                }
+                StartCoroutine(CookingCoroutine(i1, i2));
             }
         }
-        */
     }
     Transform FindChildRecursive(Transform parent, string childName)
     {
@@ -296,6 +284,38 @@ public class Pot : MonoBehaviour
         }
         isCooking = false;
         fireEffect.SetActive(false);
+        UpdateIngredientUI(); // 요리 완료 후 UI 업데이트
+    }
+
+    private void UpdateIngredientUI()
+    {
+        if (ingredientUI != null)
+        {
+            if (ingredient_1 != null && ingredient_2==null)
+            {
+                Ingredient ingredient = ingredient_1.GetComponent<Ingredient>();
+                Food_State food = ingredient_1.GetComponent<Food_State>();
+                if (ingredient != null && ingredient.sprite != null) // Ingredient에 sprite 필드가 있다고 가정
+                {
+                    ingredientUI.gameObject.SetActive(true);
+                    ingredientUI.sprite = ingredient.sprite;
+                }
+                else if (food != null && food.sprite != null) // Ingredient에 sprite 필드가 있다고 가정
+                {
+                    ingredientUI.gameObject.SetActive(true);
+                    ingredientUI.sprite = food.sprite;
+                }
+                else
+                {
+                    ingredientUI.gameObject.SetActive(false);
+                    Debug.LogWarning($"UpdateIngredientUI: {ingredient_1.name} has no valid sprite");
+                }
+            }
+            else
+            {
+                ingredientUI.gameObject.SetActive(false); // 재료가 없으면 UI 비활성화
+            }
+        }
     }
 }
 

@@ -7,4 +7,5 @@ public class Food_State : MonoBehaviour
 {
     public FoodMenu foodMenu;
     public float price;
+    [SerializeField] public Sprite sprite;
 }

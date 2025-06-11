@@ -39,6 +39,7 @@ public class FryPan : MonoBehaviour
             ingredient.transform.position = ingredientPos.transform.position;
             ingredient.transform.rotation = ingredientPos.transform.rotation;
             ingredient.transform.parent = ingredientPos.transform;
+            CookingFryPan();
         }
     }
 
@@ -54,10 +55,9 @@ public class FryPan : MonoBehaviour
             Ingredient i = ingredient.GetComponent<Ingredient>();
             if (i.CurrentState == IngredientState.Prepared)//if(ingredient.CompareTag("Food"))
             {
-                Player_Movement playerMovement = playerController.GetComponent<Player_Movement>();
-                if (playerMovement != null)
+               
                 {
-                    StartCoroutine(CookingCoroutine(i, playerMovement));
+                    StartCoroutine(CookingCoroutine(i));
                 }
             }
         }
@@ -73,23 +73,7 @@ public class FryPan : MonoBehaviour
                 if (controller != null && controller.handPosition != null && controller.isHandObject != null && controller.isHandObject.CompareTag("Dish"))
                 {
 
-                    /*
-                    //Debug.Log("test3");
-                    Destroy(controller.isHandObject); // "Dish" 태그 오브젝트 제거
-                    controller.isHandObject = null; // 초기화
-
-                    ingredient.transform.SetParent(controller.handPosition.transform);
-                    ingredient.transform.position = controller.handPosition.transform.position;
-                    ingredient.transform.rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
-                    controller.isHandObject = ingredient;
-                    ingredient = null;
-                    */
-
-                    //FindChildRecursive(controller.isHandObject.transform,"Pos").SetParent(controller.handPosition.transform);
-                    //FindChildRecursive(controller.isHandObject.transform, "Pos").position = controller.handPosition.transform.position;
-                    //FindChildRecursive(controller.isHandObject.transform, "Pos").rotation = controller.handPosition.transform.rotation * Quaternion.Euler(0, 90, 0);
-                    //controller.isHandObject = ingredient;
-                    //ingredient = null;
+            
 
                     ingredient.transform.SetParent(FindChildRecursive(controller.isHandObject.transform, "Pos"));
                     ingredient.transform.position = FindChildRecursive(controller.isHandObject.transform, "Pos").position;
@@ -97,6 +81,17 @@ public class FryPan : MonoBehaviour
                     //controller.isHandObject = ingredient;
                     ingredient = null;
                 }
+            }
+        }
+    }
+    public void CookingFryPan()
+    {
+        if (ingredient != null&& ingredient.CompareTag("Ingredient"))
+        {
+            Ingredient i = ingredient.GetComponent<Ingredient>();
+            if (i.CurrentState == IngredientState.Prepared)
+            {
+                StartCoroutine(CookingCoroutine(i));
             }
         }
     }
@@ -124,18 +119,15 @@ public class FryPan : MonoBehaviour
         return null;
     }
 
-    private IEnumerator CookingCoroutine(Ingredient _ingredient, Player_Movement playerMovement)
+    private IEnumerator CookingCoroutine(Ingredient _ingredient)
     {
         
         isCooking = true;
         fireEffect.SetActive(true);
         // 플레이어 상호작용 잠금
         // GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        Player_Controller playerController = playerMovement.GetComponent<Player_Controller>();
-        if (playerController != null)
-        {
-            //playerController.isInteracting = true;
-        }
+        
+        
          // 타이머바 활성화
         if (timerBar != null)
         {
@@ -236,11 +228,11 @@ public class FryPan : MonoBehaviour
             timerBar.value = 0f;
         }
 
-        // 플레이어 상호작용 잠금 해제
-        if (playerController != null)
-        {
-            //playerController.isInteracting = false;
-        }
+        //// 플레이어 상호작용 잠금 해제
+        //if (playerController != null)
+        //{
+        //    //playerController.isInteracting = false;
+        //}
         isCooking = false;
         fireEffect.SetActive(false);
     }
