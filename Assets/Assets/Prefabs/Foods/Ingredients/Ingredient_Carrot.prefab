@@ -104,6 +104,7 @@ MonoBehaviour:
   rawMaterial: {fileID: 2100000, guid: 80ec9cd2363f72d42b528f9ad28cc394, type: 2}
   preparedMaterial: {fileID: 2100000, guid: e8a9fdb234945e44394288090cc78ef5, type: 2}
   cookingMaterial: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 449cfa1e78a4f44499beec8e5288f47f, type: 3}
 --- !u!1001 &8272622581672756914
 PrefabInstance:
   m_ObjectHideFlags: 0

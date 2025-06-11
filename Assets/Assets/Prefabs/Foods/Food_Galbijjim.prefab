@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodMenu: 4
   price: 0
+  sprite: {fileID: 21300000, guid: 644bea7d54d974f08b74c8c8fcc3f83b, type: 3}
 --- !u!1001 &7589502574152429651
 PrefabInstance:
   m_ObjectHideFlags: 0

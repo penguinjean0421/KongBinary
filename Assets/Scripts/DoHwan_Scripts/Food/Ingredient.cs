@@ -17,6 +17,8 @@ public class Ingredient : MonoBehaviour
     [SerializeField] private Material preparedMaterial;  // Prepared 상태 매터리얼
     [SerializeField] private Material cookingMaterial;   // Cooking 상태 매터리얼
 
+    [SerializeField] public Sprite sprite;
+
     //public Food_Menu.menu menu;
 
 
