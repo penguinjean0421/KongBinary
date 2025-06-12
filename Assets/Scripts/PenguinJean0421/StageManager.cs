@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
     public int stageIndex; // 0(튜토리얼) 부터 시작
-    public int unlockBossStar = 10; // 보스 해금 별
+    int unlockBossStar = 10; // 보스 해금 별
     int getStars;
     Button stageButton;
 
