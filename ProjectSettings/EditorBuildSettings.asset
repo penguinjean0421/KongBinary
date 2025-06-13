@@ -9,8 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Penguinjean0421/Test/Start.unity
     guid: 2ae25898e44229049ad37f65581f6f65
   - enabled: 1
+    path: Assets/Scenes/Penguinjean0421/Test/CharPick.unity
+    guid: aaf4a03806eac8b4987ca0d786f43a36
+  - enabled: 1
     path: Assets/Scenes/Penguinjean0421/Test/ChooseStage.unity
     guid: 14f16e76984c72a43b14a7555f75f100
+  - enabled: 1
+    path: Assets/Scenes/Penguinjean0421/Test/Stage0.unity
+    guid: 1041b97dd07650d4eb33e2e9da59ee97
   - enabled: 1
     path: Assets/Scenes/DoHwan_Scenes/Level/Level1.unity
     guid: 489d4adaf08c1504c9b127517d5f3b3a
