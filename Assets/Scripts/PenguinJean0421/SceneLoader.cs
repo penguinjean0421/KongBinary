@@ -9,7 +9,7 @@ public class SceneLoader : MonoBehaviour
 #if UNITY_EDITOR
         // StageData.Instance.SetStageCleared(0);
         // StageData.Instance.IsStageCleared(0);
-        StageData.Instance.ResetAllStageData(StageData.Instance.maxStage);
+        // StageData.Instance.ResetAllStageData(StageData.Instance.maxStage);
 #endif
 
         if (PlayerPrefs.GetInt($"Stage0Clear") == 0)

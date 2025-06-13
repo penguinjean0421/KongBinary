@@ -178,7 +178,6 @@ GameObject:
   - component: {fileID: 302649025}
   - component: {fileID: 302649024}
   - component: {fileID: 302649023}
-  - component: {fileID: 302649026}
   m_Layer: 5
   m_Name: Tuto
   m_TagString: Untagged
@@ -252,7 +251,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 55055138}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: OnClickTutorial
+        m_MethodName: OnClickStage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -300,19 +299,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 302649021}
   m_CullTransparentMesh: 1
---- !u!114 &302649026
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 302649021}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b62c219b06a8004981170e61a2b1ff4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageIndex: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
