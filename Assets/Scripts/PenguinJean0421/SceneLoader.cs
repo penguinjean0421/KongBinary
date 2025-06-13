@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
-    internal static SceneLoader Instance;
     // 게임시작 버튼
     public void OnClickStart()
     {
