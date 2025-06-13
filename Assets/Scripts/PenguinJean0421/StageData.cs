@@ -5,6 +5,7 @@ public class StageData : MonoBehaviour
     public static StageData Instance { get; private set; }
     public int currentStageIndex { get; internal set; }
     internal int maxStage = 10000; // 스테이지 초기화
+
     void Awake()
     {
         // 싱글톤 설정
@@ -50,7 +51,7 @@ public class StageData : MonoBehaviour
     public void ResetAllStageData(int maxStage)
     {
         Debug.Log("지워요");
-        for (int i = 0; i <= maxStage; i++)
+        for (int i = 1; i <= maxStage; i++)
         {
             PlayerPrefs.DeleteKey($"Stage{i}Clear");
         }
