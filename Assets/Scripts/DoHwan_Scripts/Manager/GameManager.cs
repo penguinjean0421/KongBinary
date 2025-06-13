@@ -155,7 +155,6 @@ public class GameManager : MonoBehaviour
     }
 
     #region  ScoreUI
-
     // 타임 오버 후 출력
     void ScoreUI()
     {
