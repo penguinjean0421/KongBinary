@@ -18,7 +18,7 @@ public class StageManager : MonoBehaviour
     {
         for (int i = 1; i < StageData.Instance.maxStage; i++)
         {
-            getStars += PlayerPrefs.GetInt($"Stage{i}'s Star");
+            getStars += (int)PlayerPrefs.GetFloat($"Stage{i}'s Star");
         }
 
         if (stageIndex % 5 == 0)

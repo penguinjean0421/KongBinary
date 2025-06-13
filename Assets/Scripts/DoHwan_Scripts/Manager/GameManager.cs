@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private int currentStage; // 현재 스테이지 번호
 
     [SerializeField] internal float sales;
+    float getStar;
     internal float[] star1Sale = new float[5] { 500, 1000, 1500, 2000, 2500 }; // (배열화 해서 레벨별로 다르게 설정)
     internal float[] star2Sale = new float[5] { 1000, 1500, 2000, 2500, 3000 }; // (배열화 해서 레벨별로 다르게 설정)
     internal float[] star3Sale = new float[5] { 1500, 2000, 2500, 3000, 4500 }; // (배열화 해서 레벨별로 다르게 설정)
@@ -20,9 +21,11 @@ public class GameManager : MonoBehaviour
     GameObject scoreUI;
     GameObject failUI;
     GameObject succedUI;
-    GameObject star1;
-    GameObject star2;
-    GameObject star3;
+
+    Image star1;
+    Image star2;
+    Image star3;
+    public Sprite starY;
 
     void Awake()
     {
@@ -44,7 +47,10 @@ public class GameManager : MonoBehaviour
         ResetTimer(); // 게임 시작 시 타이머 초기화
         sales = 0; // 판매액 초기화
 
-        GameManager.Instance.scoreUI.SetActive(false);
+        scoreUI.SetActive(false);
+        succedUI.SetActive(false);
+        failUI.SetActive(false);
+
         Debug.Log($"현재 스테이지는 {GameManager.Instance.currentStage} 입니다.");
     }
 
@@ -101,12 +107,12 @@ public class GameManager : MonoBehaviour
         GameManager.Instance.timerText = GameObject.Find("TimerText").GetComponent<Text>();
         GameManager.Instance.scoreUI = GameObject.Find("ScoreUI");
 
-        // GameManager.Instance.succedUI = GameObject.Find("SuccedUI");
-        // GameManager.Instance.failUI = GameObject.Find("FailUI");
+        succedUI = GameObject.Find("SuccedUI");
+        failUI = GameObject.Find("FailUI");
 
-        // GameManager.Instance.star1 = GameObject.Find("Star1");
-        // GameManager.Instance.star2 = GameObject.Find("Star2");
-        // GameManager.Instance.star3 = GameObject.Find("Star3");
+        star1 = GameObject.Find("Star1").GetComponent<Image>();
+        star2 = GameObject.Find("Star2").GetComponent<Image>();
+        star3 = GameObject.Find("Star3").GetComponent<Image>();
 
     }
 
@@ -171,51 +177,45 @@ public class GameManager : MonoBehaviour
         if (sales < star1Sale[currentStage - 1])
         {
             Debug.Log("실패");
-            // failUI.SetActive(true);
+            failUI.SetActive(true);
         }
+
         else
         {
             StageData.Instance.SetStageCleared(currentStage);
             StageData.Instance.IsStageCleared(currentStage);
 
-            if (sales >= star1Sale[currentStage - 1]) // 1번째 별
-            {
-                Debug.Log($"{currentStage} 스테이지 별 1개");
-                // ScoreData.Instance.GetStars(currentStage, 1);
-                // star1.SetActive(true);
-            }
-
-            if (sales >= star2Sale[currentStage - 1]) // 2번째 별
-            {
-                Debug.Log($"{currentStage} 스테이지 별 2개");
-                // ScoreData.Instance.GetStars(currentStage, 2);
-                // star2.SetActive(true);
-            }
-
-            if (sales >= star3Sale[currentStage - 1]) // 3번째 별 
+            if (sales >= star3Sale[currentStage - 1])
             {
                 Debug.Log($"{currentStage} 스테이지 별 3개");
-                // ScoreData.Instance.GetStars(currentStage, 3);
-                // star3.SetActive(true);
+                getStar = 3;
+
+                star1.sprite = starY;
+                star2.sprite = starY;
+                star3.sprite = starY;
             }
 
-            // succedUI.SetActive(true);
+            else if (sales >= star2Sale[currentStage - 1]) // 2번째 별
+            {
+                Debug.Log($"{currentStage} 스테이지 별 2개");
+                getStar = 2;
+
+                star1.sprite = starY;
+                star2.sprite = starY;
+            }
+
+            else if (sales >= star1Sale[currentStage - 1]) // 1번째 별
+            {
+                Debug.Log($"{currentStage} 스테이지 별 1개");
+                getStar = 1;
+
+                star1.sprite = starY;
+            }
+
+            succedUI.SetActive(true);
+            // ScoreData.Instance.GetStars(currentStage, getStar);
+
         }
-    }
-
-
-
-
-    // 스테이지 클리어
-    public void OnStageClear()
-    {
-
-    }
-
-    // 클리어 실패
-    public void OnStageFail()
-    {
-        // fail.SetActive(true);
     }
     #endregion
 }
