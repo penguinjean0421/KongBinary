@@ -6,24 +6,44 @@ using UnityEngine.UI;
 public class Button_Event : MonoBehaviour
 {
     [SerializeField] private Button addPlayerB;
-    //[SerializeField] private Button startB;
     [SerializeField] private Image player2;
-    // Start is called before the first frame update
+
     void Start()
     {
         GameManager.Instance.playerIndex = 1;
-        
+        if (player2 != null)
+        {
+            player2.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Button_Event: player2 is not assigned!");
+        }
     }
-
-  
 
     public void StartButton()
     {
-
-
     }
+
     public void AddPlayer()
     {
         GameManager.Instance.playerIndex = 2;
+        if (addPlayerB != null)
+        {
+            //addPlayerB.interactable = false;
+            addPlayerB.gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogError("Button_Event: addPlayerB is not assigned!");
+        }
+        if (player2 != null)
+        {
+            player2.gameObject.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("Button_Event: player2 is not assigned!");
+        }
     }
 }
