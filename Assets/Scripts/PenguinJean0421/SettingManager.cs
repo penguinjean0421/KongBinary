@@ -4,12 +4,19 @@ using UnityEngine.UI;
 public class SettingManager : MonoBehaviour
 {
     public static SettingManager Instance { get; private set; } // 싱글톤
-    [SerializeField] GameObject settingScene;
+    GameObject settingScene;
+    public GameObject[] settingPages;
+    int pageIndex;
 
 
     // 수직동기화
     Toggle vSyncToggle;
 
+    // 사운드
+    AudioSource audioSource;
+    Slider soundSlider;
+    Slider bgmSlider;
+    Slider systemSlider;
 
 
     bool isPause;
@@ -30,9 +37,15 @@ public class SettingManager : MonoBehaviour
 
     void Start()
     {
-        vSyncToggle = GameObject.Find("VSyncToggle").GetComponent<Toggle>();
+        settingScene = GameObject.Find("SettingScene");
 
+        vSyncToggle = GameObject.Find("VSyncToggle").GetComponent<Toggle>();
         vSyncToggle.isOn = QualitySettings.vSyncCount > 0;
+
+        // audioSource = GameObject.Find("Audio").GetComponent<AudioSource>();
+        soundSlider = GameObject.Find("SoundSlider").GetComponent<Slider>();
+        bgmSlider = GameObject.Find("BgmSlider").GetComponent<Slider>();
+        // systemSlider = GameObject.Find("SystemSlider").GetComponent<Slider>();
         settingScene.SetActive(false);
     }
 
@@ -59,6 +72,7 @@ public class SettingManager : MonoBehaviour
             Time.timeScale = 0f;
             // isPause = false;
             settingScene.SetActive(isPause);
+            pageIndex = 0;
         }
         Debug.Log($"환경설정 창 : {isPause}");
     }
@@ -77,18 +91,34 @@ public class SettingManager : MonoBehaviour
     // 전체음량 (슬라이더)
     public void SoundVolume()
     {
-
+        Debug.Log($"전체 음량: {soundSlider.value}");
     }
 
     // 배경음악 (슬라이더)
     public void BGMVolume()
     {
-
+        audioSource.volume = soundSlider.value * bgmSlider.value;
+        Debug.Log($"지금 BGM 볼륨 : {audioSource.volume}");
     }
 
     // 시스템 (슬라이더)
     public void SystemVolume()
     {
+        audioSource.volume = soundSlider.value * bgmSlider.value;
+        Debug.Log($"지금 시스템 볼륨 : {audioSource.volume}");
+    }
 
+    public void OnClickNextPage()
+    {
+        settingPages[pageIndex % settingPages.Length].SetActive(false);
+        pageIndex++;
+        settingPages[pageIndex % settingPages.Length].SetActive(true);
+    }
+
+    public void OnClickLastPage()
+    {
+        settingPages[pageIndex % settingPages.Length].SetActive(false);
+        pageIndex--;
+        settingPages[pageIndex % settingPages.Length].SetActive(true);
     }
 }
