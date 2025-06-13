@@ -2292,8 +2292,12 @@ MonoBehaviour:
   - {fileID: 8430326636918921684, guid: 679eacaa2a981f143840855e28c0a0db, type: 3}
   - {fileID: 8430326636918921684, guid: c298a0e50f7b3ea419845d3c28b7cf4a, type: 3}
   billParent: {fileID: 1699212173}
-  spawnInterval: 1
-  MAX_BILLS: 8
+  totalGameTime: 120
+  initialBillStacks: []
+  xOffset: 110
+  yOffset: 950
+  spacing: 180
+  moveDuration: 1
 --- !u!4 &1730291475
 Transform:
   m_ObjectHideFlags: 0
@@ -2397,10 +2401,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 3
   sales: 20
-  star1Sale: 10
-  star2Sale: 30
-  star3Sale: 50
-  scoreUI: {fileID: 932847429}
 --- !u!4 &1790077405
 Transform:
   m_ObjectHideFlags: 0
@@ -2430,7 +2430,7 @@ GameObject:
   - component: {fileID: 1806221001}
   - component: {fileID: 1806221000}
   m_Layer: 5
-  m_Name: NextStage
+  m_Name: ScoreUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2513,9 +2513,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1806221000}
-        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
-        m_MethodName: LoadNextStage
+      - m_Target: {fileID: 1842916548}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: OnClickStage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2620,6 +2620,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6835c1200efb608469f5e0d6350485d1, type: 3}
+--- !u!1 &1842916547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1842916549}
+  - component: {fileID: 1842916548}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1842916548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842916547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646ae839157b5e6489144620edc46b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1842916549
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1842916547}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.17746353, y: -4.95496, z: -0.08084297}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1872112658
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3551,3 +3595,4 @@ SceneRoots:
   - {fileID: 1890037279}
   - {fileID: 1008577268}
   - {fileID: 2115725342}
+  - {fileID: 1842916549}

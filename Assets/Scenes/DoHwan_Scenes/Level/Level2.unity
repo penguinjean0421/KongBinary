@@ -434,6 +434,50 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &501207401
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 501207403}
+  - component: {fileID: 501207402}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &501207402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501207401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646ae839157b5e6489144620edc46b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &501207403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 501207401}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.37485653, y: -0.082706794, z: 0.21892062}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &508622638 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2155003756564802165, guid: 6835c1200efb608469f5e0d6350485d1, type: 3}
@@ -1793,8 +1837,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1467881655}
-        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+      - m_Target: {fileID: 501207402}
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: LoadNextStage
         m_Mode: 1
         m_Arguments:
@@ -2377,8 +2421,12 @@ MonoBehaviour:
   - {fileID: 8430326636918921684, guid: 679eacaa2a981f143840855e28c0a0db, type: 3}
   - {fileID: 8430326636918921684, guid: c298a0e50f7b3ea419845d3c28b7cf4a, type: 3}
   billParent: {fileID: 1699212173}
-  spawnInterval: 1
-  MAX_BILLS: 8
+  totalGameTime: 120
+  initialBillStacks: []
+  xOffset: 110
+  yOffset: 950
+  spacing: 180
+  moveDuration: 1
 --- !u!4 &1730291475
 Transform:
   m_ObjectHideFlags: 0
@@ -2482,10 +2530,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeLimit: 5
   sales: 10
-  star1Sale: 5
-  star2Sale: 15
-  star3Sale: 25
-  scoreUI: {fileID: 1613778252}
 --- !u!4 &1790077405
 Transform:
   m_ObjectHideFlags: 0
@@ -3538,6 +3582,7 @@ SceneRoots:
   - {fileID: 2062794976}
   - {fileID: 1790077405}
   - {fileID: 1730291475}
+  - {fileID: 501207403}
   - {fileID: 1442392276}
   - {fileID: 707209567}
   - {fileID: 1613778256}

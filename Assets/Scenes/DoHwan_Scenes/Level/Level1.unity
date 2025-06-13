@@ -1944,6 +1944,50 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84707fe045500e343b0a7ac6965460b4, type: 3}
+--- !u!1 &149199000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 149199002}
+  - component: {fileID: 149199001}
+  m_Layer: 0
+  m_Name: SceneLoader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &149199001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149199000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 646ae839157b5e6489144620edc46b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &149199002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 149199000}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &154245353
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11819,7 +11863,6 @@ GameObject:
   - component: {fileID: 1097485665}
   - component: {fileID: 1097485664}
   - component: {fileID: 1097485663}
-  - component: {fileID: 1097485666}
   m_Layer: 5
   m_Name: ScoreUI
   m_TagString: Untagged
@@ -11891,7 +11934,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1097485666}
+      - m_Target: {fileID: 149199001}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
         m_MethodName: LoadNextStage
         m_Mode: 1
@@ -11941,18 +11984,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1097485660}
   m_CullTransparentMesh: 1
---- !u!114 &1097485666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1097485660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 646ae839157b5e6489144620edc46b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1102472685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17825,8 +17856,12 @@ MonoBehaviour:
   - {fileID: 8430326636918921684, guid: 679eacaa2a981f143840855e28c0a0db, type: 3}
   - {fileID: 8430326636918921684, guid: c298a0e50f7b3ea419845d3c28b7cf4a, type: 3}
   billParent: {fileID: 1699212173}
-  spawnInterval: 1
-  MAX_BILLS: 8
+  totalGameTime: 120
+  initialBillStacks: []
+  xOffset: 110
+  yOffset: 950
+  spacing: 180
+  moveDuration: 1
 --- !u!4 &1730291475
 Transform:
   m_ObjectHideFlags: 0
@@ -22337,6 +22372,7 @@ SceneRoots:
   - {fileID: 2062794976}
   - {fileID: 1790077405}
   - {fileID: 1730291475}
+  - {fileID: 149199002}
   - {fileID: 1442392276}
   - {fileID: 707209567}
   - {fileID: 1984039264}
