@@ -29,6 +29,8 @@ public class Bill_Manager : MonoBehaviour
     [SerializeField] private float spacing = 180f; // 빌지 간 간격 (픽셀 단위)
     [SerializeField] private float moveDuration = 1f; // 이동 지속 시간 (초)
 
+    [SerializeField] private int maxBills=5;
+
     void Start()
     {
         if (billPrefabs == null || billPrefabs.Length == 0)
@@ -203,7 +205,7 @@ public class Bill_Manager : MonoBehaviour
 
     bool CanSpawnBill()
     {
-        return bills.Count < 8 && billStacks.Values.Sum() > 0;
+        return bills.Count < maxBills && billStacks.Values.Sum() > 0;
     }
 
     void UpdateBillPositions()
@@ -223,9 +225,15 @@ public class Bill_Manager : MonoBehaviour
         for (int i = 0; i < bills.Count; i++)
         {
             Food_State foodState = bills[i].GetComponent<Food_State>();
+            float f = bills[i].GetComponent<Bill>().currentTime;
             if (foodState != null && foodState.foodMenu == menuType)
             {
-                GameManager.Instance.AddSales(foodState.price);
+                if(f>0)
+                    GameManager.Instance.AddSales(foodState.price);
+                else if(f<=0)
+                {
+                    GameManager.Instance.AddSales(foodState.price*(2f/5f));
+                }
                 Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
 
                 Destroy(bills[i]);
