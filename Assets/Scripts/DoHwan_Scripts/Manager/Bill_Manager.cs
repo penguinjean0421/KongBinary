@@ -29,6 +29,8 @@ public class Bill_Manager : MonoBehaviour
     [SerializeField] private float spacing = 180f; // 빌지 간 간격 (픽셀 단위)
     [SerializeField] private float moveDuration = 1f; // 이동 지속 시간 (초)
 
+    [SerializeField] private int maxBills=5;
+
     void Start()
     {
         if (billPrefabs == null || billPrefabs.Length == 0)
@@ -203,7 +205,7 @@ public class Bill_Manager : MonoBehaviour
 
     bool CanSpawnBill()
     {
-        return bills.Count < 8 && billStacks.Values.Sum() > 0;
+        return bills.Count < maxBills && billStacks.Values.Sum() > 0;
     }
 
     void UpdateBillPositions()
