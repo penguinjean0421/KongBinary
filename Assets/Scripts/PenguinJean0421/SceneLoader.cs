@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
-    // 게임시작 화면
+    // 게임시작 버튼
     public void OnClickStart()
     {
         // 튜토 구현 되면 아래 #if ~ #endif 지울것
@@ -35,17 +35,29 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("ChooseStage");
     }
 
-    // 종료버튼 누르면
+    // 환경설정
+    public void OnClickSetting()
+    {
+        SettingManager.Instance.SettingActive();
+    }
+
+    // 종료버튼
     public void OnClickGameExit()
     {
         Debug.Log("게임 종료");
         Application.Quit();
     }
 
-    // 돌아가기 버튼
+    // 시작 화면으로 돌아가기 버튼
     public void OnClickBack()
     {
         SceneManager.LoadScene("Start");
+    }
+
+    // 다시하기 버튼
+    public void ReStart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     // 다음 스테이지 로드
