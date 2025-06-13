@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
     public int stageIndex; // 0(튜토리얼) 부터 시작
-    public int unlockBossStar = 10; // 보스 해금 별
+    int unlockBossStar = 10; // 보스 해금 별
     int getStars;
     Button stageButton;
 
@@ -18,17 +18,17 @@ public class StageManager : MonoBehaviour
     {
         for (int i = 1; i < StageData.Instance.maxStage; i++)
         {
-            getStars += PlayerPrefs.GetInt($"Stage{i}'s Star");
+            getStars += (int)PlayerPrefs.GetFloat($"Stage{i}'s Star");
         }
 
-        if (stageIndex != 0 && stageIndex % 5 == 0)
+        if (stageIndex % 5 == 0)
         {
             bool isBossUnlocked = StageData.Instance.IsStageCleared(stageIndex - 1) && (getStars > unlockBossStar);
             stageButton.interactable = isBossUnlocked;
         }
         else
         {
-            bool isUnlocked = (stageIndex == 0) || StageData.Instance.IsStageCleared(stageIndex - 1);
+            bool isUnlocked = (stageIndex == 1) || StageData.Instance.IsStageCleared(stageIndex - 1);
             stageButton.interactable = isUnlocked;
         }
     }
