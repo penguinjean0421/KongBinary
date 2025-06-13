@@ -167,6 +167,7 @@ MonoBehaviour:
   yOffset: 950
   spacing: 180
   moveDuration: 1
+  maxBills: 5
 --- !u!1 &6218830112042524910
 GameObject:
   m_ObjectHideFlags: 0
@@ -212,7 +213,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeLimit: 60
+  timeRemaining: 0
+  timerText: {fileID: 0}
+  isGameOver: 0
+  currentStage: 0
   sales: 0
+  starY: {fileID: 21300000, guid: 9e0d96562d7584cdda975aea5698b538, type: 3}
 --- !u!1001 &8360839558220236309
 PrefabInstance:
   m_ObjectHideFlags: 0
