@@ -14,7 +14,7 @@ public class Player_Spwan : MonoBehaviour
 
     void Start()
     {
-        //playerIndex = GameManager.Instance.playerIndex;
+        playerIndex = GameManager.Instance.playerIndex;
         if (playerIndex == 1)
         {
             if (player1 != null && player1Pos != null)
