@@ -7,9 +7,10 @@ public class Bill : MonoBehaviour
 {
     [SerializeField] private Slider slider;
     [SerializeField] public const float maxTime=20;
+    [SerializeField] private Food_State state;
 
 
-    public float currentTime;
+    private float currentTime;
 
     void Start()
     {
@@ -35,5 +36,11 @@ public class Bill : MonoBehaviour
             yield return null;
         }
         slider.value = 0f; // 정확히 0으로 설정
+        //Destroy(this.gameObject);
+        //find
+        //Debug.LogWarning("test12312");
+        Bill_Manager billManager = FindObjectOfType<Bill_Manager>();
+        billManager.gameObject.GetComponent<Bill_Manager>().FailBill(state.foodMenu);
+        //Debug.LogWarning("test12312");
     }
 }

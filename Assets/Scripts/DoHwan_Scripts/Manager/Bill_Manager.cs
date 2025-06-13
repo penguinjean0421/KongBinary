@@ -251,4 +251,35 @@ public class Bill_Manager : MonoBehaviour
         }
         Debug.LogWarning($"BillManager: No bill found with FoodMenu {menuType}"); // 잘못 제출
     }
+    public void FailBill(FoodMenu menuType)
+    {
+        for (int i = 0; i < bills.Count; i++)
+        {
+            Food_State foodState = bills[i].GetComponent<Food_State>();
+            //float f = bills[i].GetComponent<Bill>().currentTime;
+            if (foodState != null && foodState.foodMenu == menuType)
+            {
+                //if(f>0)
+                GameManager.Instance.AddSales(-50f);
+                // else if(f<=0)
+                //{
+                //    GameManager.Instance.AddSales(foodState.price*(2f/5f));
+                //}
+                //Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
+
+                Destroy(bills[i]);
+                bills.RemoveAt(i);
+                StartCoroutine(SmoothAlignBills());
+                Debug.Log($"BillManager: Removed bill with FoodMenu {menuType}");
+
+                // 빌지가 1개 남았을 때 1개 랜덤 생성
+                if (bills.Count == 0 && billStacks.Values.Sum() > 0)
+                {
+                    SpawnRandomBill();
+                }
+                return; // 첫 번째 일치 항목만 제거
+            }
+        }
+        Debug.LogWarning($"BillManager: No bill found with FoodMenu {menuType}"); // 잘못 제출
+    }
 }
