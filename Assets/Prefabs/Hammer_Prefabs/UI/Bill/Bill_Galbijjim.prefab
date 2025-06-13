@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 6084019258378259324}
   - component: {fileID: 56026294938100554}
   - component: {fileID: 7902481481006004651}
+  - component: {fileID: 1874340961879094172}
   m_Layer: 5
   m_Name: Bill_Galbijjim
   m_TagString: Untagged
@@ -441,5 +442,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   foodMenu: 4
-  price: 35
+  price: 100
   sprite: {fileID: 0}
+--- !u!114 &1874340961879094172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7684283661489463137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0967fb4c2adab554db95af74f3b80050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2561183307719467590}
+  state: {fileID: 7902481481006004651}

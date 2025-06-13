@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour
     Image star3;
     public Sprite starY;
 
+    //김도환 추가
+    public int playerIndex;
+
     void Awake()
     {
         // 싱글톤 설정
@@ -45,7 +48,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // ResetGameStart();
+        playerIndex = 1;
+         ResetGameStart();
         // // ResetGameObj();
         // // ResetTimer(); // 게임 시작 시 타이머 초기화
         // // sales = 0; // 판매액 초기화

@@ -233,7 +233,7 @@ public class Player_Controller : MonoBehaviour
             {
                 // 원본 재질로 복구
                 renderer.material = new Material(originalMaterials[renderer]);
-                Debug.Log($"Restored material for {renderer.gameObject.name}");
+                //Debug.Log($"Restored material for {renderer.gameObject.name}");
             }
         }
     }
@@ -339,6 +339,8 @@ public class Player_Controller : MonoBehaviour
                 {
                     if (pot != null && (pot.ingredient_1 == null || pot.ingredient_2 == null))
                     {
+                        if (pot.ingredient_1 != null && !pot.ingredient_1.CompareTag("Ingredient"))
+                            return;
                         pot.SetIngredient(isHandObject);
                         isHandObject.transform.parent = null;
                         isHandObject = null;

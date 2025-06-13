@@ -113,10 +113,10 @@ public class Guest_Spawn : MonoBehaviour
 
             // 파티클 다시 재생 후 비활성화
             particleSystem.Play();
-            Debug.Log($"Playing particle system before deactivating {targetGuest.name}");
+            //Debug.Log($"Playing particle system before deactivating {targetGuest.name}");
             yield return new WaitForSeconds(particleDuration);
             targetGuest.SetActive(false);
-            Debug.Log($"Deactivated {targetGuest.name}");
+            //Debug.Log($"Deactivated {targetGuest.name}");
         }
     }
 }

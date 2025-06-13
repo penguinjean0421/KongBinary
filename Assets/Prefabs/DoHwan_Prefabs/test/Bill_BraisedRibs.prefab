@@ -317,3 +317,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodMenu: 4
   price: 35
+  sprite: {fileID: 0}
