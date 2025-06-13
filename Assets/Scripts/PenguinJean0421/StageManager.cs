@@ -21,14 +21,14 @@ public class StageManager : MonoBehaviour
             getStars += PlayerPrefs.GetInt($"Stage{i}'s Star");
         }
 
-        if (stageIndex != 0 && stageIndex % 5 == 0)
+        if (stageIndex % 5 == 0)
         {
             bool isBossUnlocked = StageData.Instance.IsStageCleared(stageIndex - 1) && (getStars > unlockBossStar);
             stageButton.interactable = isBossUnlocked;
         }
         else
         {
-            bool isUnlocked = (stageIndex == 0) || StageData.Instance.IsStageCleared(stageIndex - 1);
+            bool isUnlocked = (stageIndex == 1) || StageData.Instance.IsStageCleared(stageIndex - 1);
             stageButton.interactable = isUnlocked;
         }
     }
