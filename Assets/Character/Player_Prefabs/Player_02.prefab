@@ -86,7 +86,7 @@ MonoBehaviour:
   isInTrigger: 0
   isInteracting: 0
   highlightColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  highlightIntensity: 1
+  highlightIntensity: 0.8
 --- !u!114 &842774058440640664
 MonoBehaviour:
   m_ObjectHideFlags: 0

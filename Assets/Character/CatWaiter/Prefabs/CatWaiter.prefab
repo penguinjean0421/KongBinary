@@ -52,7 +52,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  moveSpeed: 2
+  - {fileID: 0}
+  moveSpeed: 5
   rotationSpeed: 10
 --- !u!1 &7590882600168657477
 GameObject:
