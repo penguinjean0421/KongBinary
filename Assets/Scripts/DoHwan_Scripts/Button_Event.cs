@@ -1,3 +1,4 @@
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,12 @@ public class Button_Event : MonoBehaviour
 {
     [SerializeField] private Button addPlayerB;
     [SerializeField] private Image player2;
+    SceneLoader sceneLoader;
+
+    void Awake()
+    {
+        sceneLoader = GameObject.Find("SceneLoader").GetComponent<SceneLoader>();
+    }
 
     void Start()
     {
@@ -21,7 +28,7 @@ public class Button_Event : MonoBehaviour
 
     public void StartButton()
     {
-        SceneLoader.Instance.OnClickStage();
+        sceneLoader.OnClickStage();
     }
 
     public void AddPlayer()
