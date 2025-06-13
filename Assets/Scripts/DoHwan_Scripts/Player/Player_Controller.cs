@@ -233,7 +233,7 @@ public class Player_Controller : MonoBehaviour
             {
                 // 원본 재질로 복구
                 renderer.material = new Material(originalMaterials[renderer]);
-                Debug.Log($"Restored material for {renderer.gameObject.name}");
+                //Debug.Log($"Restored material for {renderer.gameObject.name}");
             }
         }
     }
