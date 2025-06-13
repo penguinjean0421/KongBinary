@@ -50,15 +50,6 @@ public class GameManager : MonoBehaviour
     {
         playerIndex = 1;
         // ResetGameStart();
-        // // ResetGameObj();
-        // // ResetTimer(); // 게임 시작 시 타이머 초기화
-        // // sales = 0; // 판매액 초기화
-
-        // // scoreUI.SetActive(false);
-        // // succedUI.SetActive(false);
-        // // failUI.SetActive(false);
-
-        // Debug.Log($"현재 스테이지는 {GameManager.Instance.currentStage} 입니다.");
     }
     public void ResetGameStart()
     {
@@ -87,8 +78,8 @@ public class GameManager : MonoBehaviour
         if (timeRemaining <= 0)
         {
             timeRemaining = 0;
-            if(timerText!=null)
-            GameOver();
+            if (timerText != null)
+                GameOver();
         }
 
         if (Input.GetKeyDown(KeyCode.A))
