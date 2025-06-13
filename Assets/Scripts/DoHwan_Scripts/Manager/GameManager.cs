@@ -49,16 +49,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerIndex = 1;
-         ResetGameStart();
-        // // ResetGameObj();
-        // // ResetTimer(); // 게임 시작 시 타이머 초기화
-        // // sales = 0; // 판매액 초기화
-
-        // // scoreUI.SetActive(false);
-        // // succedUI.SetActive(false);
-        // // failUI.SetActive(false);
-
-        // Debug.Log($"현재 스테이지는 {GameManager.Instance.currentStage} 입니다.");
+        // ResetGameStart();
     }
     public void ResetGameStart()
     {
@@ -87,7 +78,8 @@ public class GameManager : MonoBehaviour
         if (timeRemaining <= 0)
         {
             timeRemaining = 0;
-            GameOver();
+            if (timerText != null)
+                GameOver();
         }
 
         if (Input.GetKeyDown(KeyCode.A))
@@ -99,6 +91,8 @@ public class GameManager : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(timeRemaining / 60);
         int seconds = Mathf.FloorToInt(timeRemaining % 60);
+        if (timerText == null)
+            return;
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 

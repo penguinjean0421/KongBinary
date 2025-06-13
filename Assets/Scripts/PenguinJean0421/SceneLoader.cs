@@ -5,22 +5,7 @@ public class SceneLoader : MonoBehaviour
     // 게임시작 버튼
     public void OnClickStart()
     {
-        // 튜토 구현 되면 아래 #if ~ #endif 지울것
-#if UNITY_EDITOR
-        // StageData.Instance.SetStageCleared(0);
-        // StageData.Instance.IsStageCleared(0);
-        // StageData.Instance.ResetAllStageData(StageData.Instance.maxStage);
-#endif
-
-        if (PlayerPrefs.GetInt($"Stage0Clear") == 0)
-        {
-            SceneManager.LoadScene("CharPick");
-        }
-
-        else
-        {
-            OnClickStage();
-        }
+        SceneManager.LoadScene("Player_Select");
     }
 
     // 게임 튜토리얼 창 입장

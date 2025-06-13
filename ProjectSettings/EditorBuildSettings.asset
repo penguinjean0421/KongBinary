@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/Penguinjean0421/Test/Start.unity
     guid: 2ae25898e44229049ad37f65581f6f65
   - enabled: 1
-    path: Assets/Scenes/Penguinjean0421/Test/CharPick.unity
-    guid: aaf4a03806eac8b4987ca0d786f43a36
+    path: Assets/Scenes/Art_Scenes/Player_Select.unity
+    guid: 29b99b30b6756e146bdcb4cac86143bc
   - enabled: 1
     path: Assets/Scenes/Penguinjean0421/Test/ChooseStage.unity
     guid: 14f16e76984c72a43b14a7555f75f100
