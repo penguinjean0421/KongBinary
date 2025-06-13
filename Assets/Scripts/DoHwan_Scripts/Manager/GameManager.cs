@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerIndex = 1;
-         ResetGameStart();
+        // ResetGameStart();
         // // ResetGameObj();
         // // ResetTimer(); // 게임 시작 시 타이머 초기화
         // // sales = 0; // 판매액 초기화
@@ -87,6 +87,7 @@ public class GameManager : MonoBehaviour
         if (timeRemaining <= 0)
         {
             timeRemaining = 0;
+            if(timerText!=null)
             GameOver();
         }
 
@@ -99,6 +100,8 @@ public class GameManager : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(timeRemaining / 60);
         int seconds = Mathf.FloorToInt(timeRemaining % 60);
+        if (timerText == null)
+            return;
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
