@@ -6,6 +6,10 @@ public class Finished_Table : MonoBehaviour
 {
     public Bill_Manager billManager; // BillManager 참조
     [SerializeField] private ParticleSystem particleSystem;
+
+    private AudioSource audioSource; // 오디오 소스
+    [SerializeField] private AudioClip audioClip; // 걸음소리 오디오 클립
+
     void Start()
     {
         // BillManager가 Inspector에서 할당되지 않은 경우 씬에서 찾기
@@ -17,6 +21,16 @@ public class Finished_Table : MonoBehaviour
                 Debug.LogError("Finished_Table: BillManager not found in the scene!");
             }
         }
+        // AudioSource 컴포넌트 설정
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.clip = audioClip;
+        audioSource.loop = false; // 루프 활성화
+        audioSource.playOnAwake = false;
+
     }
 
     void Update()
@@ -68,10 +82,10 @@ public class Finished_Table : MonoBehaviour
         }
 
         //GameManager.Instance.AddSales(foodState.price);
-       //Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
+        //Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
 
 
-
+        audioSource.Play();
         billManager.CompleteBill(foodState.foodMenu);
         PlayParticle();
         //Destroy(food);
