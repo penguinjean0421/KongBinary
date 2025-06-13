@@ -13,6 +13,9 @@ public class Cutting_Board : MonoBehaviour
     private bool isCuting = false; // 현재 요리중인지 상태
     [SerializeField] private Slider timerBar;
 
+    private AudioSource audioSource; // 오디오 소스
+    [SerializeField] private AudioClip audioClip; // 걸음소리 오디오 클립
+
 
     void Start()
     {
@@ -22,6 +25,16 @@ public class Cutting_Board : MonoBehaviour
             timerBar.gameObject.SetActive(false);
             timerBar.value = 0f;
         }
+
+        // AudioSource 컴포넌트 설정
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.clip = audioClip;
+        audioSource.loop = true; // 루프 활성화
+        audioSource.playOnAwake = false;
     }
     public void SetIngredient(GameObject newIngredient)
     {
@@ -99,6 +112,7 @@ public class Cutting_Board : MonoBehaviour
     }
     private IEnumerator CutingCoroutine(Ingredient ingredient, GameObject playerObj)
     {
+        audioSource.Play();
         isCuting = true;
         // 플레이어 상호작용 잠금
         //GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -148,6 +162,7 @@ public class Cutting_Board : MonoBehaviour
         {
             playerController.isInteracting = false;
         }
+        audioSource.Stop();
         isCuting = false;
     }
 

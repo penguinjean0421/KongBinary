@@ -17,8 +17,10 @@ public class Player_Movement : MonoBehaviour
     private Player_Controller playerController;
     [SerializeField] public Animator animator;
     [SerializeField] private ParticleSystem dustParticle;
+    [SerializeField] private AudioClip footstepSound; // 걸음소리 오디오 클립
 
     private Vector3 moveDirection; // 이동 방향 저장
+    private AudioSource audioSource; // 오디오 소스
 
     void Start()
     {
@@ -32,6 +34,16 @@ public class Player_Movement : MonoBehaviour
 
         playerController = GetComponent<Player_Controller>();
         currentSpeed = walkSpeed;
+
+        // AudioSource 컴포넌트 설정
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.clip = footstepSound;
+        audioSource.loop = true; // 루프 활성화
+        audioSource.playOnAwake = false;
 
         Debug.Log("Connected Joysticks: " + string.Join(", ", Input.GetJoystickNames()));
     }
@@ -57,6 +69,10 @@ public class Player_Movement : MonoBehaviour
             if (dustParticle != null && dustParticle.isPlaying)
             {
                 dustParticle.Stop();
+            }
+            if (audioSource != null && audioSource.isPlaying)
+            {
+                audioSource.Stop(); // 상호작용 중 소리 중지
             }
             return;
         }
@@ -105,6 +121,19 @@ public class Player_Movement : MonoBehaviour
 
         // 이동 방향 계산
         moveDirection = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+
+        // 걸음소리 제어
+        if (audioSource != null)
+        {
+            if (rb.velocity.magnitude > 0.1f && !audioSource.isPlaying)
+            {
+                audioSource.Play(); // 이동 중 시작
+            }
+            else if (rb.velocity.magnitude <= 0.1f && audioSource.isPlaying)
+            {
+                audioSource.Stop(); // 이동 멈춤 시 중지
+            }
+        }
     }
 
     void FixedUpdate()

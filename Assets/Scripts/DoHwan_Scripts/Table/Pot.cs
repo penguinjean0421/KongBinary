@@ -18,6 +18,9 @@ public class Pot : MonoBehaviour
     [SerializeField] private GameObject fireEffect;
     [SerializeField] private Image ingredientUI; // UI에 표시할 Image 컴포넌트
 
+    private AudioSource audioSource; // 오디오 소스
+    [SerializeField] private AudioClip audioClip; // 걸음소리 오디오 클립
+
     private bool isCooking = false;
 
     void Start()
@@ -29,6 +32,16 @@ public class Pot : MonoBehaviour
             timerBar.value = 0f;
         }
         UpdateIngredientUI(); // 요리 완료 후 UI 업데이트
+
+        // AudioSource 컴포넌트 설정
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.clip = audioClip;
+        audioSource.loop = false; // 루프 활성화
+        audioSource.playOnAwake = false;
     }
 
     public void SetIngredient(GameObject newIngredient)
@@ -123,6 +136,7 @@ public class Pot : MonoBehaviour
 
             if (i1.CurrentState == IngredientState.Prepared && i2.CurrentState == IngredientState.Prepared)
             {
+                audioSource.Play();
                 StartCoroutine(CookingCoroutine(i1, i2));
             }
         }
@@ -140,6 +154,7 @@ public class Pot : MonoBehaviour
 
             if (i1.CurrentState == IngredientState.Prepared && i2.CurrentState == IngredientState.Prepared)
             {
+                audioSource.Play();
                 StartCoroutine(CookingCoroutine(i1, i2));
             }
         }

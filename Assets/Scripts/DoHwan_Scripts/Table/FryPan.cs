@@ -20,7 +20,10 @@ public class FryPan : MonoBehaviour
     [SerializeField] private GameObject fireEffect;
 
     private bool isCooking = false; // 현재 요리중인지 상태
-   
+
+    private AudioSource audioSource; // 오디오 소스
+    [SerializeField] private AudioClip audioClip; // 걸음소리 오디오 클립
+
     void Start()
     {
         fireEffect.SetActive(false);
@@ -30,6 +33,16 @@ public class FryPan : MonoBehaviour
             timerBar.gameObject.SetActive(false);
             timerBar.value = 0f;
         }
+
+        // AudioSource 컴포넌트 설정
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+        audioSource.clip = audioClip;
+        audioSource.loop = false; // 루프 활성화
+        audioSource.playOnAwake = false;
     }
     public void SetIngredient(GameObject newIngredient)
     {
@@ -57,6 +70,7 @@ public class FryPan : MonoBehaviour
             {
                
                 {
+                    audioSource.Play();
                     StartCoroutine(CookingCoroutine(i));
                 }
             }
@@ -91,6 +105,7 @@ public class FryPan : MonoBehaviour
             Ingredient i = ingredient.GetComponent<Ingredient>();
             if (i.CurrentState == IngredientState.Prepared)
             {
+                audioSource.Play();
                 StartCoroutine(CookingCoroutine(i));
             }
         }
