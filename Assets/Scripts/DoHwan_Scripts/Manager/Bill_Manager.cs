@@ -225,15 +225,15 @@ public class Bill_Manager : MonoBehaviour
         for (int i = 0; i < bills.Count; i++)
         {
             Food_State foodState = bills[i].GetComponent<Food_State>();
-            float f = bills[i].GetComponent<Bill>().currentTime;
+            //float f = bills[i].GetComponent<Bill>().currentTime;
             if (foodState != null && foodState.foodMenu == menuType)
             {
-                if(f>0)
+                //if(f>0)
                     GameManager.Instance.AddSales(foodState.price);
-                else if(f<=0)
-                {
-                    GameManager.Instance.AddSales(foodState.price*(2f/5f));
-                }
+               // else if(f<=0)
+                //{
+                //    GameManager.Instance.AddSales(foodState.price*(2f/5f));
+                //}
                 Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
 
                 Destroy(bills[i]);
