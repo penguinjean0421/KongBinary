@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 2107313806577231732}
   - component: {fileID: 4681292818603572278}
   - component: {fileID: 9102042045264744442}
+  - component: {fileID: 6143657116360636798}
   m_Layer: 5
   m_Name: Bill_Steak
   m_TagString: Untagged
@@ -179,6 +180,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   foodMenu: 1
   price: 20
+  sprite: {fileID: 0}
+--- !u!114 &6143657116360636798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3275444404635187503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0967fb4c2adab554db95af74f3b80050, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 2884381055654244622}
+  maxTime: 20
 --- !u!1 &4529224933980532508
 GameObject:
   m_ObjectHideFlags: 0
