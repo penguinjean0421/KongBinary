@@ -57,28 +57,26 @@ public class SettingManager : MonoBehaviour
 
     void Update()
     {
-        SettingActive();
+        if (Input.GetKeyDown(KeyCode.Escape)) { SettingActive(); }
+
     }
 
     // 환경설정 창 실행
     public void SettingActive()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        isPlaying = !isPlaying;
+        if (!isPlaying)  // 창 켜짐
         {
-            isPlaying = !isPlaying;
-            if (!isPlaying)  // 창 켜짐
-            {
-                Time.timeScale = 1f;
-                settingScene.SetActive(isPlaying);
-            }
-            else // 창 꺼짐
-            {
-                Time.timeScale = 0f;
-                settingScene.SetActive(isPlaying);
-                pageIndex = 0;
-            }
-            Debug.Log($"환경설정 창 : {isPlaying}");
+            Time.timeScale = 1f;
+            settingScene.SetActive(isPlaying);
         }
+        else // 창 꺼짐
+        {
+            Time.timeScale = 0f;
+            settingScene.SetActive(isPlaying);
+            pageIndex = 0;
+        }
+        Debug.Log($"환경설정 창 : {isPlaying}");
     }
 
     // 화면 크기 조절
@@ -133,9 +131,12 @@ public class SettingManager : MonoBehaviour
     // 설정창 이동(이전)
     public void OnClickLastPage()
     {
-        settingPages[pageIndex % settingPages.Length].SetActive(false);
-        pageIndex--;
-        settingPages[pageIndex % settingPages.Length].SetActive(true);
+        if (pageIndex > 0)
+        {
+            settingPages[pageIndex % settingPages.Length].SetActive(false);
+            pageIndex--;
+            settingPages[pageIndex % settingPages.Length].SetActive(true);
+        }
     }
 
     // 화면모드 드롭다운 초기화
