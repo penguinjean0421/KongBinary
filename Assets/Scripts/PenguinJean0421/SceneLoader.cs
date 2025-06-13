@@ -35,6 +35,12 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene("ChooseStage");
     }
 
+    // 환경설정
+    public void OnClickSetting()
+    {
+        SettingManager.Instance.SettingActive();
+    }
+
     // 종료버튼
     public void OnClickGameExit()
     {

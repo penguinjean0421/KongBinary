@@ -1,16 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
+using Unity.Entities.UniversalDelegates;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance; // 싱글톤
     public float timeLimit = 120f; // 제한 시간
-    private float timeRemaining;
-    Text timerText; // 타이머 UI 텍스트
+    [SerializeField] private float timeRemaining;
+    [SerializeField] Text timerText; // 타이머 UI 텍스트
 
-    private bool isGameOver = false;
-    private int currentStage; // 현재 스테이지 번호
+    [SerializeField] private bool isGameOver = false;
+    [SerializeField] private int currentStage; // 현재 스테이지 번호
 
     [SerializeField] internal float sales;
     float getStar;
@@ -33,7 +35,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            // DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -42,6 +44,19 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
+    {
+        // ResetGameStart();
+        // // ResetGameObj();
+        // // ResetTimer(); // 게임 시작 시 타이머 초기화
+        // // sales = 0; // 판매액 초기화
+
+        // // scoreUI.SetActive(false);
+        // // succedUI.SetActive(false);
+        // // failUI.SetActive(false);
+
+        // Debug.Log($"현재 스테이지는 {GameManager.Instance.currentStage} 입니다.");
+    }
+    public void ResetGameStart()
     {
         ResetGameObj();
         ResetTimer(); // 게임 시작 시 타이머 초기화
@@ -52,11 +67,6 @@ public class GameManager : MonoBehaviour
         failUI.SetActive(false);
 
         Debug.Log($"현재 스테이지는 {GameManager.Instance.currentStage} 입니다.");
-    }
-
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        ResetGameObj();
     }
 
     void Update()
@@ -94,7 +104,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over! Time's up!");
         ScoreUI();
 
-        // scoreUI.SetActive(true);
         // 게임 오버 처리 (예: 씬 전환)
         // SceneManager.LoadScene("GameOver");
 
@@ -103,9 +112,9 @@ public class GameManager : MonoBehaviour
     // 게임 오브제 초기화
     public void ResetGameObj()
     {
-        GameManager.Instance.currentStage = StageData.Instance.currentStageIndex;
-        GameManager.Instance.timerText = GameObject.Find("TimerText").GetComponent<Text>();
-        GameManager.Instance.scoreUI = GameObject.Find("ScoreUI");
+        currentStage = StageData.Instance.currentStageIndex;
+        timerText = GameObject.Find("TimerText").GetComponent<Text>();
+        scoreUI = GameObject.Find("ScoreUI");
 
         succedUI = GameObject.Find("SuccedUI");
         failUI = GameObject.Find("FailUI");
@@ -113,7 +122,6 @@ public class GameManager : MonoBehaviour
         star1 = GameObject.Find("Star1").GetComponent<Image>();
         star2 = GameObject.Find("Star2").GetComponent<Image>();
         star3 = GameObject.Find("Star3").GetComponent<Image>();
-
     }
 
     // 타이머 초기화 메서드
@@ -123,27 +131,6 @@ public class GameManager : MonoBehaviour
         isGameOver = false; // 게임 오버 상태도 초기화
         UpdateTimerUI();
     }
-
-    // 다음 스테이지로 이동
-    // public void GoToNextStage()
-    // {
-    //     currentStage++;
-    //     ResetTimer(); // 타이머 초기화
-    //     Debug.Log($"Moving to Stage {currentStage}");
-
-    //     // 다음 스테이지 씬 로드 (예: "Stage2", "Stage3" 등)
-    //     string nextSceneName = $"Stage{currentStage}";
-    //     if (Application.CanStreamedLevelBeLoaded(nextSceneName))
-    //     {
-    //         SceneManager.LoadScene(nextSceneName);
-    //     }
-    //     else
-    //     {
-    //         Debug.Log("No more stages! Game Cleared!");
-    //         // 모든 스테이지 클리어 시 처리
-    //         SceneManager.LoadScene("GameClear");
-    //     }
-    // }
 
     // 다음 스테이지 로드
     public void LoadNextStage()
@@ -213,7 +200,7 @@ public class GameManager : MonoBehaviour
             }
 
             succedUI.SetActive(true);
-            // ScoreData.Instance.GetStars(currentStage, getStar);
+            ScoreData.Instance.GetStars(currentStage, getStar);
 
         }
     }

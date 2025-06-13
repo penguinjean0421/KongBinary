@@ -1,8 +1,17 @@
 using UnityEngine;
+using UnityEngine.UI;
+
 public class SettingManager : MonoBehaviour
 {
     public static SettingManager Instance { get; private set; } // 싱글톤
     [SerializeField] GameObject settingScene;
+
+
+    // 수직동기화
+    Toggle vSyncToggle;
+
+
+
     bool isPause;
 
     void Awake()
@@ -21,6 +30,9 @@ public class SettingManager : MonoBehaviour
 
     void Start()
     {
+        vSyncToggle = GameObject.Find("VSyncToggle").GetComponent<Toggle>();
+
+        vSyncToggle.isOn = QualitySettings.vSyncCount > 0;
         settingScene.SetActive(false);
     }
 
@@ -49,5 +61,34 @@ public class SettingManager : MonoBehaviour
             settingScene.SetActive(isPause);
         }
         Debug.Log($"환경설정 창 : {isPause}");
+    }
+
+    // 화면 크기 조절
+
+    // 해상도
+
+    // 수직동기화
+    public void vSync()
+    {
+        QualitySettings.vSyncCount = vSyncToggle.isOn ? 1 : 0;
+        Debug.Log($"수직동기화 {vSyncToggle.isOn}");
+    }
+
+    // 전체음량 (슬라이더)
+    public void SoundVolume()
+    {
+
+    }
+
+    // 배경음악 (슬라이더)
+    public void BGMVolume()
+    {
+
+    }
+
+    // 시스템 (슬라이더)
+    public void SystemVolume()
+    {
+
     }
 }
