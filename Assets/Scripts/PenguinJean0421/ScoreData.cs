@@ -26,11 +26,8 @@ public class ScoreData : MonoBehaviour
     // 특정 스테이지의 별 갯수 저장
     public void GetStars(int stageIndex, float star)
     {
-        if (star < PlayerPrefs.GetFloat($"Stage{stageIndex}'s Star"))
-        {
-            PlayerPrefs.SetFloat($"Stage{stageIndex}'s Star", star);
-            PlayerPrefs.Save();
-        }
+        PlayerPrefs.SetFloat($"Stage{stageIndex}'s Star", star);
+        PlayerPrefs.Save();
     }
 
     // 모든 클리어 데이터 초기화 (디버깅용).

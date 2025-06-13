@@ -483,7 +483,7 @@ MonoBehaviour:
   isGameOver: 0
   currentStage: 0
   sales: 0
-  starY: {fileID: 0}
+  starY: {fileID: 21300000, guid: 9e0d96562d7584cdda975aea5698b538, type: 3}
   playerIndex: 0
 --- !u!4 &494691988
 Transform:
