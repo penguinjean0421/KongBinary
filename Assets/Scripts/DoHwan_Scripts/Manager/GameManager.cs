@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
             if (sales >= star3Sale[currentStage - 1])
             {
                 Debug.Log($"{currentStage} 스테이지 별 3개");
-                getStar = 3;
+                getStar = 3f;
 
                 star1.sprite = starY;
                 star2.sprite = starY;
@@ -182,7 +182,7 @@ public class GameManager : MonoBehaviour
             else if (sales >= star2Sale[currentStage - 1]) // 2번째 별
             {
                 Debug.Log($"{currentStage} 스테이지 별 2개");
-                getStar = 2;
+                getStar = 2f;
 
                 star1.sprite = starY;
                 star2.sprite = starY;
@@ -191,7 +191,7 @@ public class GameManager : MonoBehaviour
             else if (sales >= star1Sale[currentStage - 1]) // 1번째 별
             {
                 Debug.Log($"{currentStage} 스테이지 별 1개");
-                getStar = 1;
+                getStar = 1f;
 
                 star1.sprite = starY;
             }

@@ -5,13 +5,15 @@ using UnityEngine.SceneManagement;
 public class StageManager : MonoBehaviour
 {
     public int stageIndex; // 0(튜토리얼) 부터 시작
-    int unlockBossStar = 10; // 보스 해금 별
+    int unlockBossStar = 8; // 보스 해금 별
     int getStars;
     Button stageButton;
+    Text starText;
 
     void Awake()
     {
         stageButton = GetComponent<Button>();
+        starText = GameObject.Find($"Stage{stageIndex}Star").GetComponent<Text>();
     }
 
     void Start()
@@ -31,15 +33,13 @@ public class StageManager : MonoBehaviour
             bool isUnlocked = (stageIndex == 1) || StageData.Instance.IsStageCleared(stageIndex - 1);
             stageButton.interactable = isUnlocked;
         }
+
+        starText.text = $"{(int)PlayerPrefs.GetFloat($"Stage{stageIndex}'s Star")}/3";
     }
 
     public void LoadStage()
     {
         StageData.Instance.currentStageIndex = stageIndex;
         SceneManager.LoadScene($"Level_{stageIndex}");
-
-        /* 아래 처럼 해주세요
-        SceneManager.LoadScene($"Stage{stageIndex}"); 
-        */
     }
 }
