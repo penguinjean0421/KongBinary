@@ -31,6 +31,9 @@ public class Bill_Manager : MonoBehaviour
 
     [SerializeField] private int maxBills=5;
 
+    [SerializeField] private Slider slider;
+    //private float decreaseRate = 0.03f;
+
     void Start()
     {
         if (billPrefabs == null || billPrefabs.Length == 0)
@@ -53,6 +56,14 @@ public class Bill_Manager : MonoBehaviour
             {
                 billStacks[stack.menu] = stack.stackCount;
             }
+        }
+
+        if (slider != null)
+        {
+            // 슬라이더 초기값 설정 (최대값 1로 꽉 채움)
+            slider.minValue = 0f;
+            slider.maxValue = 1f;
+            slider.value = 1f;
         }
 
         gameTime = totalGameTime;
@@ -222,18 +233,17 @@ public class Bill_Manager : MonoBehaviour
 
     public void CompleteBill(FoodMenu menuType)
     {
+
         for (int i = 0; i < bills.Count; i++)
         {
             Food_State foodState = bills[i].GetComponent<Food_State>();
             //float f = bills[i].GetComponent<Bill>().currentTime;
             if (foodState != null && foodState.foodMenu == menuType)
             {
-                //if(f>0)
-                    GameManager.Instance.AddSales(foodState.price);
-               // else if(f<=0)
-                //{
-                //    GameManager.Instance.AddSales(foodState.price*(2f/5f));
-                //}
+               
+                GameManager.Instance.AddSales(foodState.price);
+               
+
                 Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
 
                 Destroy(bills[i]);
@@ -249,6 +259,7 @@ public class Bill_Manager : MonoBehaviour
                 return; // 첫 번째 일치 항목만 제거
             }
         }
+        BossHp(0.03f);
         Debug.LogWarning($"BillManager: No bill found with FoodMenu {menuType}"); // 잘못 제출
     }
     public void FailBill(FoodMenu menuType)
@@ -259,6 +270,8 @@ public class Bill_Manager : MonoBehaviour
             //float f = bills[i].GetComponent<Bill>().currentTime;
             if (foodState != null && foodState.foodMenu == menuType)
             {
+                BossHp(0.05f);
+
                 //if(f>0)
                 GameManager.Instance.AddSales(-50f);
                 // else if(f<=0)
@@ -281,5 +294,17 @@ public class Bill_Manager : MonoBehaviour
             }
         }
         Debug.LogWarning($"BillManager: No bill found with FoodMenu {menuType}"); // 잘못 제출
+    }
+    private void BossHp(float f)
+    {
+        if (slider != null)
+        {
+            slider.value = Mathf.Max(0f, slider.value - f);
+            if (slider.value <= 0f)
+            {
+                //게임오버
+            }
+        }
+       
     }
 }

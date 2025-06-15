@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Stage { Normal,Boss }
 public class Finished_Table : MonoBehaviour
 {
+    [SerializeField] private Stage stage;
     public Bill_Manager billManager; // BillManager 참조
     [SerializeField] private ParticleSystem particleSystem;
 
@@ -83,8 +85,20 @@ public class Finished_Table : MonoBehaviour
 
         //GameManager.Instance.AddSales(foodState.price);
         //Debug.Log($"{foodState.foodMenu} 제출, 가격: {foodState.price}");
-
-
+        /*
+        if (stage == Stage.Normal)
+        {
+            audioSource.Play();
+            billManager.CompleteBill(foodState.foodMenu);
+            PlayParticle();
+        }
+        else if (stage == Stage.Boss)
+        {
+            audioSource.Play();
+            billManager.CompleteBill(foodState.foodMenu);
+            PlayParticle();
+        }
+        */
         audioSource.Play();
         billManager.CompleteBill(foodState.foodMenu);
         PlayParticle();
